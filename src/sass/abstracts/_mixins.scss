@@ -1,0 +1,63 @@
+// Responsiveness
+@mixin breakpoint($point) {
+    @if $point == desktop {
+        @media only screen and (min-width: 1200px) { @content;}
+    }
+    @if $point == tablet {
+        @media only screen and (max-width: 1199px) {@content;}
+    }
+    @if $point == tablet-sm {
+        @media only screen and (max-width: 768px) { @content;}
+    }
+    @if $point == mobile-lg {
+        @media only screen and (max-width: 425px) { @content;}
+    }
+    @if $point == mobile-medium {
+        @media only screen and (max-width: 375px) { @content;}
+    }
+    @if $point == mobile-small {
+        @media only screen and (max-width: 320px) { @content;}
+    }
+}
+
+// content base styles for non-homepage pages 
+@mixin contentBaseStyles {
+    width: var(--section-content-width);
+    max-width: var(--section-content-maxwidth);
+    margin: 0 auto;
+    padding: 8% 0;
+
+    @include breakpoint(tablet) {
+        padding: 12% 0 6% 0;
+        width: 80%;
+    }
+    @include breakpoint(tablet-sm) {
+        padding: 12% 0 8% 0;
+    }
+    @include breakpoint(mobile-lg) {
+        padding: 12% 0 12% 0;
+    }
+
+    .page-header {
+        margin-bottom: 3%;
+
+        @include breakpoint(tablet-sm) {
+            margin-bottom: 3rem;
+        }
+        @include breakpoint(mobile-lg) {
+            margin-bottom: 4rem;
+        }
+    }
+    .page-details {
+        margin-bottom: 5%;
+        width: 80%;
+
+        h3 {
+
+            a {
+                color: #038A54;
+                font-weight: 900;
+            }
+        }
+    }
+}

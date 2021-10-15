@@ -1,0 +1,101 @@
+.text-tiny {
+	@include fluid-type(
+		$min_width_12,
+		$max_width_12,
+		$min_font_12,
+		$max_font_12
+	);
+}
+
+.text-xs {
+	@include fluid-type(
+		$min_width_14,
+		$max_width_14,
+		$min_font_14,
+		$max_font_14
+	);
+}
+
+.text-small {
+	@include fluid-type(
+		$min_width_16,
+		$max_width_16,
+		$min_font_16,
+		$max_font_16
+	);
+}
+
+.text-medium {
+	@include fluid-type(
+		$min_width_25,
+		$max_width_25,
+		$min_font_25,
+		$max_font_25
+	);
+}
+
+.text-24 {
+	@include fluid-type(
+		$min_width_24,
+		$max_width_24,
+		$min_font_24,
+		$max_font_24
+	);
+}
+
+.text-20 {
+	@include fluid-type(
+		$min_width_20,
+		$max_width_20,
+		$min_font_20,
+		$max_font_20
+	);
+}
+
+.text-kindabig {
+	@include fluid-type(
+		$min_width_30,
+		$max_width_30,
+		$min_font_30,
+		$max_font_30
+	);
+}
+
+.text-xl {
+	@include fluid-type(
+		$min_width_54,
+		$max_width_54,
+		$min_font_54,
+		$max_font_54
+	);
+
+	@include breakpoint(tablet-sm) {
+		font-size: 35px;
+	}
+}
+
+.text-regular {
+	font-weight: 400;
+}
+.text-light {
+	font-weight: 300;
+}
+.text-vbold {
+	font-weight: 900;
+}
+
+.text-white {
+	color: $color-white;
+}
+.text-black {
+	color: $color-black;
+}
+.text-green {
+	color: $color-green;
+}
+.text-blue {
+	color: $color-blue;
+}
+.text-blue-dark {
+	color: $color-blue-dark;
+}
