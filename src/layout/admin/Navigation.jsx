@@ -1,3 +1,5 @@
+import desktopLogo from "../../assets/images/desktop-logo.svg"
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -35,21 +37,40 @@ const Navigation = (props, { defaultActive }) => {
 
 	return (
 		<nav className="navigation">
-			{props.navItems.map((item, index) => (
-				<Link to={item.route}>
-					<div
-						className={`navigation__item ${
-							index === activeIndex
-								? "navigation__item--active"
-								: ""
-						}`}
-						key={item.name}
-						active={index === activeIndex}
-					>
-						<h3>{item.name}</h3>
-					</div>
-				</Link>
-			))}
+            <Link to="/">
+                <div className="navigation__logobox">
+                    <img src={desktopLogo} alt="logo" />
+                </div>
+            </Link>
+
+            <div className="navigation__linksbox">
+                {props.navItems.map((item, index) => (
+                    <Link to={item.route}>
+                        <div
+                            // if item is active, add active class
+                            className={`navigation__linksbox--item ${
+                                index === activeIndex
+                                    ? "navigation__linksbox--item-active"
+                                    : ""
+                            }`}
+                            key={item.name}
+                            active={index === activeIndex}
+                        >
+                            {/* set link icon to value of icon variable (svg) passed to navitems array */}
+                            <div className="icon-box">
+                                <span dangerouslySetInnerHTML={{__html: item.icon}} />
+                            </div>
+                            <h3 className="text-18 text-bold">{item.name}</h3>
+                        </div>
+                    </Link>
+                ))}
+            </div>
+
+            <div className="navigation__footer">
+                <span className="navigation__footer--span"></span>
+                <h3 className="navigation__footer--greeting text-small text-vbold text-blue-dark">Good Morning,</h3>
+                <h2 className="navigation__footer--username text-vbold text-green text-medium">Julia</h2>
+            </div>
 		</nav>
 	);
 };

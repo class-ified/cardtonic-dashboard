@@ -7,3 +7,12 @@
 @import "base/reset";
 @import "base/typography";
 @import "base/utilities";
+
+@import "components/desktop-history";
+
+@import "layout/admin/base";
+@import "layout/admin/navigation";
+@import "layout/admin/navbar";
+@import "layout/admin/footer";
+
+@import "views/dashboard";

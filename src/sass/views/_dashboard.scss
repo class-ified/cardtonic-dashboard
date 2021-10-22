@@ -1,0 +1,39 @@
+.dashboard {
+    padding: 0 var(--main-content-padding-horizontal);
+
+    &__top {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2.4rem;
+
+        .cards-box {
+            display: flex;
+
+            &>:not(:last-child) {
+                margin-right: 1.4rem;
+            }
+
+            .card {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                
+                height: 13rem;
+                padding: 0 3.4rem;
+                border-radius: var(--border-radius);
+
+                &-balance {
+                    width: 38.8rem;
+                    background-color: $color-white;
+                }
+
+                &-withdraw-button {
+                    width: 33.8rem;
+                    background-color: $color-blue-dark;
+                }
+            }
+        }
+    }
+}

@@ -8,19 +8,19 @@ const routes = [
 	{
 		exact: true,
 		path: "/signin",
-		component: lazy(() => import("./views/SignIn")),
+		component: lazy(() => import("./views/signin")),
 		ignore: true,
 	},
 	{
 		exact: true,
 		path: "/signup",
-		component: lazy(() => import("./views/SignUp")),
+		component: lazy(() => import("./views/signup")),
 		ignore: true,
 	},
 	{
 		exact: true,
 		path: "/reset-password",
-		component: lazy(() => import("./views/ResetPassword")),
+		component: lazy(() => import("./views/reset-password")),
 		ignore: true,
 	},
 	{
@@ -32,17 +32,18 @@ const routes = [
 			{
 				exact: true,
 				path: "/",
-				component: lazy(() => import("./views/Dashboard")),
+				component: lazy(() => import("./views/dashboard")),
 			},
 			{
 				exact: true,
 				path: "/dashboard",
-				component: lazy(() => import("./views/Dashboard")),
+				component: lazy(() => import("./views/dashboard")),
+				
 			},
 			{
 				exact: true,
 				path: "/transactions",
-				component: lazy(() => import("./views/Transactions")),
+				component: lazy(() => import("./views/transactions")),
 			},
 			{
 				component: NoMatch,

@@ -13,6 +13,11 @@
 	font-family: $font;
 	font-weight: 400;
 }
+@font-face {
+	src: url("../../assets/fonts/Lato-Bold.ttf");
+	font-family: $font;
+	font-weight: 700;
+}
 
 /*
     Responsive typography function variables
@@ -37,6 +42,11 @@ $max_width_16: 1600px;
 $min_font_16: 16px;
 $max_font_16: 18px;
 
+$min_width_18: 1440px;
+$max_width_18: 1800px;
+$min_font_18: 18px;
+$max_font_18: 19px;
+
 $min_width_25: 1440px;
 $max_width_25: 1600px;
 $min_font_25: 25px;
@@ -56,6 +66,11 @@ $min_width_30: 1440px;
 $max_width_30: 1600px;
 $min_font_30: 30px;
 $max_font_30: 31px;
+
+$min_width_32: 1440px;
+$max_width_32: 1600px;
+$min_font_32: 32px;
+$max_font_32: 33px;
 
 $min_width_54: 1440px;
 $max_width_54: 1600px;

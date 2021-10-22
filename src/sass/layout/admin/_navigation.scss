@@ -1,0 +1,114 @@
+.navigation {
+    height: 100vh;
+    width: 20%;
+    max-width: 55rem;
+    background-color: $color-white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__logobox {
+        margin-top: 5rem;
+        margin-bottom: 4rem;
+    }
+
+    &__linksbox {
+        width: 100%;
+
+        a {
+            display: block;
+        }
+
+        &>*:not(:last-child) {
+            margin-bottom: .8rem;
+        }
+
+        --transition-time: .3s;
+        --transition-delay: .15s;
+        
+        &--item {
+            display: flex;
+            align-items: center;
+            padding-left: 3.8rem;
+
+            .icon-box {
+                --size: 7.3rem;
+                height: var(--size);
+                width: var(--size);
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: transparent;
+                transition: background-color var(--transition-time) ease var(--transition-delay), box-shadow var(--transition-time) ease var(--transition-delay);
+                margin-right: 3rem;
+
+                span {
+    
+                    svg {
+                        // width: 2.8rem;
+                        path {
+                            transition: fill var(--transition-time) ease var(--transition-delay);
+
+                        }
+                    }
+                }
+            }
+
+            h3 {
+                color: #BFBFBF;
+                transition: var(--transition-time) ease var(--transition-delay);
+            }
+
+            &-active {
+
+                .icon-box {
+                    background-color: $color-green;
+                    box-shadow: 0px 17px 20px 0px rgb(27 50 60 / 16%);
+
+                    span {
+    
+                        svg {
+                            path {
+                                fill: white ;
+    
+                            }
+                        }
+                    }
+                }
+
+                h3 {
+                    color: #1B507E;
+                }
+
+            }
+        }
+
+
+    }
+
+    &__footer {
+        width: 100%;
+        margin-top: auto;
+        height: 13.7rem;
+        background-color: #F3F3F3;
+        border-top-left-radius: 3rem;
+        border-top-right-radius: 3rem;
+        padding: 3rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &--span {
+            display: block;
+            width: 50%;
+            max-width: 18rem;
+            height: 2px;
+            background-color: $color-white;
+        }
+
+        h3 {
+            margin-top: auto;
+        }
+    }
+}

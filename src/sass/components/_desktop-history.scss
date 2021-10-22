@@ -1,0 +1,98 @@
+.desktop-history {
+    width: 100%;
+    padding: 7.5rem 4rem 3.3rem 4rem;
+    background-color: $color-white;
+    border-radius: var(--border-radius);
+
+    &-head {
+        
+
+        // .box {
+
+        //     &-transaction {
+        //         width: ;
+        //     }
+        //     &-date {
+
+        //     }
+        //     &-rateaccount {
+
+        //     }
+        //     &-ngnamount {
+
+        //     }
+        //     &-status {
+
+        //     }
+        //     &-transactiontype {
+
+        //     }
+        // }
+    }
+
+    &-head,
+    &-body {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        div {
+            // background-color: red;
+        }
+
+        .box {
+
+            &-transaction {
+                width: 19rem;
+
+                .heading {
+                    text-align: center;
+                }
+
+                &-details {
+                    display: flex;
+                    align-items: center;
+
+                    .icon-box {
+                        margin-right: 1rem;
+                    }
+                }
+            }
+            &-date {
+                width: 11rem;
+            }
+            &-rateaccount {
+                width: 11rem;
+            }
+            &-ngnamount {
+                width: 6rem;
+                text-align: center;
+            }
+            &-status {
+                width: 7.6rem;
+                text-align: center;
+            }
+            &-transactiontype {
+                width: 4.8rem;
+            }
+        }
+    }
+
+    &-head {
+        margin-bottom: 2.3rem;
+    }
+
+    &-body {
+        padding: .6rem 0;
+        margin-bottom: 1rem;
+
+    }
+
+    .horizontal-line {
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: #F3F3F3;
+        margin-bottom: 2.3rem;
+    }
+}

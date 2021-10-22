@@ -52,12 +52,30 @@
 	);
 }
 
+.text-18 {
+	@include fluid-type(
+		$min_width_18,
+		$max_width_18,
+		$min_font_18,
+		$max_font_18
+	);
+}
+
 .text-kindabig {
 	@include fluid-type(
 		$min_width_30,
 		$max_width_30,
 		$min_font_30,
 		$max_font_30
+	);
+}
+
+.text-kindabigger {
+	@include fluid-type(
+		$min_width_32,
+		$max_width_32,
+		$min_font_32,
+		$max_font_32
 	);
 }
 
@@ -83,6 +101,9 @@
 .text-vbold {
 	font-weight: 900;
 }
+.text-bold {
+	font-weight: 700;
+}
 
 .text-white {
 	color: $color-white;
@@ -98,4 +119,7 @@
 }
 .text-blue-dark {
 	color: $color-blue-dark;
+}
+.text-almostblack {
+	color: #222132;
 }
