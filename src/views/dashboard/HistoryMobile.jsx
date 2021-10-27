@@ -1,5 +1,6 @@
 import { MobileTableBody } from "../../components/MobileTransactionsTable"
 import { GetMoreButton } from "../../components/Buttons"
+import MobileDetailsPopup from "../../components/MobileTransactionDetailsPopup"
 
 
 import { useState } from "react"
@@ -14,7 +15,8 @@ const HistoryMobile = () => {
 
     return (
         <div className="mobile-history">
-            <MobileTableBody />
+            <MobileDetailsPopup openPopup={openPopup} handlePopupOpen={handlePopupOpen} />
+            <MobileTableBody handlePopupOpen={handlePopupOpen} />
             <MobileTableBody />
             <MobileTableBody />
             <MobileTableBody />

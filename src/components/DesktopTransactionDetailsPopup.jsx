@@ -83,8 +83,6 @@ const FailedBody = () => {
 
 
 const DesktopDetailsPopup = ({openPopup, handlePopupView}) => {
-    
-    const popupRef = useRef()
 
     // close popup via handlePopupView function prop from 
     const closePopup = () => {
@@ -94,7 +92,7 @@ const DesktopDetailsPopup = ({openPopup, handlePopupView}) => {
     return (
         <>
             {openPopup && 
-                <div className="desktop-history-detailbox" ref={popupRef}>
+                <div className="desktop-history-detailbox">
                     <button className="cancel-btn" onClick={closePopup}>
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1.50971 9.59507C2.45076 5.58323 5.58324 2.45076 9.59507 1.50971C12.4924 0.830097 15.5076 0.830096 18.4049 1.50971C22.4168 2.45076 25.5492 5.58324 26.4903 9.59507C27.1699 12.4924 27.1699 15.5076 26.4903 18.4049C25.5492 22.4168 22.4168 25.5492 18.4049 26.4903C15.5076 27.1699 12.4924 27.1699 9.59507 26.4903C5.58324 25.5492 2.45076 22.4168 1.50971 18.4049C0.830096 15.5076 0.830096 12.4924 1.50971 9.59507Z" stroke="#FF2E2E" stroke-width="2"/>
