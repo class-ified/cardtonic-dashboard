@@ -1,0 +1,23 @@
+.get-more {
+    display: flex;
+    align-items: center;
+    padding: 1.6rem 1.9rem;
+    
+    border-radius: 1000px;
+    
+    h3 {
+        margin-right: .9rem;
+        color: #969BA0;
+    }
+    span {
+        transform: translateY(2px);
+    }
+
+    &-desktop {
+        background-color: #F4F5F9;
+        margin-top: 3rem;
+    }
+    &-mobile {
+        background-color: $color-white;
+    }
+}

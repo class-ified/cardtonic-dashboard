@@ -9,10 +9,14 @@
 @import "base/utilities";
 
 @import "components/desktop-history";
+@import "components/mobile-history";
+@import "components/buttons";
+@import "components/footer";
 
 @import "layout/admin/base";
 @import "layout/admin/navigation";
 @import "layout/admin/navbar";
 @import "layout/admin/footer";
+@import "layout/admin/navigation-mobile";
 
 @import "views/dashboard";

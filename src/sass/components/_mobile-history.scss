@@ -1,0 +1,21 @@
+.mobile-history-body {
+    background-color: $color-white;
+    border-radius: 2rem;
+    padding: .5rem;
+    padding-right: 2.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .left {
+        display: flex;
+        align-items: center;
+
+        .text-box {
+            &>:nth-child(1) {
+                margin-bottom: .2rem;
+            }
+        }
+    }
+}

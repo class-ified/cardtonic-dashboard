@@ -52,7 +52,7 @@ const AdminLayout = (props) => {
 			<div className="container-dashboard-main">
 				<NavBar />
 				{props.children}
-				<Footer />
+				
 			</div>
 		</div>
 	);

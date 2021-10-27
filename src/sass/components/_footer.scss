@@ -1,0 +1,19 @@
+.main-footer {
+    display: flex;
+    margin-top: 5rem;
+
+    &-desktop {
+        justify-content: flex-end;
+    }
+    &-mobile {
+        justify-content: center;
+    }
+
+    .links-box {
+        display: flex;
+
+        h3 {
+            color: #A9A9A9;
+        }
+    }
+}

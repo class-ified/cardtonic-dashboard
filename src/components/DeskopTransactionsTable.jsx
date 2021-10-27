@@ -1,5 +1,6 @@
 import { TransactionHistoryTextBlack,  TransactionHistoryTextGrey, TransactionHistoryTextGreySmall, TransactionHistoryStatusText } from "./Typography"
 
+
 const TableHead = () => {
     return (
         <div className="desktop-history-head">
@@ -25,9 +26,11 @@ const TableHead = () => {
     )
 }
 
-const TableBody = () => {
+const TableBody = ({handlePopupView}) => {
+
     return (
-        <div className="desktop-history-body">
+        <div className="desktop-history-body" onClick={() => handlePopupView(true)} style={{cursor:'pointer'}}>
+            
             <div className="box-transaction box-transaction-details">
                 <div className="icon-box">
                     <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +69,7 @@ const TableBody = () => {
             </div>
 
             <div className="box-status box-status-details">
-                <TransactionHistoryStatusText status="paid" />
+                <TransactionHistoryStatusText status="pending" />
             </div>
 
             <div className="box-transactiontype box-transactiontype-details">
@@ -82,6 +85,7 @@ const TableBody = () => {
                     </defs>
                 </svg>
             </div>
+
         </div>
     )
 }

@@ -1,7 +1,8 @@
-import { Route, Switch } from "react-router"
+
 import useWindowSize from "../../hooks/useWindowSize"
 import HistoryDesktop from "./HistoryDesktop"
 import HistoryMobile from "./HistoryMobile"
+import Footer from "../../layout/admin/Footer"
 
 const Dashboard = () => {
     //get window size
@@ -10,11 +11,11 @@ const Dashboard = () => {
     return (
         <main className="dashboard">
             <div className="dashboard__top">
-                <h1 className="text-kindabig text-blue-dark text-vbold">Dashboard</h1>
+                <h1 className="text-heading text-kindabig text-blue-dark text-vbold">Dashboard</h1>
                 <div className="cards-box">
                     <div className="card card-balance">
                         <div className="left">
-                            <h1 className="text-kindabigger text-blue text-vbold">₦582,000. <span className="text-medium">00</span></h1>
+                            <h1 className="text-kindabigger text-blue text-vbold">₦582,000. <span style={{fontSize: '80%', color: '#EDEDED'}}>00</span></h1>
                             <h3 className="text-xs text-regular">Your Funds</h3>
                         </div>
 
@@ -51,6 +52,8 @@ const Dashboard = () => {
                 <HistoryMobile />
             )}
             </div>
+
+            <Footer />
         </main>
     )
 }

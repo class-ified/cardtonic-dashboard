@@ -11,18 +11,18 @@ export const TransactionHistoryTextGreySmall = ({text, span}) => (
 )
 
 export const TransactionHistoryStatusText = ({status}) => (
-    <>
+    <div className="status-text-box" style={{display: 'flex', justifyContent: "center"}}>
         {(() => {
             switch (status) {
             case 'paid':
-                return <h3 className="status-text status-text-paid">paid</h3>
+                return <h3 className="status-text text-regular status-text-paid">Paid</h3>
             case 'pending':
-                return <h3 className="status-text status-text-pending">pending</h3>
+                return <h3 className="status-text text-regular status-text-pending">Pending</h3>
             case 'failed':
-                return <h3 className="status-text status-text-failed">failed</h3>
+                return <h3 className="status-text text-regular status-text-failed">Failed</h3>
             default:
                 return null
             }
         })()}
-    </>
+    </div>
 )

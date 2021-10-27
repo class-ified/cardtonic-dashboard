@@ -1,4 +1,5 @@
 import mobileLogo from "../../assets/images/mobile-logo.svg"
+import NavigationMobile from "./NavigationMobile"
 
 import { Link } from "react-router-dom"
 
@@ -34,6 +35,11 @@ const NavBar = () => {
                         <h3 className="count text-white text-vbold">12</h3>
                     </div>
                 </div>
+
+
+                <NavigationMobile />
+
+
             </div>
         </header>
     )

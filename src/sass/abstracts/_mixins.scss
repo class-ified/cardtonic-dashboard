@@ -22,42 +22,49 @@
 
 // content base styles for non-homepage pages 
 @mixin contentBaseStyles {
-    width: var(--section-content-width);
-    max-width: var(--section-content-maxwidth);
+    width: var(--main-content-width);
+    max-width: var(--main-content-maxwidth);
     margin: 0 auto;
-    padding: 8% 0;
+    height: calc(100vh - var(--navbar-height));
+    overflow-y: auto;
+    padding: 0 var(--main-content-padding-horizontal);
+    padding-bottom: 5rem;
 
-    @include breakpoint(tablet) {
-        padding: 12% 0 6% 0;
-        width: 80%;
+    // @include breakpoint(desktop) {
+    //     &::-webkit-scrollbar {
+    //         background: transparent;
+    //     }
+    // }
+}
+
+
+@mixin contentWidth {
+    padding: 0 var(--main-content-padding-horizontal);
+    width: var(--main-content-width);
+    max-width: var(--main-content-maxwidth);
+    margin: 0 auto;
+}
+
+
+@mixin desktopHistoryBox {
+    width: 100%;
+    padding: 5.5rem 4rem 3.3rem 4rem;
+    background-color: $color-white;
+    border-radius: var(--border-radius);
+
+    &-head {
+        margin-bottom: 2.3rem;
     }
-    @include breakpoint(tablet-sm) {
-        padding: 12% 0 8% 0;
+
+    .horizontal-line {
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: #F3F3F3;
+        margin-bottom: 2.3rem;
     }
-    @include breakpoint(mobile-lg) {
-        padding: 12% 0 12% 0;
-    }
 
-    .page-header {
-        margin-bottom: 3%;
-
-        @include breakpoint(tablet-sm) {
-            margin-bottom: 3rem;
-        }
-        @include breakpoint(mobile-lg) {
-            margin-bottom: 4rem;
-        }
-    }
-    .page-details {
-        margin-bottom: 5%;
-        width: 80%;
-
-        h3 {
-
-            a {
-                color: #038A54;
-                font-weight: 900;
-            }
-        }
+    &-body {
+        margin-bottom: 1rem;
     }
 }
