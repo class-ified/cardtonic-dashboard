@@ -7,7 +7,7 @@ import { useState } from "react"
 
 const HistoryMobile = () => {
     // popup state
-    const [openPopup, setOpenPopup] = useState(true)
+    const [openPopup, setOpenPopup] = useState(false)
 
     const handlePopupOpen = (newValue) => {
         setOpenPopup(newValue)
@@ -17,9 +17,9 @@ const HistoryMobile = () => {
         <div className="mobile-history">
             <MobileDetailsPopup openPopup={openPopup} handlePopupOpen={handlePopupOpen} />
             <MobileTableBody handlePopupOpen={handlePopupOpen} />
-            <MobileTableBody />
-            <MobileTableBody />
-            <MobileTableBody />
+            <MobileTableBody handlePopupOpen={handlePopupOpen} />
+            <MobileTableBody handlePopupOpen={handlePopupOpen} />
+            <MobileTableBody handlePopupOpen={handlePopupOpen} />
             <GetMoreButton />
         </div>
     )

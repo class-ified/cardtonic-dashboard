@@ -31,24 +31,133 @@
         z-index: 11;
         height: 100vh;
         width: 100vw;
-        background: rgba(8, 6, 6, 0.7);
+        background: rgba(76, 66, 66, 0.7);
         backdrop-filter: blur(5px);
         overflow-y: auto;
+        
 
         .content-box {
             width: 34.5rem;
-            height: 70rem;
+            height: 69.6rem;
             background-color: white;
             border-radius: 2.7rem;
             position: absolute;
             top: 10%;
             left: 50%;
             transform: translateX(-50%);
+            padding: 1.8rem 2.2rem;
 
             .cancel-button {
                 position: absolute;
                 top: 1.8rem;
                 right: 2rem;
+            }
+
+            .top-indicator {
+                display: flex;
+                align-items: center;
+                margin-bottom: 1.7rem;
+
+                img {
+                    margin-right: .7rem;
+                }
+            }
+            .image-box,
+            .amount-box,
+            .feedback-message,
+            .rejection-images-box,
+            .failed-amount-box {
+                padding-left: 1.5rem;
+            }
+
+            .image-box {
+                margin-bottom: 2.3rem;
+
+                &>*:not(:last-child) {
+                    margin-right: .5rem;
+                }
+            }
+
+            .amount-box {
+                margin-bottom: 3.8rem;
+                
+                .text-amount {
+                    color: #4FAEA8 !important;
+                }
+            }
+
+            .failed-amount-box {
+                margin-bottom: 1.9rem;
+            }
+
+            .rejection-reason-box {
+                @include commentsBox;
+                width: 100%;
+                height: 11rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .rejection-images-box {
+                margin-bottom: 1.2rem;
+
+                h3 {
+                    margin-bottom: .5rem;
+                }
+                img {
+                    margin-right: .5rem;
+                }
+            }
+
+            .comment-box {
+                width: 100%;
+                height: 6rem;
+                margin-bottom: 2rem;
+                @include commentsBox;
+            }
+
+            .optional-comment-box {
+                width: 100%;
+                height: 6.2rem;
+                @include commentsBox;
+                margin-bottom: 2rem;
+            }
+
+            .feedback-message {
+                color: #4FAEA8;
+                margin-bottom: 12.5rem;
+            }
+
+            .info-card {
+                height: 8rem;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1.5rem 2.7rem 1.5rem 1.3rem;
+                border-radius: 1.6rem;
+                background-color: #F2F2F2;
+                margin-bottom: 2rem;
+
+                .icon-box {
+                    // margin-right: ;
+                }
+                .text-box {
+                    text-align: right;
+
+                    &-date {
+                        display: flex;
+                        // align-items: center;
+                    }
+                }
+            }
+
+            .transaction-id {
+                display: flex;
+                justify-content: center;
+                
+                button {
+                    margin-left: 1rem;
+                }
             }
         }
     }

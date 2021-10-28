@@ -46,6 +46,11 @@ const routes = [
 				component: lazy(() => import("./views/transactions")),
 			},
 			{
+				exact: true,
+				path: "/start-trade",
+				component: lazy(() => import("./views/start-trade")),
+			},
+			{
 				component: NoMatch,
 				ignore: true,
 			},

@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import successIcon from "../assets/images/icon-success.svg"
+import failedIcon from "../assets/images/failed-icon.svg"
 import amazonIcon from "../assets/images/icons/amazon.svg"
 import blankIcon from "../assets/images/blank-icon.svg"
 import copyIcon from "../assets/images/copy-icon.svg"
@@ -9,7 +10,7 @@ const Unfailed = () => {
         <>
             <div className="top-indicator">
                 <img src={successIcon} alt="check" />
-                <h3 className="text-regular text-xs text-black">Transaction Status: <span style={{color: '#2BC155'}}>Paid</span></h3>
+                <h3 className="text-regular text-xs text-black">Transaction Status: <span className="text-vbold" style={{color: '#2BC155'}}>Paid</span></h3>
             </div>
 
             <div className="image-box">
@@ -20,7 +21,7 @@ const Unfailed = () => {
             </div>
 
             <div className="amount-box">
-                <h2 className="text-regular text-vbold text-medium">₦125,000.00</h2>
+                <h2 className="text-vbold text-medium text-amount">₦125,000.00</h2>
                 <h3 className="text-18 text-blue text-vbold">500.00 <span style={{color: '#D2D2D2'}}>| 340</span></h3>
             </div>
 
@@ -28,9 +29,9 @@ const Unfailed = () => {
                 <h3 className="text-xs text-black text-regular">No comment added</h3>
             </div>
 
-            <h3 className="text-regular text-small text-bold">
-                The transaction is in progress. 
-                You’ll get a notification once done.
+            <h3 className="feedback-message text-regular text-small text-bold">
+                The transaction is in progress. <br/>
+                You’ll get a notification once done. <br/>
                 Go have some fun!
             </h3>
 
@@ -67,8 +68,8 @@ const Failed = () => {
     return (
         <>
             <div className="top-indicator">
-                <img src={successIcon} alt="check" />
-                <h3 className="text-regular text-xs text-black">Transaction Status: <span style={{color: '#2BC155'}}>Paid</span></h3>
+                <img src={failedIcon} alt="check" />
+                <h3 className="text-regular text-xs text-black">Transaction Status: <span className="text-error text-vbold">Failed</span></h3>
             </div>
 
             <div className="image-box">
@@ -78,20 +79,26 @@ const Failed = () => {
                 <img src={blankIcon} />
             </div>
 
-            <div className="amount-box">
-                <h2 className="text-regular text-vbold text-medium">₦125,000.00</h2>
+            <div className="failed-amount-box">
+                <h2 className="text-vbold text-medium" style={{color: '#4FAEA8'}}>₦125,000.00</h2>
                 <h3 className="text-18 text-blue text-vbold">500.00 <span style={{color: '#D2D2D2'}}>| 340</span></h3>
             </div>
 
-            <div className="comment-box">
-                <h3 className="text-xs text-black text-regular">No comment added</h3>
+            <div className="rejection-reason-box">
+                <h3 className="text-xs text-black text-regular">Rejection Reason:</h3>
             </div>
 
-            <h3 className="text-regular text-small text-bold">
-                The transaction is in progress. 
-                You’ll get a notification once done.
-                Go have some fun!
-            </h3>
+            <div className="rejection-images-box">
+                <h3 className="text-error text-xs text-regular">Rejection images:</h3>
+                <img src={blankIcon} />
+                <img src={blankIcon} />
+                <img src={blankIcon} />
+                <img src={blankIcon} />
+            </div>
+
+            <div className="optional-comment-box">
+                <h3 className="text-xs text-black text-regular">Optional comment:</h3>
+            </div>
 
             <div className="info-card">
                 <div className="icon-box">
@@ -140,7 +147,7 @@ const MobileDetailsPopup = ({openPopup, handlePopupOpen}) => {
                             </svg>
                         </button>
 
-                        <Unfailed />
+                        <Failed />
                         
                     </div>
                 </div>
