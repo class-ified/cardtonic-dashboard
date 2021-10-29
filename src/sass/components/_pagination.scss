@@ -1,0 +1,37 @@
+.pagination-box {
+    margin-top: 2rem;
+    // background-color: red;
+    margin-left: auto;
+    width: 13.3rem;
+    margin-right: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include breakpoint(tablet) {
+        margin-right: unset;
+    }
+
+    .number-box {
+        
+        &>:not(:last-child) {
+            margin-right: .19rem;
+        }
+
+        .page-number {
+            --size: 2.3rem;
+            --color: #9BABC5;
+            height: var(--size);
+            width: var(--size);
+            border-radius: 6px;
+            border: 1px solid var(--color);
+            color: var(--color);
+
+            &-active {
+                color: $color-white;
+                background-color: $color-blue-dark;
+                border: 1px solid $color-blue-dark;
+            }
+        }
+    }
+}

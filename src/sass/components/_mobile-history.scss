@@ -1,5 +1,15 @@
 .mobile-history {
 
+    .top-line {
+        display: block;
+        height: 1px;
+        width: 90%;
+        border-radius: 1000px;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+        background-color: #ECECEC;
+    }
+
 
     &-body {
         background-color: $color-white;
@@ -14,6 +24,10 @@
         .left {
             display: flex;
             align-items: center;
+
+            .icon-box {
+                margin-right: .9rem;
+            }
 
             .text-box {
                 &>:nth-child(1) {
