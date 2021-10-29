@@ -39,33 +39,13 @@
 
 
     &-detailbox {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 11;
-        height: calc(100vh + 15rem);
-        width: 100vw;
-        background: rgba(76, 66, 66, 0.7);
-        backdrop-filter: blur(5px);
-        overflow-y: auto;
-        
 
-        .content-box {
+        .popup-content {
             width: 34.5rem;
             height: 69.6rem;
-            background-color: white;
-            border-radius: 2.7rem;
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 11rem;
             padding: 1.8rem 2.2rem;
-
-            .cancel-button {
-                position: absolute;
-                top: 1.8rem;
-                right: 2rem;
-            }
+            
 
             .top-indicator {
                 display: flex;
