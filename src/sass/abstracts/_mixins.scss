@@ -28,7 +28,7 @@
     height: calc(100vh - var(--navbar-height));
     overflow-y: auto;
     padding: 0 var(--main-content-padding-horizontal);
-    padding-bottom: 5rem;
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom));
 
     // @include breakpoint(desktop) {
     //     &::-webkit-scrollbar {
@@ -48,7 +48,7 @@
 
 @mixin desktopHistoryBox {
     width: 100%;
-    padding: 5.5rem 4rem calc(3.3rem + env(safe-area-inset-bottom)) 4rem;
+    padding: 5.5rem 4rem 3.3rem 4rem;
     background-color: $color-white;
     border-radius: var(--border-radius);
 
