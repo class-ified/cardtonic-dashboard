@@ -1,6 +1,6 @@
 const StartTrade = () => {
     return (
-        <div>Start Trade</div>
+        <div>start trade</div>
     )
 }
 
