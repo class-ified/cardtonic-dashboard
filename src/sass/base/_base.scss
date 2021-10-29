@@ -33,7 +33,7 @@ body {
 	box-sizing: border-box;
 	font-family: $font;
 	background-color: #F9F9F9;
-	height: calc(100vh - env(safe-area-inset-bottom));
+	height: 100vh;
 	overflow: hidden;
 }
 
