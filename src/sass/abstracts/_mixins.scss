@@ -48,7 +48,7 @@
 
 @mixin desktopHistoryBox {
     width: 100%;
-    padding: 5.5rem 4rem 3.3rem 4rem;
+    padding: 5.5rem 4rem calc(3.3rem + env(safe-area-inset-bottom)) 4rem;
     background-color: $color-white;
     border-radius: var(--border-radius);
 
