@@ -21,3 +21,14 @@
         background-color: $color-white;
     }
 }
+
+.black-submit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.9rem;
+    height: 6.1rem;
+    width: 19.1rem;
+    background-color: $color-black;
+    border-radius: 2rem;
+}

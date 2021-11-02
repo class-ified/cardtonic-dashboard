@@ -5,30 +5,33 @@
     z-index: 11;
     height: 100vh;
     width: 100vw;
-    background: rgba(76, 66, 66, 0.7);
+    background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
     padding-bottom: 100px;
+    overflow-y: scroll !important;
     
     @include breakpoint(tablet) {
-        overflow-y: scroll !important;
     }
 
 
     .scroll-container {
         height: 100%;
         width: 100%;
+        overflow-y: scroll;
+        margin-bottom: 15%;
         
         @include breakpoint(tablet) {
             height: max(100vh, 85rem);
-            overflow-y: scroll;
+            margin-bottom: unset;
         }
-
+        
         .popup-content {
             background-color: white;
             border-radius: 2.7rem;
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
+            margin-bottom: 1000px !important;
 
             .cancel-button {
                 position: absolute;

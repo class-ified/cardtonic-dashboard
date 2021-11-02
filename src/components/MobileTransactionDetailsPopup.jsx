@@ -133,6 +133,7 @@ const Failed = () => {
 
 
 const MobileDetailsPopup = ({openPopup, handlePopupOpen}) => {
+    // close popup via handlePopupView function prop from 
     const closePopup = () => {
         handlePopupOpen(false)
     }

@@ -1,0 +1,14 @@
+.default-input {
+    height: 6.1rem;
+    border: 1px solid #CAF8FC;
+    border-radius: 2rem;
+    color: #1B507E;
+    padding: 0 2.9rem;
+    font-weight: 400;
+    @include fluid-type(
+		$min_width_16,
+		$max_width_16,
+		$min_font_16,
+		$max_font_16
+	);
+}

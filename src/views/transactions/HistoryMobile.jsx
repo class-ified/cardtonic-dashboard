@@ -8,6 +8,7 @@ const HistoryMobile = () => {
     // popup state
     const [openPopup, setOpenPopup] = useState(false)
 
+    // function that handles the state updating, passed as prop to the detailspopup and tablebody components so they are able to update the state
     const handlePopupOpen = (newValue) => {
         setOpenPopup(newValue)
     }
