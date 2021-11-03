@@ -29,3 +29,9 @@
     place-items: center;
   }
 }
+
+.disabled-input {
+  &::placeholder {
+    color: #BCC7D1;
+  }
+}

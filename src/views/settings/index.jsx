@@ -1,5 +1,6 @@
-import Button from "../../components/SettingsButtons";
+
 import ChangePasswordButton from "./change-password/ChangePasswordButton";
+import EditProfiileButton from "./edit-profile/EditProfileButton";
 import SetPinPopup from "./SetPinPopup";
 
 
@@ -12,6 +13,7 @@ const Settings = () => {
             </div>
             <div className="settings__body">
                 <ChangePasswordButton />
+                <EditProfiileButton />
             </div>
         </main>
     )

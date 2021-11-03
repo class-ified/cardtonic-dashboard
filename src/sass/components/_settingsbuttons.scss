@@ -19,17 +19,11 @@
     .change-password {
 
         .popup-content {
-            width: 87.5rem;
-            height: 45rem;
-            top: 20%;
+            @include settingsPopupBaseStyles;
             padding: 9.2rem 5.3rem 7.9rem 5.3rem;
 
             @include breakpoint(tablet) {
-                height: 59.1rem;
                 padding: 15.1rem 1.3rem 16.1rem 1.3rem;
-                width: 90%;
-                max-width: 34.4rem;
-                top: 10%;
             }
 
             form {
@@ -51,6 +45,62 @@
 
                 button {
                     margin-top: .5rem;
+                }
+            }
+        }
+    }
+
+    .edit-profile {
+        
+        .popup-content {
+            @include settingsPopupBaseStyles;
+            padding: 9.2rem 5.3rem 7.9rem 5.3rem;
+
+            @include breakpoint(tablet) {
+                padding: 13.9rem 1.9rem 4rem 1.9rem;
+            }
+
+            form {
+                width: 100%;
+                --width: 82%;
+                // width: var(--width);
+
+                @include breakpoint(tablet) {
+                    --width: 100%;
+                }
+
+                input {
+                    display: block;
+                    margin-bottom: 1rem;
+                    width: var(--width);
+                }
+
+                .form-bottom {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    @include breakpoint(tablet) {
+                        flex-direction: column;
+
+                    }
+
+                    button {
+                        margin-top: .5rem;
+
+                        @include breakpoint(tablet) {
+                            margin-bottom: 9.7rem;
+                            align-self: flex-start;
+                        }
+                    }
+
+                    h1 {
+                        @include breakpoint(tablet) {
+                            align-self: flex-end;
+                        }
+                    }
+
                 }
             }
         }

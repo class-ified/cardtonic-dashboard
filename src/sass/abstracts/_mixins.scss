@@ -76,3 +76,16 @@
     padding: 1.2rem 1.9rem;
     overflow-y: auto;
 }
+
+@mixin settingsPopupBaseStyles {
+    width: 87.5rem;
+    height: 45rem;
+    top: 20%;
+
+    @include breakpoint(tablet) {
+        height: 59.1rem;
+        width: 90%;
+        max-width: 34.4rem;
+        top: 10%;
+    }
+}

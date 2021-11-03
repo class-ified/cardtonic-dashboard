@@ -25,6 +25,10 @@
 
         &>*:not(:last-child) {
             margin-bottom: 2rem;
+
+            @include breakpoint(tablet) {
+                margin-bottom: 1rem;
+            }
         }
     }
 
