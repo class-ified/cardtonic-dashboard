@@ -1,0 +1,31 @@
+.settings {
+    @include contentBaseStyles;
+
+    &__heading {
+        text-align: right;
+        margin-bottom: 3.8rem;
+        margin-top: 7.5rem;
+
+        @include breakpoint(tablet) {
+            margin-top: 2rem;
+        }
+    }
+    
+    &__body {
+        height: 56.7rem;
+        padding: 7rem 6.4rem;
+        background-color: $color-white;
+        border-radius: var(--border-radius);
+
+        @include breakpoint(tablet) {
+            height: 59rem;
+            padding: 5.7rem 1.3rem;
+        }
+
+
+        &>*:not(:last-child) {
+            margin-bottom: 2rem;
+        }
+    }
+
+}

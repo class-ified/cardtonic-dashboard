@@ -1,0 +1,28 @@
+.wallet {
+    @include contentBaseStyles;
+
+    &__top {
+        // display: flex;
+        // flex-direction: row-reverse;
+        // justify-content: space-between;
+        // align-items: center;
+        // margin-bottom: 2.4rem;
+        // .pageheading-box {
+        //     @include breakpoint(desktop) {
+        //         display: none;
+        //     }
+        // }
+
+        &-base {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            // .pageheading-box {
+            //     @include breakpoint(tablet) {
+            //         display: none;
+            //     }
+            // }
+        }
+    }
+}

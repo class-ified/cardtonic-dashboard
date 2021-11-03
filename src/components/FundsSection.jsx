@@ -4,7 +4,7 @@ import { useState } from "react"
 
 const FundsSection = () => {
     // popup state
-    const [openPopup, setOpenPopup] = useState(true)
+    const [openPopup, setOpenPopup] = useState(false)
 
     // function that handles the state updating, passed as prop to the detailspopup and tablebody components so they are able to update the state
     const handlePopupView = (newValue) => {
@@ -12,7 +12,7 @@ const FundsSection = () => {
     }
 
     return (
-        <div className="cards-box">
+        <div className="fundsection-box">
             <div className="card card-balance">
                 <div className="left">
                     <h1 className="text-kindabigger text-blue text-vbold">₦582,000. <span style={{fontSize: '80%', color: '#EDEDED'}}>00</span></h1>

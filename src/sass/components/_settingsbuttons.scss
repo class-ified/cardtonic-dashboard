@@ -1,0 +1,58 @@
+.settings__body{
+    &-option {
+        display: flex;
+        width: 72%;
+        height: 6.1rem;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2.9rem;
+        border-radius: 2rem;
+        border: 1px solid #F1F1F1;
+
+        @include breakpoint(tablet) {
+            width: 100%;
+        }
+
+    }
+
+
+    .change-password {
+
+        .popup-content {
+            width: 87.5rem;
+            height: 45rem;
+            top: 20%;
+            padding: 9.2rem 5.3rem 7.9rem 5.3rem;
+
+            @include breakpoint(tablet) {
+                height: 59.1rem;
+                padding: 15.1rem 1.3rem 16.1rem 1.3rem;
+                width: 90%;
+                max-width: 34.4rem;
+                top: 10%;
+            }
+
+            form {
+                --width: 82%;
+                width: var(--width);
+
+                @include breakpoint(tablet) {
+                    --width: 100%;
+                }
+
+                label {
+                    width: 100%;
+
+                    input {
+                        width: 100%;
+                        margin-bottom: 1rem;
+                    }
+                }
+
+                button {
+                    margin-top: .5rem;
+                }
+            }
+        }
+    }
+}

@@ -26,3 +26,13 @@ export const TransactionHistoryStatusText = ({status}) => (
         })()}
     </div>
 )
+
+
+export const PageHeading = ({text, span}) => {
+    return (
+        <div className="pageheading-box">
+            <h3 className="text-kindabig text-blue text-vbold">{text}</h3>
+            <h3 className="text-18 text-vbold" style={{color: "#BFBFBF"}}>{span}</h3>
+        </div>
+    )
+}

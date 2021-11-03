@@ -17,6 +17,8 @@
 @import "components/fundssection";
 @import "components/withdrawfunds";
 @import "components/inputs";
+@import "components/fundstat";
+@import "components/settingsbuttons";
 
 @import "layout/admin/base";
 @import "layout/admin/navigation";
@@ -26,3 +28,5 @@
 
 @import "views/dashboard";
 @import "views/transactions";
+@import "views/wallet";
+@import "views/settings";

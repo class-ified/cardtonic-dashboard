@@ -55,11 +55,11 @@ const routes = [
 				path: "/wallet",
 				component: lazy(() => import("./views/wallet")),
 			},
-			// {
-			// 	exact: true,
-			// 	path: "/settings",
-			// 	component: lazy(() => import("./views/settings")),
-			// },
+			{
+				exact: true,
+				path: "/settings",
+				component: lazy(() => import("./views/settings")),
+			},
 			// {
 			// 	exact: true,
 			// 	path: "/support",

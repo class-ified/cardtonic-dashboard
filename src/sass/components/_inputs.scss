@@ -1,14 +1,31 @@
 .default-input {
-    height: 6.1rem;
-    border: 1px solid #CAF8FC;
-    border-radius: 2rem;
-    color: #1B507E;
-    padding: 0 2.9rem;
-    font-weight: 400;
-    @include fluid-type(
+	height: 6.1rem;
+	border: 1px solid #caf8fc;
+	border-radius: 2rem;
+	color: #1b507e;
+	padding: 0 2.9rem;
+	font-weight: 400;
+	@include fluid-type(
 		$min_width_16,
 		$max_width_16,
 		$min_font_16,
 		$max_font_16
 	);
+
+  &-withspan {
+    padding-right: 5rem;
+  }
+}
+
+.label-withspan {
+  position: relative;
+
+  span {
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    place-items: center;
+  }
 }

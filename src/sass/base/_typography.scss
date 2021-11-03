@@ -91,3 +91,23 @@ $min_width_85: 1440px;
 $max_width_85: 1600px;
 $min_font_85: 85px;
 $max_font_85: 88px;
+
+
+.pageheading-box {
+	text-align: right;
+
+	@include breakpoint(tablet) {
+		width: 100%;
+		margin-bottom: 1.4rem;
+		@include fluid-type(
+			$min_width_20,
+			$max_width_20,
+			$min_font_20,
+			$max_font_20
+		);
+
+		h3 {
+			font-size: inherit;
+		}
+	}
+}
