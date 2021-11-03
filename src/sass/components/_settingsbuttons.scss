@@ -105,4 +105,61 @@
             }
         }
     }
+
+    .chat-with-us {
+        .popup-content {
+            @include settingsPopupBaseStyles;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 3.6rem;
+
+            @media only screen and (max-width: 350px) {
+                padding: 0 2.6rem;
+            }
+
+            &>*:not(:last-child) {
+                margin-bottom: 1rem;
+            }
+
+            --width: 27.1rem;
+
+            .socialmedia-link {
+                height: 6.1rem;
+                width: var(--width);
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                padding: 0 2.4rem;
+
+                @media only screen and (max-width: 350px) {
+                    width: 100%;
+                }
+            }
+            .facebook {
+                background-color: #2A679E;
+            }
+            .instagram {
+                background-color: #1E1E1E;
+            }
+            .twitter {
+                background-color: #69C2E8;
+            }
+            .horizontal-line {
+                display: inline-block;
+                height: 1px;
+                width: var(--width);
+                background-color: #ECECEC;
+                margin-top: .7rem;
+                margin-bottom: 1.7rem;
+            }
+            .whatsapp {
+                background-color: #03D07D;
+            }
+            .mobile {
+                background-color: #002444;
+            }
+        }
+    }
 }

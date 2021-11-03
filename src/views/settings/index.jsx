@@ -1,6 +1,7 @@
 
 import ChangePasswordButton from "./change-password/ChangePasswordButton";
 import EditProfiileButton from "./edit-profile/EditProfileButton";
+import ChatWithUsButton from "./chat-with-us/ChatWithUsButton";
 import SetPinPopup from "./SetPinPopup";
 
 
@@ -14,6 +15,7 @@ const Settings = () => {
             <div className="settings__body">
                 <ChangePasswordButton />
                 <EditProfiileButton />
+                <ChatWithUsButton />
             </div>
         </main>
     )
