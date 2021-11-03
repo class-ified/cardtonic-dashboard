@@ -12,26 +12,77 @@
 		$max_font_16
 	);
 
-  &-withspan {
-    padding-right: 5rem;
-  }
+	&-withspan {
+		padding-right: 5rem;
+	}
 }
 
 .label-withspan {
-  position: relative;
+	position: relative;
 
-  span {
-    position: absolute;
-    right: 3rem;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    place-items: center;
-  }
+	span {
+		position: absolute;
+		right: 3rem;
+		top: 50%;
+		transform: translateY(-50%);
+		display: flex;
+		place-items: center;
+	}
 }
 
 .disabled-input {
-  &::placeholder {
-    color: #BCC7D1;
+	&::placeholder {
+		color: #bcc7d1;
+	}
+}
+
+.default-textarea {
+	border: 1px solid #caf8fc;
+	border-radius: 2rem;
+	color: #1b507e;
+	padding: 2rem 2.9rem;
+	font-weight: 400;
+  resize: none;
+  font-family: inherit;
+	@include fluid-type(
+		$min_width_16,
+		$max_width_16,
+		$min_font_16,
+		$max_font_16
+	);
+	&::placeholder {
+		font-family: inherit;
+    color: inherit;
+	}
+  &:focus {
+    outline: none;
   }
+}
+
+
+
+
+.default-select-box {
+	position: relative;
+	height: 6.1rem;
+
+	select {
+		height: 100%;
+    width: 100%;
+
+		&:focus {
+			& ~ svg {
+				path {
+					stroke: #d9d9d9;
+				}
+			}
+		}
+	}
+
+	svg {
+		position: absolute;
+		right: 2.9rem;
+		top: 50%;
+		transform: translateY(-50%);
+	}
 }

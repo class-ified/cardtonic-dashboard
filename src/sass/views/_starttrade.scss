@@ -1,0 +1,140 @@
+.start-trade {
+    @include contentBaseStyles;
+
+    &__heading {
+        text-align: right;
+        margin-bottom: 2.5rem;
+        margin-top: 1.5rem;
+
+        @include breakpoint(tablet) {
+            margin-top: 2rem;
+        }
+    }
+
+    &__body {
+        padding: 5rem 4.6rem;
+        background-color: $color-white;
+        border-radius: var(--border-radius);
+
+        @include breakpoint(tablet) {
+            padding: 5rem 1.3rem;
+        }
+
+        form {
+            width: 100%;
+
+            &>*:not(:last-child) {
+                margin-bottom: 1rem;
+            }
+
+            --notfull-width: 75%;
+
+            @media only screen and (max-width: 1380px) {
+                --notfull-width: 70%;
+            }
+            @include breakpoint(tablet) {
+                --notfull-width: 100%;
+            }
+
+            .default-select-box {
+                width: var(--notfull-width);
+
+                select {
+                    font-weight: 900 !important;
+                }
+            }
+
+            .amount-rate {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                margin-bottom: 5.9rem;
+
+                @include breakpoint(tablet) {
+                    flex-direction: column;
+                    margin-bottom: 1rem;
+                }
+
+
+                input {
+                    width: var(--notfull-width);
+                    margin-right: 1.3rem;
+
+                    @include breakpoint(tablet) {
+                        margin-bottom: 1rem;
+                    }
+                }
+
+                .rate-box {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    background-color: #E5F8FA;
+                    border-radius: 2rem;
+                    padding: 0 2.7rem;
+
+                    @include breakpoint(tablet) {
+                        flex: unset;
+                        height: 10rem;
+                    }
+
+                    h2,
+                    h3 {
+                        color: #4FAEA8;
+                    }
+                }
+            }
+
+            textarea {
+                width: 100%;
+                height: 6.1rem;
+
+                @include breakpoint(tablet) {
+                    height: 11rem;
+                }
+            }
+
+            .upload-label {
+                cursor: pointer;
+                width: 100%;
+                display: block;
+                margin-bottom: 2.5rem;
+
+                input {
+                    display: none;
+                }
+
+                .upload-box {
+                    height: 17.7rem;
+                    width: 100%;
+                    border-radius: 2rem;
+                    border: 1px solid #CAF8FC;
+                    position: relative;
+
+                    @include breakpoint(tablet) {
+                        margin-bottom: 6.7rem;
+                    }
+
+                    img {
+                        height: 90%;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                    h3 {
+                        position: absolute;
+                        top: 2.1rem;
+                        left: 2.7rem;
+
+                        @include breakpoint(tablet) {
+                            top: unset;
+                            bottom: 2.1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

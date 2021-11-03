@@ -3,6 +3,7 @@ import ChangePasswordButton from "./change-password/ChangePasswordButton";
 import EditProfiileButton from "./edit-profile/EditProfileButton";
 import ChatWithUsButton from "./chat-with-us/ChatWithUsButton";
 import SetPinButton from "./set-pin/SetPinButton";
+import ShareWithFriendsButton from "./share-with-friends/ShareWithFriendsButton";
 
 
 
@@ -14,9 +15,10 @@ const Settings = () => {
             </div>
             <div className="settings__body">
                 <ChangePasswordButton />
+                <SetPinButton />
                 <EditProfiileButton />
                 <ChatWithUsButton />
-                <SetPinButton />
+                <ShareWithFriendsButton />
             </div>
         </main>
     )
