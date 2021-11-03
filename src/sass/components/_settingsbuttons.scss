@@ -162,4 +162,45 @@
             }
         }
     }
+
+    .set-pin {
+        .popup-content {
+            @include settingsPopupBaseStyles;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            // align-items: center;
+            padding: 0 5.3rem;
+
+            @include breakpoint(tablet) {
+                padding: 0 1.7rem;
+            }
+
+            form {
+                width: 82%;
+                // background-color: red;
+
+                @include breakpoint(tablet) {
+                    width: 100%;
+                }
+
+                label {
+                    width: 100%;
+
+                    input {
+                        width: 100%;
+                        margin-bottom: 1rem;
+                    }
+                }
+
+                button {
+                    margin-top: .5rem;
+
+                    @include breakpoint(tablet) {
+                        margin-top: 5rem;
+                    }
+                }
+            }
+        }
+    }
 }
