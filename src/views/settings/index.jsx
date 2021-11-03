@@ -4,6 +4,7 @@ import EditProfiileButton from "./edit-profile/EditProfileButton";
 import ChatWithUsButton from "./chat-with-us/ChatWithUsButton";
 import SetPinButton from "./set-pin/SetPinButton";
 import ShareWithFriendsButton from "./share-with-friends/ShareWithFriendsButton";
+import Footer from "../../layout/admin/Footer"
 
 
 
@@ -20,6 +21,8 @@ const Settings = () => {
                 <ChatWithUsButton />
                 <ShareWithFriendsButton />
             </div>
+
+            <Footer />
         </main>
     )
 }

@@ -1,8 +1,22 @@
 /* eslint-disable jsx-a11y/alt-text */
 import {BlackSubmit} from "../../components/Buttons"
 import uploadGif from "../../assets/images/upload.gif"
+import CompleteTrade from "./CompleteTradePopup"
+import Footer from "../../layout/admin/Footer"
+
+import { useState } from "react"
 
 const StartTrade = () => {
+    const [popupOpen, setPopupOpen] = useState(true)
+
+    const handlePopup = (value) => {
+        setPopupOpen(value)
+    }
+    const openPopup = (e) => {
+        e.preventDefault()
+        handlePopup(true)
+    }
+
     return (
         <main className="start-trade">
             <div className="start-trade__heading">
@@ -58,10 +72,14 @@ const StartTrade = () => {
                         </div>
                     </label>
 
-                    <BlackSubmit text="Start Trade" />
+                    <CompleteTrade handlePopup={handlePopup} popupOpen={popupOpen} />
+
+                    <BlackSubmit text="Start Trade" onClick={openPopup} />
 
                 </form>
             </div>
+
+            <Footer />
         </main>
     )
 }

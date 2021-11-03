@@ -30,9 +30,9 @@ export const GetMoreButton = () => {
 }
 
 
-export const BlackSubmit = ({text}) => {
+export const BlackSubmit = ({text, onClick}) => {
     return (
-        <button type="submit" className="black-submit">
+        <button type="submit" className="black-submit" onClick={onClick}>
             <h3 className="text-green text-small text-bold">{text}</h3>
 
             <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">

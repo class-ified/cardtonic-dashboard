@@ -135,6 +135,63 @@
                     }
                 }
             }
+
+            .complete-trade {
+                .popup-content {
+                    top: 20%;
+                    height: 45rem;
+                    width: 87.5rem;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+
+                    @include breakpoint(tablet) {
+                        width: 31rem;
+                        height: 40.4rem;
+                        border-radius: 4rem;
+                        top: 15%;
+
+                        .cancel-button {
+                            top: 2.9rem;
+                            right: 2.6rem;
+                        }
+                    }
+                    @media only screen and (max-width: 345px) {
+                        width: 90%;
+                    }
+
+                    img {
+                        margin-bottom: 3.6rem;
+                    }
+
+                    .text-error {
+                        margin-bottom: 4.5rem;
+                        width: 50%;
+                        min-width: 21.3rem;
+                        text-align: center;
+
+                        @include breakpoint(tablet) {
+                            margin-bottom: 3.6rem;
+                        }
+                    }
+
+                    .complete-trade-button {
+                        background-color: #4CAF50;
+                        width: 26.3rem;
+                        height: 6.1rem;
+                        border-radius: 2rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 0 2.3rem;
+
+                        @media only screen and (max-width: 345px) {
+                            width: 90%;
+                        }
+                    }
+                }
+            }
         }
     }
 }
