@@ -5,6 +5,7 @@ import AuthGuard from "./components/auth/AuthGuard";
 import { lazy } from "react";
 
 const routes = [
+	
 	{
 		exact: true,
 		path: "/signin",

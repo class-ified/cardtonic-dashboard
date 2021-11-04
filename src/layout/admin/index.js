@@ -9,7 +9,6 @@ import {
 
 import NavBar from "./NavBar";
 import Navigation from "./Navigation";
-import Footer from "./Footer";
 
 const AdminLayout = (props) => {
 	const navItems = [
@@ -52,7 +51,6 @@ const AdminLayout = (props) => {
 			<div className="container-dashboard-main">
 				<NavBar />
 				{props.children}
-				
 			</div>
 		</div>
 	);
