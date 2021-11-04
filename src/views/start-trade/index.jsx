@@ -7,7 +7,7 @@ import Footer from "../../layout/admin/Footer"
 import { useState } from "react"
 
 const StartTrade = () => {
-    const [popupOpen, setPopupOpen] = useState(true)
+    const [popupOpen, setPopupOpen] = useState(false)
 
     const handlePopup = (value) => {
         setPopupOpen(value)
