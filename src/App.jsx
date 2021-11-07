@@ -2,9 +2,13 @@ import "./sass/main.scss";
 
 import Loader from "./components/Loader";
 import routes from "./routes";
-
+import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { Fragment, Suspense } from "react";
+import { persistor, store } from "./store/store";
+import { QueryClientProvider } from "react-query";
+import { queryClient } from "./store/queryClient";
+import { PersistGate } from "redux-persist/integration/react";
 
 export const renderRoutes = (routes = []) => (
 	<Suspense fallback={<Loader />}>
@@ -38,7 +42,15 @@ export const renderRoutes = (routes = []) => (
 );
 
 function App() {
-	return <Router>{renderRoutes(routes)}</Router>;
+	return (
+		<QueryClientProvider client={queryClient}>
+			<PersistGate persistor={persistor}>
+				<Provider store={store}>
+					<Router>{renderRoutes(routes)}</Router>
+				</Provider>
+			</PersistGate>
+		</QueryClientProvider>
+	);
 }
 
 export default App;

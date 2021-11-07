@@ -1,11 +1,14 @@
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router";
+import { selectAuthenticated } from "selectors";
+
 const AuthGuard = ({ children }) => {
-	// const user = {};
-	// const accessToken = user?.accessToken ?? null;
-	// if (!accessToken) {
-	// 	return <Redirect to="/login" />;
-	// }
+	const auth = useSelector(selectAuthenticated);
+	if (!auth) {
+		return <Redirect to="/signin" />;
+	}
 
 	return <>{children}</>;
 };
 
-export default AuthGuard
+export default AuthGuard;
