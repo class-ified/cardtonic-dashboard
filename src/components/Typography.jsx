@@ -14,11 +14,11 @@ export const TransactionHistoryStatusText = ({status}) => (
     <div className="status-text-box" style={{display: 'flex', justifyContent: "center"}}>
         {(() => {
             switch (status) {
-            case 'paid':
+            case 'approved':
                 return <h3 className="status-text text-regular status-text-paid">Paid</h3>
             case 'pending':
                 return <h3 className="status-text text-regular status-text-pending">Pending</h3>
-            case 'failed':
+            case 'rejected':
                 return <h3 className="status-text text-regular status-text-failed">Failed</h3>
             default:
                 return null

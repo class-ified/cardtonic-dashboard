@@ -2,6 +2,9 @@ import desktopLogo from "../../assets/images/desktop-logo.svg"
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUsersName } from "selectors";
+
 
 const Navigation = (props, { defaultActive }) => {
 	/**
@@ -32,6 +35,9 @@ const Navigation = (props, { defaultActive }) => {
 		);
 		changeActiveIndex(activeItem);
 	}, [location, props.navItems]);
+
+    // get user name from (redux) store
+	const userName = useSelector(selectUsersName);
 
 
 
@@ -69,7 +75,7 @@ const Navigation = (props, { defaultActive }) => {
             <div className="navigation__footer">
                 <span className="navigation__footer--span"></span>
                 <h3 className="navigation__footer--greeting text-small text-vbold text-blue-dark">Good Morning,</h3>
-                <h2 className="navigation__footer--username text-vbold text-green text-medium">Julia</h2>
+                <h2 className="navigation__footer--username text-vbold text-green text-medium">{userName}</h2>
             </div>
 		</nav>
 	);

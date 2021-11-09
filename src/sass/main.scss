@@ -26,8 +26,11 @@
 @import "layout/admin/footer";
 @import "layout/admin/navigation-mobile";
 
+@import "layout/sign/navbar";
+
 @import "views/dashboard";
 @import "views/transactions";
 @import "views/wallet";
 @import "views/settings";
 @import "views/starttrade";
+@import "views/signin";

@@ -1,0 +1,42 @@
+.signin {
+    width: 100%;
+    // background-color: red;
+    min-height: calc(100vh - var(--sign-nav-height));
+
+    &-content {
+        // background-color: blue;
+        width: var(--sign-max-width);
+        margin: 0 auto;
+        padding-top: 7rem;
+        display: flex;
+        justify-content: space-between;
+
+        &-left {
+            padding-top: 1.5rem;
+        }
+
+        &-right {
+            .formbox {
+                padding: 7.5rem 10.2rem;
+                background-color: white;
+                border-radius: 3rem;
+                
+                form {
+                    width: 100%;
+
+                    &>:nth-child(1) {
+                        margin-bottom: 1rem;
+                    }
+                    
+                    input {
+                        width: 100%;
+                    }
+
+                    button {
+                        margin-top: 4.1rem;
+                    }
+                }
+            }
+        }
+    }
+}

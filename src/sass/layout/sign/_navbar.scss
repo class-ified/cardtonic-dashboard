@@ -1,6 +1,34 @@
-.sign-nav {
-    --nav-height: 18rem;
-    height: var(--nav-height);
+.sign-navbar {
+    
+    height: var(--sign-nav-height);
     width: 100%;
-    background-color: red;
+    // background-color: red;
+
+    @include breakpoint(tablet) {
+        --sign-nav-height: 13.4rem;
+    }
+
+    &-placeholder {
+        height:  var(--sign-nav-height);
+        // background-color: blue;
+    }
+
+    &-contentbox {
+        position: fixed;
+        top: 0;
+        // background-color: blue;
+        height: var(--sign-nav-height);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+        .navbar-content {
+            display: flex;
+            height: 100%;
+            width: 90%;
+        max-width: var(--sign-max-width);
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
 }

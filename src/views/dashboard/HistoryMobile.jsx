@@ -5,7 +5,7 @@ import MobileDetailsPopup from "../../components/MobileTransactionDetailsPopup"
 
 import { useState } from "react"
 
-const HistoryMobile = () => {
+const HistoryMobile = ({trades}) => {
     // popup state
     const [openPopup, setOpenPopup] = useState(false)
 
@@ -16,10 +16,18 @@ const HistoryMobile = () => {
     return (
         <div className="mobile-history">
             <MobileDetailsPopup openPopup={openPopup} handlePopupOpen={handlePopupOpen} />
-            <MobileTableBody handlePopupOpen={handlePopupOpen} />
-            <MobileTableBody handlePopupOpen={handlePopupOpen} />
-            <MobileTableBody handlePopupOpen={handlePopupOpen} />
-            <MobileTableBody handlePopupOpen={handlePopupOpen} />
+            
+            {
+                trades?.map((trade, index) => (
+                    <MobileTableBody 
+                        key={index}
+                        handlePopupOpen={handlePopupOpen} 
+                        cardCategory={trade.cardSubCategory.cardCategory.name}
+                        amount={trade.amountPayable}
+                        cardAvatar={trade.cardSubCategory.cardCategory.avatar}
+                    />
+                ))
+            }
             <GetMoreButton />
         </div>
     )

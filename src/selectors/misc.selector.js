@@ -35,7 +35,12 @@ export const hiddenBalance = createSelector(
 	selectMisc,
 	(misc) => misc?.balanceHidden ?? false
 );
+
 export const selectOnboarded = createSelector(
 	selectMisc,
 	(misc) => misc?.onboarded
 );
+
+
+
+

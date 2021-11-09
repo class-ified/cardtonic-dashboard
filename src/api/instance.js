@@ -5,6 +5,7 @@ import { LOGOUT } from "../action/";
 
 const instance = axios.create({
 	baseURL: URL,
+	withCredentials: true
 });
 
 export const refreshToken = () => axios.get("/auth/refresh");
@@ -25,6 +26,7 @@ instance.interceptors.response.use(
 		const status = error.response?.status;
 		// check if user is auth
 		if (Number(status) === 401) {
+			console.log('token expired')
 			return refreshToken()
 				.then(() => {
 					return instance.request(error.config);
