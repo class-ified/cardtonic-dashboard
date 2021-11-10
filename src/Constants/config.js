@@ -1,10 +1,10 @@
 export const __DEV__ =
 	!process.env.NODE_ENV || process.env.NODE_ENV === "development";
 
-// export const URL = "https://cardtonic-server-staging-skuow.ondigitalocean.app/v1"
-export const URL = __DEV__
-	? "https://cardtonic-server-staging-skuow.ondigitalocean.app/v1"
-	: "https://api.cardtonic.ng/v1";
+export const URL = "https://cardtonic-server-staging-skuow.ondigitalocean.app/v1"
+// export const URL = __DEV__
+// 	? "https://cardtonic-server-staging-skuow.ondigitalocean.app/v1"
+// 	: "https://api.cardtonic.ng/v1";
 
 export const BASE_URL = `${URL}/`;
 
