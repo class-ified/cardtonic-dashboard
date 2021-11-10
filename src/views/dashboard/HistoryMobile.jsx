@@ -18,16 +18,18 @@ const HistoryMobile = ({trades}) => {
             <MobileDetailsPopup openPopup={openPopup} handlePopupOpen={handlePopupOpen} />
             
             {
-                trades?.map((trade, index) => (
+                trades?.map((trade, index) => index < 4 && (
                     <MobileTableBody 
                         key={index}
                         handlePopupOpen={handlePopupOpen} 
                         cardCategory={trade.cardSubCategory.cardCategory.name}
                         amount={trade.amountPayable}
                         cardAvatar={trade.cardSubCategory.cardCategory.avatar}
+                        createdAt={trade.createdAt}
                     />
                 ))
             }
+            
             <GetMoreButton />
         </div>
     )
