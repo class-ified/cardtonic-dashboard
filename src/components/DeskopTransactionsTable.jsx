@@ -28,7 +28,7 @@ const TableHead = () => {
 
 
 
-const TableBody = ({handlePopupView, amount, cardCategory, cardAvatar, cardSubCategory, rate, status, cardAmount, createdAt, index, handleClickedTrade}) => {
+const TableBody = ({handlePopupView, amount, cardCategory, cardAvatar, cardSubCategory, rate, status, cardAmount, index, handleClickedTrade}) => {
 
     // get datetime from props and split (to differentiate time from date)
     // const dateTimeArray = createdAt?.split('T')

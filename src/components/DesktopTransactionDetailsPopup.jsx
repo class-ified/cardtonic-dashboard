@@ -1,10 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
-import successIcon from "../assets/images/icon-success.svg";
-import pendingIcon from "../assets/images/icon-pending.svg";
-import failedIcon from "../assets/images/failed-icon.svg";
-import amazonIcon from "../assets/images/icons/amazon.svg";
-import copyIcon from "../assets/images/copy-icon.svg";
-import blankIcon from "../assets/images/blank-icon.svg";
+import successIcon from "assets/images/icon-success.svg";
+import pendingIcon from "assets/images/icon-pending.svg";
+import failedIcon from "assets/images/failed-icon.svg";
+import copyIcon from "assets/images/copy-icon.svg";
 
 import FormatSplit from "hooks/useFormatSplit";
 import {
@@ -23,7 +21,7 @@ const DesktopDetailsPopup = ({ openPopup, handlePopupView, clickedTrade }) => {
 
 	// if clickedtrade is passed as prop, run it and save result to trade variable
 	let trade = clickedTrade && clickedTrade();
-	console.log(trade);
+	// console.log(trade);
 
 	// change popup heading, heading classname and icon based on trade status
 	let heading = {};
@@ -296,11 +294,7 @@ const FailedBody = (props) => {
 					<div className="info">
 						<div className="icon-box">
 							<img
-								style={{
-									height: "50px",
-									width: "50px",
-									borderRadius: "16px",
-								}}
+								className="icon-default"
 								src={props.cardCategoryIcon}
 							/>
 						</div>
@@ -346,6 +340,7 @@ const FailedBody = (props) => {
 						</h3>
 					</div>
 				</div>
+
 				<div className="right">
 					<div className="transaction-id">
 						<h3 className="text-xs text-black text-regular">
@@ -372,7 +367,7 @@ const FailedBody = (props) => {
 						Rejection images:{" "}
 					</h3>
 					<div className="images">
-						{props.cardRejectionImages.map((image) => (
+						{props.cardRejectionImages?.map((image) => (
 							<img src={image} className="icon-default" />
 						))}
 					</div>
