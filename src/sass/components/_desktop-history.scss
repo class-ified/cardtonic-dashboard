@@ -1,243 +1,279 @@
 .desktop-history {
-    @include desktopHistoryBox;
-    position: relative;
+	@include desktopHistoryBox;
+	position: relative;
 
-    &-head {
-        
+	&-head {
+		// .box {
 
-        // .box {
-            
-        //     &-transaction {
-        //         width: ;
-        //     }
-        //     &-date {
+		//     &-transaction {
+		//         width: ;
+		//     }
+		//     &-date {
 
-        //     }
-        //     &-rateaccount {
+		//     }
+		//     &-rateaccount {
 
-        //     }
-        //     &-ngnamount {
+		//     }
+		//     &-ngnamount {
 
-        //     }
-        //     &-status {
+		//     }
+		//     &-status {
 
-        //     }
-        //     &-transactiontype {
+		//     }
+		//     &-transactiontype {
 
-        //     }
-        // }
-    }
+		//     }
+		// }
+	}
 
-    &-head,
-    &-body {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        
-        div {
-            // background-color: red;
-        }
+	&-head,
+	&-body {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 
-        .box {
+		div {
+			// background-color: red;
+		}
 
-            &-transaction {
-                width: 19rem;
+		.box {
+			&-transaction {
+				width: 19rem;
 
-                .heading {
-                    text-align: center;
-                }
+				.heading {
+					text-align: center;
+				}
 
-                &-details {
-                    display: flex;
-                    align-items: center;
+				&-details {
+					display: flex;
+					align-items: center;
 
-                    .icon-box {
-                        margin-right: 1rem;
-                    }
-                }
-            }
-            &-date {
-                width: 11rem;
-            }
-            &-rateaccount {
-                width: 11rem;
-            }
-            &-ngnamount {
-                width: 6rem;
-                text-align: center;
-            }
-            &-status {
-                width: 7.6rem;
-                text-align: center;
-            }
-            &-transactiontype {
-                width: 4.8rem;
-            }
-        }
-    }
+					.icon-box {
+						margin-right: 1rem;
+					}
+				}
+			}
+			&-date {
+				width: 11rem;
+			}
+			&-rateaccount {
+				width: 11rem;
+			}
+			&-ngnamount {
+				width: 6rem;
+				text-align: center;
+			}
+			&-status {
+				width: 7.6rem;
+				text-align: center;
+			}
+			&-transactiontype {
+				width: 4.8rem;
+			}
+		}
+	}
 
+	&-body {
+		padding: 0.6rem 0;
+	}
 
-    &-body {
-        padding: .6rem 0;
+	.button-box {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+	}
 
-    }
+	&-detailbox {
+		position: absolute;
+		display: block;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		@include desktopHistoryBox;
+		padding-right: 7rem;
+		padding-left: 7rem;
 
-    
+		.cancel-btn {
+			position: absolute;
+			top: 3.8rem;
+			right: 3rem;
+		}
 
-    .button-box {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-    }
+		&-head {
+			display: flex;
+			align-items: center;
 
+			img {
+				margin-right: 1rem;
+			}
+		}
 
-    &-detailbox {
-        position: absolute;
-        display: block;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        @include desktopHistoryBox;
-        padding-right: 7rem;
-        padding-left: 7rem;
+		&-body {
+			.row-1 {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 2.4rem;
 
-        .cancel-btn {
-            position: absolute;
-            top: 3.8rem;
-            right: 3rem;
-        }
+				.left {
+					h1 {
+						margin-bottom: 1rem;
+					}
+				}
 
-        &-head {
-            display: flex;
-            align-items: center;
+				.right {
+					.info {
+						height: 8rem;
+						width: 31rem;
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						padding: 1.5rem 2.7rem 1.5rem 1.3rem;
+						border-radius: 1.6rem;
+						background-color: #f2f2f2;
 
-            img {
-                margin-right: 1rem;
-            }
-        }
+						.icon-box {
+							// margin-right: ;
+						}
+						.text-box {
+							text-align: right;
 
-        &-body {
+							&-date {
+								display: flex;
+								// align-items: center;
+							}
+						}
+					}
+				}
+			}
 
-            .row-1 {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 2.4rem;
+			.row-2 {
+				margin-bottom: 1.5rem;
+			}
+		}
 
-                .left {
-                    h1 {
-                        margin-bottom: 1rem;
-                    }
-                }
+		&-body-failed {
+			.row-2 {
+				display: flex;
+				justify-content: space-between;
 
-                .right {
-                    .info {
-                        height: 8rem;
-                        width: 31rem;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        padding: 1.5rem 2.7rem 1.5rem 1.3rem;
-                        border-radius: 1.6rem;
-                        background-color: #F2F2F2;
+				.left {
+					.rejection-reason {
+						height: 11.2rem;
+						width: 45rem;
+						background-color: $color-white;
+						border-radius: 2rem;
+						border: 1px solid #edf8f5;
+						padding: 1.5rem;
+						overflow-y: auto;
+					}
+				}
 
-                        .icon-box {
-                            // margin-right: ;
-                        }
-                        .text-box {
-                            text-align: right;
+				.right {
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
 
-                            &-date {
-                                display: flex;
-                                // align-items: center;
-                            }
-                        }
-                    }
-                }
-            }
+					.transaction-id {
+						display: flex;
+						align-items: center;
 
-            .row-2 {
-                margin-bottom: 1.5rem;
-            }
+						button {
+							margin-left: 1rem;
+						}
+					}
+					.transaction-images {
+						margin-left: auto;
 
-        }
+						& > *:not(:last-child) {
+							margin-right: 0.5rem;
+						}
+					}
+				}
+			}
+			.row-3 {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
 
-        &-body-failed {
-            .row-2 {
-                display: flex;
-                justify-content: space-between;
+				.rejection-imagebox {
+					h3 {
+						margin-bottom: 0.5rem;
+					}
 
-                .left {
-                    .rejection-reason {
-                        height: 11.2rem;
-                        width: 45rem;
-                        background-color: $color-white;
-                        border-radius: 2rem;
-                        border: 1px solid #EDF8F5;
-                        padding: 1.5rem;
-                        overflow-y: auto;
-                    }
-                }
+					.images {
+						& > *:not(:last-child) {
+							margin-right: 0.5rem;
+						}
+					}
+				}
+				.comment-box {
+					background-color: $color-white;
+					border-radius: 2rem;
+					border: 1px solid #edf8f5;
+					padding: 1.5rem;
+					overflow-y: auto;
+					text-align: right;
+					width: 30rem;
+					height: 6.2rem;
+				}
+			}
+		}
 
-                .right {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
+		&-body-pending {
+			.row-2 {
+				text-align: right;
+				margin-bottom: 4.5rem;
 
-                    .transaction-id {
-                        display: flex;
-                        align-items: center;
+				.transaction-id {
+					display: flex;
+					justify-content: flex-end;
 
-                        button {
-                            margin-left: 1rem;
-                        }
-                    }
-                    .transaction-images {
-                        margin-left: auto;
-                        
-                        &>*:not(:last-child) {
-                            margin-right: .5rem;
-                        }
-                    }
-                }
-            }
-            .row-3 {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+					button {
+						margin-left: 1rem;
+					}
+				}
+			}
 
-                .rejection-imagebox {
-                    h3 {
-                        margin-bottom: .5rem;
-                    }
+			.row-3 {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
 
-                    .images {
-                        &>*:not(:last-child) {
-                            margin-right: .5rem;
-                        }
-                    }
-                }
-                .comment-box {
-                    background-color: $color-white;
-                    border-radius: 2rem;
-                    border: 1px solid #EDF8F5;
-                    padding: 1.5rem;
-                    overflow-y: auto;
-                    text-align: right;
-                    width: 30rem;
-                    height: 6.2rem;
-                }
-            }
-        }
-    }
+				.left {
+					width: 25rem;
+				}
 
+				.right {
+					.images {
+						margin-bottom: 2.8rem;
+						display: flex;
+						justify-content: flex-end;
 
+						& > *:not(:last-child) {
+							margin-right: 0.5rem;
+						}
+					}
+					.comment-box {
+						background-color: $color-white;
+						border-radius: 2rem;
+						border: 1px solid #edf8f5;
+						padding: 1.5rem;
+						overflow-y: auto;
+						text-align: right;
+						width: 30rem;
+						height: 6.2rem;
+					}
+				}
+			}
+		}
+	}
 }
 
 .icon-default {
-    height: 5rem;
-    width: 5rem;
-    border-radius: 1.6rem;
+	height: 5rem;
+	width: 5rem;
+	border-radius: 1.6rem;
 }

@@ -13,7 +13,7 @@ import {
 } from "Constants/config";
 
 import { format } from "date-fns";
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef } from "react";
 
 const DesktopDetailsPopup = ({ openPopup, handlePopupView, clickedTrade }) => {
 	// close popup via handlePopupView function prop from
@@ -85,7 +85,8 @@ const DesktopDetailsPopup = ({ openPopup, handlePopupView, clickedTrade }) => {
 
 					<span className="horizontal-line"></span>
 
-					{trade.meta.status === "rejected" && (
+					{/* if trade status === rejected, render failed component, else (if status === pending), render unfailed component (accounts for both approved and pending) */}
+					{trade.meta.status === "rejected" ? (
 						<FailedBody
 							key={trade.id}
 							cardNairaAmount={trade.amountPayable}
@@ -107,6 +108,26 @@ const DesktopDetailsPopup = ({ openPopup, handlePopupView, clickedTrade }) => {
 							cardTransactionImages={trade.tradeFiles}
 							cardRejectionReason={trade.meta.rejectionReason}
 						/>
+					) : (
+						<UnfailedBody
+							key={trade.id}
+							cardNairaAmount={trade.amountPayable}
+							cardStatus={trade.meta.status}
+							cardRate={trade.cardSubCategory.rate}
+							cardAmount={trade.cardTotalAmount}
+							cardDateTime={
+								trade.cardSubCategory.cardCategory.createdAt
+							}
+							cardCategory={
+								trade.cardSubCategory.cardCategory.name
+							}
+							cardCategoryIcon={
+								trade.cardSubCategory.cardCategory.avatar
+							}
+							cardCategoryId={trade.id}
+							cardTradeComment={trade.comment}
+							cardTransactionImages={trade.tradeFiles}
+						/>
 					)}
 				</div>
 			)}
@@ -114,28 +135,50 @@ const DesktopDetailsPopup = ({ openPopup, handlePopupView, clickedTrade }) => {
 	);
 };
 
-const UnfailedBody = () => {
+const UnfailedBody = (props) => {
+	// split datetime from props into date and time
+	const dateTime = props.cardDateTime?.split("T");
+	// pick date from date time and format by full month with year
+	const date = dateTime
+		? format(new Date(dateTime), FULL_MONTH_YEAR_DATE_FORMAT)
+		: null;
+	// pick time from datetime and format by hour:minute
+	const time = dateTime
+		? format(new Date(dateTime), SHORT_TIME_FORMAT)
+		: null;
+
 	return (
-		<div className="desktop-history-detailbox-body desktop-history-detailbox-body-failed">
+		<div className="desktop-history-detailbox-body desktop-history-detailbox-body-pending">
 			<div className="row-1">
 				<div className="left">
 					<h1 className="text-kindabig text-green-2 text-vbold">
-						₦125,000.00
+						{`₦${FormatSplit(props.cardNairaAmount)[0]}.${
+							FormatSplit(props.cardNairaAmount)[1]
+						}`}
 					</h1>
 					<h2 className="text-20 text-blue text-vbold">
-						500.00{" "}
-						<span style={{ color: "#D2D2D2" }}>| 340 - Rate</span>
+						{props.cardAmount}{" "}
+						<span
+							style={{ color: "#D2D2D2" }}
+						>{`| ${props.cardRate} - Rate`}</span>
 					</h2>
 				</div>
 				<div className="right">
 					<div className="info">
 						<div className="icon-box">
-							<img src={amazonIcon} />
+							<img
+								style={{
+									height: "50px",
+									width: "50px",
+									borderRadius: "16px",
+								}}
+								src={props.cardCategoryIcon}
+							/>
 						</div>
 
 						<div className="text-box">
 							<h3 className="text-small text-black">
-								USA Amazon E-code
+								{props.cardCategory}
 							</h3>
 
 							<div className="text-box-date">
@@ -143,7 +186,7 @@ const UnfailedBody = () => {
 									className="text-xs text-regular"
 									style={{ color: "#8F92A1" }}
 								>
-									March 10, 2020 &nbsp;&nbsp;
+									{date}&nbsp;&nbsp;
 								</h3>
 
 								<span>
@@ -157,7 +200,7 @@ const UnfailedBody = () => {
 									className="text-xs text-regular"
 									style={{ color: "#8F92A1" }}
 								>
-									&nbsp;&nbsp;9:34 pm
+									&nbsp;&nbsp;{time.toLowerCase()}
 								</h3>
 							</div>
 						</div>
@@ -166,48 +209,46 @@ const UnfailedBody = () => {
 			</div>
 
 			<div className="row-2">
-				<div className="left">
-					<div className="rejection-reason">
-						<h3 className="text-xs text-black text-regular">
-							Rejection Reason:
-						</h3>
-					</div>
-				</div>
-				<div className="right">
-					<div className="transaction-id">
-						<h3 className="text-xs text-black text-regular">
-							Transaction ID:&nbsp;&nbsp;
-							<span className="text-vbold">894RG7HWYGR87YG</span>
-						</h3>{" "}
-						<button>
-							<img src={copyIcon} />
-						</button>
-					</div>
-					<div className="transaction-images">
-						<img src={blankIcon} />
-						<img src={blankIcon} />
-						<img src={blankIcon} />
-						<img src={blankIcon} />
-					</div>
+				<div className="transaction-id">
+					<h3 className="text-xs text-black text-regular">
+						Transaction ID:&nbsp;&nbsp;
+						<span className="text-vbold">
+							{props.cardCategoryId}
+						</span>
+					</h3>{" "}
+					<button>
+						<img src={copyIcon} />
+					</button>
 				</div>
 			</div>
 
 			<div className="row-3">
-				<div className="rejection-imagebox">
-					<h3 className="text-xs text-error text-regular">
-						Rejection images:{" "}
-					</h3>
-					<div className="images">
-						<img src={blankIcon} />
-						<img src={blankIcon} />
-						<img src={blankIcon} />
-						<img src={blankIcon} />
-					</div>
+				<div className="left">
+					{props.cardStatus === "pending" ? (
+						<p className="text-small text-grey-2 text-bold">
+							The transaction is in progress. You’ll get a
+							notification once done. Go have some fun!
+						</p>
+					) : (
+						<p className="text-small text-green-2 text-bold">
+							The withdrawal has been completed. You should
+							receive an alert shortly. Thanks!
+						</p>
+					)}
 				</div>
-				<div className="comment-box">
-					<h3 className="text-xs text-black text-regular">
-						No comment added
-					</h3>
+
+				<div className="right">
+					<div className="images">
+						{props.cardTransactionImages?.map((image) => (
+							<img src={image} className="icon-default" />
+						))}
+					</div>
+
+					<div className="comment-box">
+						<h3 className="text-xs text-black text-regular">
+							{props.cardTradeComment || "No comment added"}
+						</h3>
+					</div>
 				</div>
 			</div>
 		</div>
