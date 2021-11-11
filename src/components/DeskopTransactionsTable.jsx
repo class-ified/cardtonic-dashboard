@@ -28,17 +28,26 @@ const TableHead = () => {
 
 
 
-const TableBody = ({handlePopupView, amount, cardCategory, cardAvatar, cardSubCategory, rate, status, cardAmount, createdAt}) => {
+const TableBody = ({handlePopupView, amount, cardCategory, cardAvatar, cardSubCategory, rate, status, cardAmount, createdAt, index, handleClickedTrade}) => {
 
     // get datetime from props and split (to differentiate time from date)
-    const dateTime = createdAt.split('T')
-    const date = dateTime[0]
-    const time = dateTime[1]
+    // const dateTimeArray = createdAt?.split('T')
+    // const date = dateTime[0]
+    // const time = dateTime[1]
+
+    const updateClickedIndex = () => {
+        handleClickedTrade(index)
+    }
+    const onClick = () => {
+        updateClickedIndex()
+        handlePopupView(true)
+        // console.log(index)
+    }
 
     
 
     return (
-        <div className="desktop-history-body" onClick={() => handlePopupView(true)} style={{cursor:'pointer'}}>
+        <div className="desktop-history-body" onClick={onClick} style={{cursor:'pointer'}}>
             
             <div className="box-transaction box-transaction-details">
                 <div className="icon-box">
@@ -46,8 +55,8 @@ const TableBody = ({handlePopupView, amount, cardCategory, cardAvatar, cardSubCa
                 </div>
 
                 <div className="content">
-                    <TransactionHistoryTextBlack text={cardCategory} />
-                    <TransactionHistoryTextGrey text={truncateString(cardSubCategory, 18)} />
+                    <TransactionHistoryTextBlack text={cardCategory || 'oloshi'} />
+                    <TransactionHistoryTextGrey text={cardSubCategory ? truncateString(cardSubCategory, 18) : ''} />
                 </div>
             </div>
 

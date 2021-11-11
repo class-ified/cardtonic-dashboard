@@ -24,9 +24,9 @@ const FundsSection = () => {
 			<div className="card card-balance">
 				<div className="left">
 					<h1 className="text-kindabigger text-blue text-vbold">
-						{`₦${FormatSplit(ngnBalance)[0]}`}{" "}
+						{`₦${FormatSplit(ngnBalance)[0]}`}
 						<span style={{ fontSize: "80%", color: "#EDEDED" }}>
-							{`${FormatSplit(ngnBalance)[1]}`}
+							{`.${FormatSplit(ngnBalance)[1]}`}
 						</span>
 					</h1>
 					<h3 className="text-xs text-regular text-grey">Your Funds</h3>

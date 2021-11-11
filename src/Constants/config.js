@@ -15,3 +15,5 @@ export const showNetworkResponses = false;
 export const DATE_FORMAT = "d-LL-yyyy";
 export const NOTIFICATION_DATE_FORMAT = "d-LL-yyyy|H:mmbbb";
 export const MAX_IMAGES = 30;
+export const FULL_MONTH_YEAR_DATE_FORMAT = 'MMMM do, y';
+export const SHORT_TIME_FORMAT = 'h:mm a';

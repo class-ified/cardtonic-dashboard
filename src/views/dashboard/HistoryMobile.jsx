@@ -19,9 +19,9 @@ const HistoryMobile = ({trades}) => {
             
             {
                 trades?.map((trade, index) => index < 4 && (
-                    <MobileTableBody 
+                    <MobileTableBody
                         key={index}
-                        handlePopupOpen={handlePopupOpen} 
+                        handlePopupOpen={handlePopupOpen}
                         cardCategory={trade.cardSubCategory.cardCategory.name}
                         amount={trade.amountPayable}
                         cardAvatar={trade.cardSubCategory.cardCategory.avatar}

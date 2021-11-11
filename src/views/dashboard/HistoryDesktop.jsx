@@ -8,14 +8,30 @@ import { useEffect, useState } from "react";
 const HistoryDesktop = ({ trades }) => {
 	// popup state
 	const [openPopup, setOpenPopup] = useState(false);
+	
+	// active (clicked trade) index (to be passed into the popup)
+	const [clickedTradeIndex, setClickedTradeIndex] = useState(null)
 
 	// function that handles the state updating, passed as prop to the detailspopup and tablebody components so they are able to update the state
 	const handlePopupView = (newValue) => {
 		setOpenPopup(newValue);
 	};
+	// function that handles clickedtrade index
+	const handleClickedTrade = (index) => {
+		setClickedTradeIndex(index)
+	}
 
+	// get clicked trade
+	const clickedTrade = () => {
+		if (clickedTradeIndex || clickedTradeIndex === 0) {
+			return trades[clickedTradeIndex]
+		}
+	} 
 
-	console.log(trades);
+	// console.log(clickedTrade)
+	
+	// console.log(trades);
+
 
 	return (
 		<div className="desktop-history">
@@ -23,6 +39,7 @@ const HistoryDesktop = ({ trades }) => {
 			<DesktopDetailsPopup
 				openPopup={openPopup}
 				handlePopupView={handlePopupView}
+				clickedTrade={clickedTrade}
 			/>
 
 			<TableHead />
@@ -32,6 +49,7 @@ const HistoryDesktop = ({ trades }) => {
 			{trades?.map((trade, index) => index < 4 && (
 				<TableBody
 					key={index}
+					index={index}
 					openPopup={openPopup}
 					handlePopupView={handlePopupView}
 					amount={trade.amountPayable}
@@ -42,6 +60,7 @@ const HistoryDesktop = ({ trades }) => {
 					status={trade.meta.status}
 					cardAmount={trade.cardTotalAmount}
 					createdAt={trade.createdAt}
+					handleClickedTrade={handleClickedTrade}
 				/>
 			))}
 

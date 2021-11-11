@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const initialValues = __DEV__
 	? {
-		email: "eazylaykzy@gmail.com",
+		email: "tundegolibenachukwu@freeallapp.com",
 		password: "Adeleke123",
 	  }
 	: {

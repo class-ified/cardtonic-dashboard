@@ -7,8 +7,8 @@ export const MobileTableBody = ({handlePopupOpen, cardCategory, amount, cardAvat
     }
 
     // get date from datetime and format
-    const dateTime = createdAt.split('T') 
-    const date = format(new Date(dateTime[0]), 'MM-dd-yy')
+    const dateTime = createdAt?.split('T') 
+    const date = dateTime ? format(new Date(dateTime[0]), 'MM-dd-yy') : ''
 
     return (
         <div className="mobile-history-body" onClick={openPopup}>
@@ -24,7 +24,7 @@ export const MobileTableBody = ({handlePopupOpen, cardCategory, amount, cardAvat
             </div>
 
             <div className="right">
-                <h3 className="text-small text-blue-dark text-vbold">{amount.toLocaleString()}</h3>
+                <h3 className="text-small text-blue-dark text-vbold">{amount?.toLocaleString() || ''}</h3>
             </div>
         </div>
     )

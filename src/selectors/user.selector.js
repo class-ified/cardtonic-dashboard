@@ -38,4 +38,9 @@ export const selectNGNBalance = createSelector(
 	(ngnWallet) => ngnWallet?.balance
 );
 
+export const selectNGNBanks = createSelector(
+	selectNGNWallet,
+	(ngnWallet) => ngnWallet?.banks
+)
+
 
