@@ -19,7 +19,7 @@ const Transactions = () => {
 			<div className="transactions__top">
 				<PageHeading text="Gift Card" span="History" />
 
-				<FundStat />
+				<FundStat trades={trades} />
 			</div>
 
 			<div className="transactions__bottom">

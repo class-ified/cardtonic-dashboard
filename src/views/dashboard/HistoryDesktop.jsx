@@ -42,7 +42,7 @@ const HistoryDesktop = ({ trades }) => {
 				clickedTrade={clickedTrade}
 			/>
 
-			<TableHead />
+			<TableHead type="trades" />
 
 			<span className="horizontal-line"></span>
 
@@ -59,7 +59,7 @@ const HistoryDesktop = ({ trades }) => {
 					rate={trade.cardSubCategory.rate}
 					status={trade.meta.status}
 					cardAmount={trade.cardTotalAmount}
-					createdAt={trade.createdAt}
+					cardUpdatedAt={trade.updatedAt}
 					handleClickedTrade={handleClickedTrade}
 				/>
 			))}

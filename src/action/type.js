@@ -6,6 +6,7 @@ export const REFRESH_TOKEN = 'REFRESH_TOKEN';
 // user
 export const UPDATE_USER = 'UPDATE_USER';
 export const UPDATE_TRADES = 'UPDATE_TRADES';
+export const UPDATE_WITHDRAWALS = 'UPDATE_WITHDRAWALS';
 
 // misc
 export const ONBOARDED = 'ONBOARDED';

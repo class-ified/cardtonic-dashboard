@@ -38,7 +38,8 @@
 
 		.box {
 			&-transaction {
-				width: 19rem;
+				width: 20rem;
+				// background-color: red;
 
 				.heading {
 					text-align: center;
@@ -54,7 +55,8 @@
 				}
 			}
 			&-date {
-				width: 11rem;
+				width: 14rem;
+				// background-color: red;
 			}
 			&-rateaccount {
 				width: 11rem;
