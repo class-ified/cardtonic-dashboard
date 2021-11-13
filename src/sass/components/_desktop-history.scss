@@ -271,7 +271,37 @@
 				}
 			}
 		}
+
+		&-body-wallet {
+			.row-2 {
+				.account-name-number {
+					h3 {
+						text-align: right;
+
+						span {
+							margin-left: 3rem;
+							margin-right: 1rem;
+						}
+					}
+				}
+			}
+			.row-3 {
+				p {
+					width: 26rem;
+				}
+			}
+		}
 	}
+}
+
+.rejection-reason {
+	height: 11.2rem;
+	width: 45rem;
+	background-color: $color-white;
+	border-radius: 2rem;
+	border: 1px solid #edf8f5;
+	padding: 1.5rem;
+	overflow-y: auto;
 }
 
 .icon-default {

@@ -6,30 +6,13 @@ export const MobileTableBody = ({
 	amount,
 	cardAvatar,
 	createdAt,
-	index,
-	handleClickedTrade,
-	handlePopupView,
 }) => {
-	// const openPopup = () => {
-	//     handlePopupOpen(true)
-	// }
-
-	const updateClickedIndex = () => {
-		handleClickedTrade(index);
-	};
-	const onClick = () => {
-		updateClickedIndex();
+	const openPopup = () => {
 		handlePopupOpen(true);
-		// console.log(index)
 	};
-
-	// get date from datetime and format
-	const dateTime = createdAt?.split("T");
-	const date = dateTime ? format(new Date(createdAt), "MM-dd-yy") : "";
-	console.log(date);
 
 	return (
-		<div className="mobile-history-body" onClick={onClick}>
+		<div className="mobile-history-body" onClick={openPopup}>
 			<div className="left">
 				<div className="icon-box">
 					<img src={cardAvatar} alt="icon" />
@@ -40,7 +23,7 @@ export const MobileTableBody = ({
 						{cardCategory}
 					</h3>
 					<h3 className="text-tiny text-green text-regular">
-						{date}
+						{format(new Date(createdAt), "MM-dd-yy")}
 					</h3>
 				</div>
 			</div>

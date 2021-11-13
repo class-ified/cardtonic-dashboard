@@ -9,11 +9,17 @@ import {
 	FULL_MONTH_YEAR_DATE_FORMAT,
 	SHORT_TIME_FORMAT,
 } from "Constants/config";
+import WalletsDetailsPopupDesktop from "./DesktopDetailsPopup";
 
 import { format } from "date-fns";
 import { useRef } from "react";
 
-const DesktopDetailsPopup = ({ openPopup, handlePopupView, clickedTrade }) => {
+const DesktopDetailsPopup = ({
+	openPopup,
+	handlePopupView,
+	clickedTrade,
+	clickedWithdrawal,
+}) => {
 	// close popup via handlePopupView function prop from
 	const closePopup = () => {
 		handlePopupView(false);
@@ -23,11 +29,15 @@ const DesktopDetailsPopup = ({ openPopup, handlePopupView, clickedTrade }) => {
 	let trade = clickedTrade && clickedTrade();
 	// console.log(trade);
 
+	// if clickedwithdrawal is passed as prop, run it and save result to trade variable
+	let withdrawal = clickedWithdrawal && clickedWithdrawal();
+	console.log(withdrawal);
+
 	// change popup heading, heading classname and icon based on trade status
 	let heading = {};
 
 	function handlePopupHeading() {
-		const status = trade?.meta.status;
+		const status = trade ? trade?.meta.status : withdrawal?.status;
 		switch (status) {
 			case "rejected":
 				heading = {
@@ -59,6 +69,56 @@ const DesktopDetailsPopup = ({ openPopup, handlePopupView, clickedTrade }) => {
 	}
 	handlePopupHeading();
 
+	// render failed or unfailed component depending on trade status
+	let component;
+	if (trade?.meta.status === "rejected") {
+		component = (
+			<FailedBody
+				key={trade?.id}
+				// dashboard and transaction
+				cardNairaAmount={trade?.amountPayable}
+				cardStatus={trade?.meta.status}
+				cardRate={trade?.cardSubCategory.rate}
+				cardAmount={trade?.cardTotalAmount}
+				cardDateTime={trade?.cardSubCategory.cardCategory.createdAt}
+				cardCategory={trade?.cardSubCategory.cardCategory.name}
+				cardCategoryIcon={trade?.cardSubCategory.cardCategory.avatar}
+				cardCategoryId={trade?.id}
+				cardTradeComment={trade?.comment}
+				cardRejectionImages={trade?.meta.rejectionFiles}
+				cardTransactionImages={trade?.tradeFiles}
+				cardRejectionReason={trade?.meta.rejectionReason}
+
+				// // wallets
+				// bankAmount={withdrawal.amount}
+				// bankStatus={withdrawal.status}
+				// bankName={withdrawal.bank.bankName}
+				// bankAccountNumber={withdrawal.bank.accountNumber}
+				// bankAccountName={withdrawal.bank.accountName}
+				// bankUpdatedAt={withdrawal.updatedAt}
+			/>
+		);
+	} else if (
+		trade?.meta.status === "approved" ||
+		trade?.meta.status === "pending"
+	) {
+		component = (
+			<UnfailedBody
+				key={trade?.id}
+				cardNairaAmount={trade?.amountPayable}
+				cardStatus={trade?.meta.status}
+				cardRate={trade?.cardSubCategory.rate}
+				cardAmount={trade?.cardTotalAmount}
+				cardDateTime={trade?.cardSubCategory.cardCategory.createdAt}
+				cardCategory={trade?.cardSubCategory.cardCategory.name}
+				cardCategoryIcon={trade?.cardSubCategory.cardCategory.avatar}
+				cardCategoryId={trade?.id}
+				cardTradeComment={trade?.comment}
+				cardTransactionImages={trade?.tradeFiles}
+			/>
+		);
+	}
+
 	return (
 		<>
 			{openPopup && (
@@ -84,47 +144,17 @@ const DesktopDetailsPopup = ({ openPopup, handlePopupView, clickedTrade }) => {
 					<span className="horizontal-line"></span>
 
 					{/* if trade status === rejected, render failed component, else (if status === pending), render unfailed component (accounts for both approved and pending) */}
-					{trade.meta.status === "rejected" ? (
-						<FailedBody
-							key={trade.id}
-							cardNairaAmount={trade.amountPayable}
-							cardStatus={trade.meta.status}
-							cardRate={trade.cardSubCategory.rate}
-							cardAmount={trade.cardTotalAmount}
-							cardDateTime={
-								trade.cardSubCategory.cardCategory.createdAt
-							}
-							cardCategory={
-								trade.cardSubCategory.cardCategory.name
-							}
-							cardCategoryIcon={
-								trade.cardSubCategory.cardCategory.avatar
-							}
-							cardCategoryId={trade.id}
-							cardTradeComment={trade.comment}
-							cardRejectionImages={trade.meta.rejectionFiles}
-							cardTransactionImages={trade.tradeFiles}
-							cardRejectionReason={trade.meta.rejectionReason}
-						/>
+					{trade ? (
+						component
 					) : (
-						<UnfailedBody
-							key={trade.id}
-							cardNairaAmount={trade.amountPayable}
-							cardStatus={trade.meta.status}
-							cardRate={trade.cardSubCategory.rate}
-							cardAmount={trade.cardTotalAmount}
-							cardDateTime={
-								trade.cardSubCategory.cardCategory.createdAt
-							}
-							cardCategory={
-								trade.cardSubCategory.cardCategory.name
-							}
-							cardCategoryIcon={
-								trade.cardSubCategory.cardCategory.avatar
-							}
-							cardCategoryId={trade.id}
-							cardTradeComment={trade.comment}
-							cardTransactionImages={trade.tradeFiles}
+						<WalletsDetailsPopupDesktop
+							bankAmount={withdrawal.amount}
+							bankStatus={withdrawal.status}
+							bankName={withdrawal.bank.bankName}
+							bankAccountNumber={withdrawal.bank.accountNumber}
+							bankAccountName={withdrawal.bank.accountName}
+							bankCreatedAt={withdrawal.createdAt}
+							bankRejectionReason={withdrawal.rejectionReason}
 						/>
 					)}
 				</div>
@@ -150,9 +180,10 @@ const UnfailedBody = (props) => {
 			<div className="row-1">
 				<div className="left">
 					<h1 className="text-kindabig text-green-2 text-vbold">
-						{`₦${FormatSplit(props.cardNairaAmount)[0]}.${
-							FormatSplit(props.cardNairaAmount)[1]
-						}`}
+						{props.cardNairaAmount &&
+							`₦${FormatSplit(props.cardNairaAmount)[0]}.${
+								FormatSplit(props.cardNairaAmount)[1]
+							}`}
 					</h1>
 					<h2 className="text-20 text-blue text-vbold">
 						{props.cardAmount}{" "}
@@ -198,7 +229,7 @@ const UnfailedBody = (props) => {
 									className="text-xs text-regular"
 									style={{ color: "#8F92A1" }}
 								>
-									&nbsp;&nbsp;{time.toLowerCase()}
+									&nbsp;&nbsp;{time?.toLowerCase()}
 								</h3>
 							</div>
 						</div>
@@ -237,8 +268,12 @@ const UnfailedBody = (props) => {
 
 				<div className="right">
 					<div className="images">
-						{props.cardTransactionImages?.map((image) => (
-							<img src={image} className="icon-default" />
+						{props.cardTransactionImages?.map((image, index) => (
+							<img
+								src={image}
+								key={index}
+								className="icon-default"
+							/>
 						))}
 					</div>
 
@@ -354,8 +389,12 @@ const FailedBody = (props) => {
 						</button>
 					</div>
 					<div className="transaction-images">
-						{props.cardTransactionImages?.map((image) => (
-							<img src={image} className="icon-default" />
+						{props.cardTransactionImages?.map((image, index) => (
+							<img
+								src={image}
+								key={index}
+								className="icon-default"
+							/>
 						))}
 					</div>
 				</div>
@@ -367,8 +406,12 @@ const FailedBody = (props) => {
 						Rejection images:{" "}
 					</h3>
 					<div className="images">
-						{props.cardRejectionImages?.map((image) => (
-							<img src={image} className="icon-default" />
+						{props.cardRejectionImages?.map((image, index) => (
+							<img
+								src={image}
+								key={index}
+								className="icon-default"
+							/>
 						))}
 					</div>
 				</div>

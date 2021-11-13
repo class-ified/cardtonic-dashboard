@@ -9,25 +9,25 @@ const HistoryDesktop = ({ withdrawals }) => {
 	const [openPopup, setOpenPopup] = useState(false);
 
 	// active (clicked trade) index (to be passed into the popup)
-	const [clickedTradeIndex, setClickedTradeIndex] = useState(null);
+	const [clickedWithdrawalIndex, setClickedWithdrawalIndex] = useState(null);
 
 	// function that handles the state updating, passed as prop to the detailspopup and tablebody components so they are able to update the state
 	const handlePopupView = (newValue) => {
 		setOpenPopup(newValue);
 	};
-	// function that handles clickedtrade index
-	const handleClickedTrade = (index) => {
-		setClickedTradeIndex(index);
+	// function that handles clickedWithdrawal index
+	const handleClickedWithdrawal = (index) => {
+		setClickedWithdrawalIndex(index);
 	};
 
-	// get clicked trade
-	const clickedTrade = () => {
-		if (clickedTradeIndex || clickedTradeIndex === 0) {
-			return withdrawals[clickedTradeIndex];
+	// get clicked withdrawal from clickedWithdrawalIndex stored in useState
+	const clickedWithdrawal = () => {
+		if (clickedWithdrawalIndex || clickedWithdrawalIndex === 0) {
+			return withdrawals[clickedWithdrawalIndex];
 		}
 	};
 
-	console.log(withdrawals);
+	// console.log(clickedWithdrawal());
 
 	return (
 		<>
@@ -36,15 +36,17 @@ const HistoryDesktop = ({ withdrawals }) => {
 				<DesktopDetailsPopup
 					openPopup={openPopup}
 					handlePopupView={handlePopupView}
+					clickedWithdrawal={clickedWithdrawal}
 				/>
 
-				<TableHead type='withdrawals' />
+				<TableHead type="withdrawals" />
 
 				<span className="horizontal-line"></span>
 
 				{withdrawals?.map((withdrawal, index) => (
 					<TableBody
 						key={index}
+						withdrawalIndex={index}
 						openPopup={openPopup}
 						handlePopupView={handlePopupView}
 						bankName={withdrawal.bank.bankName}
@@ -53,7 +55,7 @@ const HistoryDesktop = ({ withdrawals }) => {
 						bankUpdatedAt={withdrawal.bank.updatedAt}
 						bankAmount={withdrawal.amount}
 						bankStatus={withdrawal.status}
-						handleClickedTrade={handleClickedTrade}
+						handleClickedWithdrawal={handleClickedWithdrawal}
 					/>
 				))}
 			</div>

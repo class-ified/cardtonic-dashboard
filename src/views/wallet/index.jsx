@@ -27,7 +27,7 @@ const Wallet = () => {
 				<FundsSection />
 
 				<div className="wallet__top-base">
-					<FundStat />
+					<FundStat withdrawals={withdrawals} />
 					{windowSize.width > 1199 && (
 						<PageHeading text="Withdrawal" span="History" />
 					)}

@@ -37,47 +37,47 @@ const MobileDetailsPopup = ({ openPopup, handlePopupOpen, clickedTrade }) => {
 					</button>
 
 					{/* if trade status === rejected, render failed component, else (if status === pending), render unfailed component (accounts for both approved and pending) */}
-					{trade.meta.status === "rejected" ? (
+					{trade?.meta.status === "rejected" ? (
 						<Failed
-							key={trade.id}
-							cardNairaAmount={trade.amountPayable}
-							cardStatus={trade.meta.status}
-							cardRate={trade.cardSubCategory.rate}
-							cardAmount={trade.cardTotalAmount}
+							key={trade?.id}
+							cardNairaAmount={trade?.amountPayable}
+							cardStatus={trade?.meta.status}
+							cardRate={trade?.cardSubCategory.rate}
+							cardAmount={trade?.cardTotalAmount}
 							cardDateTime={
-								trade.cardSubCategory.cardCategory.createdAt
+								trade?.cardSubCategory.cardCategory.createdAt
 							}
 							cardCategory={
-								trade.cardSubCategory.cardCategory.name
+								trade?.cardSubCategory.cardCategory.name
 							}
 							cardCategoryIcon={
-								trade.cardSubCategory.cardCategory.avatar
+								trade?.cardSubCategory.cardCategory.avatar
 							}
-							cardCategoryId={trade.id}
-							cardTradeComment={trade.comment}
-							cardRejectionImages={trade.meta.rejectionFiles}
-							cardTransactionImages={trade.tradeFiles}
-							cardRejectionReason={trade.meta.rejectionReason}
+							cardCategoryId={trade?.id}
+							cardTradeComment={trade?.comment}
+							cardRejectionImages={trade?.meta.rejectionFiles}
+							cardTransactionImages={trade?.tradeFiles}
+							cardRejectionReason={trade?.meta.rejectionReason}
 						/>
 					) : (
 						<Unfailed
-							key={trade.id}
-							cardNairaAmount={trade.amountPayable}
-							cardStatus={trade.meta.status}
-							cardRate={trade.cardSubCategory.rate}
-							cardAmount={trade.cardTotalAmount}
+							key={trade?.id}
+							cardNairaAmount={trade?.amountPayable}
+							cardStatus={trade?.meta.status}
+							cardRate={trade?.cardSubCategory.rate}
+							cardAmount={trade?.cardTotalAmount}
 							cardDateTime={
-								trade.cardSubCategory.cardCategory.createdAt
+								trade?.cardSubCategory.cardCategory.createdAt
 							}
 							cardCategory={
-								trade.cardSubCategory.cardCategory.name
+								trade?.cardSubCategory.cardCategory.name
 							}
 							cardCategoryIcon={
-								trade.cardSubCategory.cardCategory.avatar
+								trade?.cardSubCategory.cardCategory.avatar
 							}
-							cardCategoryId={trade.id}
-							cardTradeComment={trade.comment}
-							cardTransactionImages={trade.tradeFiles}
+							cardCategoryId={trade?.id}
+							cardTradeComment={trade?.comment}
+							cardTransactionImages={trade?.tradeFiles}
 						/>
 					)}
 				</Popup>
@@ -146,7 +146,7 @@ const Unfailed = (props) => {
 
 			<div className="amount-box">
 				<h2 className="text-vbold text-medium text-amount">
-					{`₦${FormatSplit(props.cardNairaAmount)[0]}.${
+					{props.cardNairaAmount && `₦${FormatSplit(props.cardNairaAmount)[0]}.${
 						FormatSplit(props.cardNairaAmount)[1]
 					}`}
 				</h2>

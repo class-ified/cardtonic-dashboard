@@ -57,7 +57,9 @@ const TableBody = ({
 	cardAmount,
 	index,
 	handleClickedTrade,
+	handleClickedWithdrawal,
 	openPopup,
+	withdrawalIndex,
 	bankName,
 	bankAccountName,
 	bankAccountNumber,
@@ -65,21 +67,17 @@ const TableBody = ({
 	bankAmount,
 	bankStatus,
 }) => {
-	// get datetime from props and split (to differentiate time from date)
-	// const dateTimeArray = createdAt?.split('T')
-	// const date = dateTime[0]
-	// const time = dateTime[1]
-
+	// if handleClickedTrade is passed, run it, else run handleclickedWithdrawal (to update clicked index state in parent)
 	const updateClickedIndex = () => {
-		handleClickedTrade(index);
+		handleClickedTrade
+			? handleClickedTrade(index)
+			: handleClickedWithdrawal(withdrawalIndex);
 	};
 	const onClick = () => {
 		updateClickedIndex();
 		handlePopupView(true);
 		// console.log(index)
 	};
-
-	console.log({ cardUpdatedAt });
 
 	return (
 		<div
@@ -93,6 +91,7 @@ const TableBody = ({
 						height="50px"
 						width="50px"
 						style={{ borderRadius: "16px" }}
+						// if (desktop or transactions page), trades array prop gets passed and we render card avatar from it, else if (wallets page), withdrawal array gets passed and we render bank icon. NB: this applied to all the rendered elements
 						src={cardAvatar || bankIcon}
 						alt=""
 					/>
