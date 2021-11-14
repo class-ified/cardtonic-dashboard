@@ -14,6 +14,7 @@ const Dashboard = () => {
     // get trades data from route called in useTrades hook
     const tradesResponse = useTrades()
 	const trades = tradesResponse.data
+	console.log(trades)
 	
 	
 

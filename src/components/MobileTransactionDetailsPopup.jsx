@@ -22,6 +22,7 @@ const MobileDetailsPopup = ({ openPopup, handlePopupOpen, clickedTrade }) => {
 
 	// if clickedtrade is passed as prop, run it and save result to trade variable
 	let trade = clickedTrade && clickedTrade();
+	console.log(clickedTrade())
 	console.log(trade);
 
 	return (
@@ -146,9 +147,10 @@ const Unfailed = (props) => {
 
 			<div className="amount-box">
 				<h2 className="text-vbold text-medium text-amount">
-					{props.cardNairaAmount && `₦${FormatSplit(props.cardNairaAmount)[0]}.${
-						FormatSplit(props.cardNairaAmount)[1]
-					}`}
+					{props.cardNairaAmount &&
+						`₦${FormatSplit(props.cardNairaAmount)[0]}.${
+							FormatSplit(props.cardNairaAmount)[1]
+						}`}
 				</h2>
 				<h3 className="text-18 text-blue text-vbold">
 					{props.cardAmount}{" "}

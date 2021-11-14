@@ -46,7 +46,7 @@ const FundStat = ({ trades, withdrawals }) => {
 				}
 			});
 		}
-		console.log(stat);
+		// console.log(stat);
 		return stat;
 	}
 	getTradeStat();
