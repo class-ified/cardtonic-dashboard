@@ -44,9 +44,13 @@
 	&-detailbox {
 		.popup-content {
 			width: 34.5rem;
-			height: 69.6rem;
+			// height: 69.6rem;
 			top: 11rem;
 			padding: 1.8rem 2.2rem;
+
+			@include breakpoint(mobile-medium) {
+				width: 90%;
+			}
 
 			.top-indicator {
 				display: flex;
@@ -123,7 +127,7 @@
 			}
 
 			.info-card {
-				height: 8rem;
+				height: 7rem;
 				width: 100%;
 				display: flex;
 				justify-content: space-between;

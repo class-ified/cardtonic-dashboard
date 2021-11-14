@@ -9,7 +9,7 @@ import {
 	FULL_MONTH_YEAR_DATE_FORMAT,
 	SHORT_TIME_FORMAT,
 } from "Constants/config";
-import WalletsDetailsPopupDesktop from "./DesktopDetailsPopup";
+import {WalletsDetailsPopupDesktop} from "./WalletsDetailsPopup";
 
 import { format } from "date-fns";
 import { useRef } from "react";
@@ -143,6 +143,7 @@ const DesktopDetailsPopup = ({
 
 					<span className="horizontal-line"></span>
 
+					{/* if trade gets passed render trade components (Failed or Unfailed), else (withdrawals got passed as props), render desktop wallets popup */}
 					{/* if trade status === rejected, render failed component, else (if status === pending), render unfailed component (accounts for both approved and pending) */}
 					{trade ? (
 						component

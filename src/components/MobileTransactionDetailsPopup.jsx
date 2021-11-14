@@ -4,6 +4,7 @@ import failedIcon from "assets/images/failed-icon.svg";
 import pendingIcon from "assets/images/icon-pending.svg";
 import copyIcon from "assets/images/copy-icon.svg";
 import Popup from "./PopupContainer";
+import { WalletsDetailsPopupMobile } from "./WalletsDetailsPopup";
 
 import FormatSplit from "hooks/useFormatSplit";
 import {
@@ -14,7 +15,12 @@ import {
 import { format } from "date-fns";
 import { useRef } from "react";
 
-const MobileDetailsPopup = ({ openPopup, handlePopupOpen, clickedTrade }) => {
+const MobileDetailsPopup = ({
+	openPopup,
+	handlePopupOpen,
+	clickedTrade,
+	clickedWithdrawal,
+}) => {
 	// close popup via handlePopupView function prop from
 	const closePopup = () => {
 		handlePopupOpen(false);
@@ -22,8 +28,64 @@ const MobileDetailsPopup = ({ openPopup, handlePopupOpen, clickedTrade }) => {
 
 	// if clickedtrade is passed as prop, run it and save result to trade variable
 	let trade = clickedTrade && clickedTrade();
-	console.log(clickedTrade())
-	console.log(trade);
+
+	// if clickedWithdrawal is passed instead,
+	let withdrawal = clickedWithdrawal && clickedWithdrawal();
+	console.log(withdrawal);
+
+	// compoonents to render based on whether (clicked) trade or withdrawal gets passed
+	let Component;
+	if (trade) {
+		Component =
+			// if trade status === rejected, render failed component, else (if status === pending), render unfailed component (accounts for both approved and pending)
+			trade?.meta.status === "rejected" ? (
+				<Failed
+					key={trade?.id}
+					cardNairaAmount={trade?.amountPayable}
+					cardStatus={trade?.meta.status}
+					cardRate={trade?.cardSubCategory.rate}
+					cardAmount={trade?.cardTotalAmount}
+					cardDateTime={trade?.cardSubCategory.cardCategory.createdAt}
+					cardCategory={trade?.cardSubCategory.cardCategory.name}
+					cardCategoryIcon={
+						trade?.cardSubCategory.cardCategory.avatar
+					}
+					cardCategoryId={trade?.id}
+					cardTradeComment={trade?.comment}
+					cardRejectionImages={trade?.meta.rejectionFiles}
+					cardTransactionImages={trade?.tradeFiles}
+					cardRejectionReason={trade?.meta.rejectionReason}
+				/>
+			) : (
+				<Unfailed
+					key={trade?.id}
+					cardNairaAmount={trade?.amountPayable}
+					cardStatus={trade?.meta.status}
+					cardRate={trade?.cardSubCategory.rate}
+					cardAmount={trade?.cardTotalAmount}
+					cardDateTime={trade?.cardSubCategory.cardCategory.createdAt}
+					cardCategory={trade?.cardSubCategory.cardCategory.name}
+					cardCategoryIcon={
+						trade?.cardSubCategory.cardCategory.avatar
+					}
+					cardCategoryId={trade?.id}
+					cardTradeComment={trade?.comment}
+					cardTransactionImages={trade?.tradeFiles}
+				/>
+			);
+	} else if (withdrawal) {
+		Component = (
+			<WalletsDetailsPopupMobile
+				bankAmount={withdrawal.amount}
+				bankStatus={withdrawal.status}
+				bankName={withdrawal.bank.bankName} 
+				bankAccountNumber={withdrawal.bank.accountNumber} 
+				bankAccountName={withdrawal.bank.accountName}
+				bankCreatedAt={withdrawal.createdAt}
+				bankRejectionReason={withdrawal.rejectionReason}
+			/>
+		);
+	}
 
 	return (
 		<>
@@ -37,50 +99,7 @@ const MobileDetailsPopup = ({ openPopup, handlePopupOpen, clickedTrade }) => {
                         </svg>
 					</button>
 
-					{/* if trade status === rejected, render failed component, else (if status === pending), render unfailed component (accounts for both approved and pending) */}
-					{trade?.meta.status === "rejected" ? (
-						<Failed
-							key={trade?.id}
-							cardNairaAmount={trade?.amountPayable}
-							cardStatus={trade?.meta.status}
-							cardRate={trade?.cardSubCategory.rate}
-							cardAmount={trade?.cardTotalAmount}
-							cardDateTime={
-								trade?.cardSubCategory.cardCategory.createdAt
-							}
-							cardCategory={
-								trade?.cardSubCategory.cardCategory.name
-							}
-							cardCategoryIcon={
-								trade?.cardSubCategory.cardCategory.avatar
-							}
-							cardCategoryId={trade?.id}
-							cardTradeComment={trade?.comment}
-							cardRejectionImages={trade?.meta.rejectionFiles}
-							cardTransactionImages={trade?.tradeFiles}
-							cardRejectionReason={trade?.meta.rejectionReason}
-						/>
-					) : (
-						<Unfailed
-							key={trade?.id}
-							cardNairaAmount={trade?.amountPayable}
-							cardStatus={trade?.meta.status}
-							cardRate={trade?.cardSubCategory.rate}
-							cardAmount={trade?.cardTotalAmount}
-							cardDateTime={
-								trade?.cardSubCategory.cardCategory.createdAt
-							}
-							cardCategory={
-								trade?.cardSubCategory.cardCategory.name
-							}
-							cardCategoryIcon={
-								trade?.cardSubCategory.cardCategory.avatar
-							}
-							cardCategoryId={trade?.id}
-							cardTradeComment={trade?.comment}
-							cardTransactionImages={trade?.tradeFiles}
-						/>
-					)}
+					{Component}
 				</Popup>
 			)}
 		</>
@@ -363,5 +382,4 @@ const Failed = (props) => {
 		</>
 	);
 };
-
 export default MobileDetailsPopup;

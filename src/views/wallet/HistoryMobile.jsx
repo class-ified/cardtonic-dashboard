@@ -26,7 +26,8 @@ const HistoryMobile = ({ withdrawals }) => {
 		}
 	};
 
-	// console.log(clickedWithdrawal());
+	// console.log(withdrawals[clickedWithdrawalIndex])
+	console.log(clickedWithdrawalIndex);
 
 	return (
 		<div className="mobile-history">
