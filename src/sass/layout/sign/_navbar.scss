@@ -2,7 +2,7 @@
     
     height: var(--sign-nav-height);
     width: 100%;
-    // background-color: red;
+    background-color: #F9F9F9;
 
     @include breakpoint(tablet) {
         --sign-nav-height: 13.4rem;
