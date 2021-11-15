@@ -1,3 +1,8 @@
+.container-sign {
+    width: 100vw;
+    height: 100vh;
+}
+
 .sign {
 	// width: 100%;
 	// background-color: red;
@@ -5,7 +10,6 @@
     width: 90%;
     max-width: var(--sign-max-width);
 	min-height: calc(100vh - var(--sign-nav-height));
-    // @include 
 
 	&-content {
 		// background-color: blue;
@@ -26,6 +30,7 @@
 
 			@include breakpoint(tablet) {
 				padding-top: unset;
+                width: unset
 			}
 
 			.header-text {
@@ -43,6 +48,9 @@
 			.small-text {
 				@include breakpoint(tablet) {
 					margin-left: 4.3rem;
+				}
+				@include breakpoint(mobile-small) {
+					margin-left: 3rem;
 				}
 			}
 
