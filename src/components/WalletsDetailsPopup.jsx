@@ -244,7 +244,6 @@ export const WalletsDetailsPopupMobile = ({bankAmount, bankStatus, bankName, ban
 			<div className="transaction-id">
 				<h3 className="text-xs text-black text-regular">
 					{bankAccountName}
-					<br />
 					<span className="text-vbold">{bankAccountNumber}</span>
 				</h3>
 			</div>

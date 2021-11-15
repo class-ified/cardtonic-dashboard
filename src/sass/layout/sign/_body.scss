@@ -1,0 +1,97 @@
+.sign {
+	// width: 100%;
+	// background-color: red;
+    margin: 0 auto;
+    width: 90%;
+    max-width: var(--sign-max-width);
+	min-height: calc(100vh - var(--sign-nav-height));
+    // @include 
+
+	&-content {
+		// background-color: blue;
+        width: 100%;
+		max-width: var(--sign-max-width);
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+
+		@include breakpoint(tablet) {
+			flex-direction: column;
+		}
+
+		&-left {
+			padding-top: 1.5rem;
+            width: 43.2rem;
+            margin-right: 4.5rem;
+
+			@include breakpoint(tablet) {
+				padding-top: unset;
+			}
+
+			.header-text {
+				@include breakpoint(tablet) {
+					@include fluid-type(
+						$min_width_25,
+						$max_width_25,
+						$min_font_25,
+						$max_font_25
+					);
+				}
+			}
+
+			.header-text,
+			.small-text {
+				@include breakpoint(tablet) {
+					margin-left: 4.3rem;
+				}
+			}
+
+			.small-text {
+                margin-bottom: 3rem;
+			}
+
+			.download-box {
+				& > :nth-child(1) {
+					margin-right: 1rem;
+				}
+
+				@include breakpoint(tablet) {
+					display: none;
+				}
+			}
+		}
+
+		&-right {
+            flex: 1;
+
+			.formbox {
+                width: 100%;
+				padding: 7.5rem 10.2rem;
+				background-color: white;
+				border-radius: 3rem;
+
+                @include breakpoint(tablet-sm) {
+                    padding: 3.9rem 1.4rem;
+                }
+
+				form {
+					width: 100%;
+
+					& > :nth-child(1) {
+						margin-bottom: 1rem;
+					}
+
+					input {
+						width: 100%;
+					}
+
+					.button-box {
+						display: flex;
+						align-items: center;
+					}
+				}
+			}
+
+		}
+	}
+}

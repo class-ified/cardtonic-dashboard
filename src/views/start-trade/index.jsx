@@ -4,7 +4,9 @@ import uploadGif from "../../assets/images/upload.gif"
 import CompleteTrade from "./CompleteTradePopup"
 import Footer from "../../layout/admin/Footer"
 
+import { useSelector } from "react-redux"
 import { useState } from "react"
+import { selectCardSubCategories } from "selectors"
 
 const StartTrade = () => {
     const [popupOpen, setPopupOpen] = useState(false)
@@ -16,6 +18,8 @@ const StartTrade = () => {
         e.preventDefault()
         handlePopup(true)
     }
+
+    console.log(useSelector(selectCardSubCategories))
 
     return (
         <main className="start-trade">

@@ -1,42 +1,68 @@
 .signin {
-    width: 100%;
-    // background-color: red;
-    min-height: calc(100vh - var(--sign-nav-height));
 
-    &-content {
-        // background-color: blue;
-        width: var(--sign-max-width);
-        margin: 0 auto;
-        padding-top: 7rem;
-        display: flex;
-        justify-content: space-between;
+	&-content {
+		padding-top: 6rem;
 
-        &-left {
-            padding-top: 1.5rem;
-        }
+		&-left {
+            
+			.download-box {
+				& > :nth-child(1) {
+					margin-right: 1rem;
+				}
 
-        &-right {
-            .formbox {
-                padding: 7.5rem 10.2rem;
-                background-color: white;
-                border-radius: 3rem;
+				@include breakpoint(tablet) {
+					display: none;
+				}
+			}
+		}
+
+		&-right {
+            
+			.formbox {
                 
-                form {
+                // background-color: blue;
+
+                @include breakpoint(tablet) {
                     width: 100%;
-
-                    &>:nth-child(1) {
-                        margin-bottom: 1rem;
-                    }
-                    
-                    input {
-                        width: 100%;
-                    }
-
-                    button {
-                        margin-top: 4.1rem;
-                    }
                 }
-            }
-        }
-    }
+
+				form {
+                    width: 100%;
+                    // background-color: red;
+
+					& > :nth-child(1) {
+						margin-bottom: 1rem;
+					}
+
+					.button-box {
+						justify-content: space-between;
+						margin-top: 4.1rem;
+
+						@include breakpoint(tablet) {
+							flex-direction: column-reverse;
+
+                            button {
+                                align-self: flex-start;
+                            }
+                            a {
+                                align-self: flex-end;
+                                margin-bottom: 6rem;
+                            }
+						}
+					}
+				}
+			}
+
+			.new-user {
+				margin-top: 3.5rem;
+				margin-right: 10rem;
+				text-align: right;
+
+				@include breakpoint(tablet) {
+					text-align: center;
+					margin-right: 0;
+				}
+			}
+		}
+	}
 }
