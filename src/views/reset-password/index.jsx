@@ -29,7 +29,7 @@ const ResetPassword = () => {
 								// {...register("email")}
 							/>
 
-                            <BlackSubmit text="Get me in" />
+                            <BlackSubmit text="Send the Link" />
 						</form>
 					</div>
 

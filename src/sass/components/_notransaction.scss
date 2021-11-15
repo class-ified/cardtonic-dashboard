@@ -1,0 +1,19 @@
+.empty-transaction {
+    height: 40rem;
+    // background-color: red;
+    border-radius: 2.7rem;
+    position: relative;
+
+    .content {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        h3 {
+            position: absolute;
+            text-align: center;
+            bottom: 1rem;
+        }
+    }
+}

@@ -2,10 +2,14 @@ import mobileLogoSmall from "assets/images/mobile-logo.svg"
 import mobileLogoBig from "assets/images/mobile-logo-big.svg"
 
 import useWindowSize from "hooks/useWindowSize"
+import { useHistory } from "react-router"
 
 const SignNavBar = () => {  
     const windowSize = useWindowSize()
 
+    // console.log(browserHistory)
+    const BrowserHistory = useHistory()
+    console.log(BrowserHistory)
 
 
     return (
@@ -14,10 +18,14 @@ const SignNavBar = () => {
             <div className="sign-navbar-contentbox">
                 <div className="navbar-content">
                     <div className="logo-box">
-                        <img src={windowSize.width > 1199 ? mobileLogoBig : mobileLogoSmall} alt="logo" />
+                        <a href="https://cardtonic.com">
+                            <img src={windowSize.width > 1199 ? mobileLogoBig : mobileLogoSmall} alt="logo" />
+                        </a>
                     </div>
 
-                    <button className="back-button">
+
+                    <button className="back-button" onClick={BrowserHistory.goBack} >
+                        {/* prettier-ignore */}
                         <svg width="66" height="64" viewBox="0 0 66 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="65.5" y="63.5" width="65" height="63" rx="19.5" transform="rotate(-180 65.5 63.5)" stroke="#1B507E"/>
                             <g clip-path="url(#clip0_1:7392)">
