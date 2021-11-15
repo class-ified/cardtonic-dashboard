@@ -9,15 +9,14 @@ import { Link } from "react-router-dom";
 
 const initialValues = __DEV__
 	? {
-		email: "tundegolibenachukwu@freeallapp.com",
-		password: "Adeleke123",
+			email: "tundegolibenachukwu@freeallapp.com",
+			password: "Adeleke123",
 	  }
 	: {
-		email: "",
-		password: "",
+			email: "",
+			password: "",
 	  };
 
-      
 const SignIn = () => {
 	const history = useHistory();
 
@@ -39,10 +38,17 @@ const SignIn = () => {
 		<main className="sign signin">
 			<div className="sign-content signin-content">
 				<div className="sign-content-left signin-content-left">
-					<h1 className="header-text text-xl text-blue-dark text-vbold">Hop right back in.</h1>
-					
-					<h1 className="small-text text-24 text-bold" style={{color: '#CECECE'}}>Sign into continue</h1>
-					
+					<h1 className="header-text text-xl text-blue-dark text-vbold">
+						Hop right back in.
+					</h1>
+
+					<h1
+						className="small-text text-24 text-bold"
+						style={{ color: "#CECECE" }}
+					>
+						Sign into continue
+					</h1>
+
 					<div className="download-box">
 						<a href="#">
 							{/* prettier-ignore */}
@@ -70,7 +76,6 @@ const SignIn = () => {
 					</div>
 				</div>
 
-
 				<div className="sign-content-right signin-content-right">
 					<div className="formbox">
 						<form action="#" onSubmit={handleSubmit(onSubmit)}>
@@ -81,24 +86,50 @@ const SignIn = () => {
 								{...register("email")}
 							/>
 
-							<input
+							<label
+								htmlFor="new-password"
+								className="label-withspan"
+							>
+								<input
+									id="new-password"
+									type="password"
+									className="default-input default-input-withspan"
+									placeholder="New Password"
+									{...register("password")}
+								/>
+								<span>
+									{/* prettier-ignore */}
+									<svg width="15" height="2" viewBox="0 0 15 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<line x1="1" y1="1" x2="14" y2="1" stroke="#002444" stroke-width="2" stroke-linecap="round"/>
+									</svg>
+								</span>
+							</label>
+
+							{/* <input
 								type="password"
 								className="default-input"
 								placeholder="Enter your password"
 								{...register("password")}
-							/>
+							/> */}
 
 							<div className="button-box">
 								<BlackSubmit text="Get me in" />
-								<Link to="/reset-password" className="text-blue-dark text-small text-regular">
+								<Link
+									to="/reset-password"
+									className="text-blue-dark text-small text-regular"
+								>
 									Forgot your password?
 								</Link>
 							</div>
 						</form>
 					</div>
 
-					<h3 className="new-user text-small text-bold text-blue-dark">New User? <span style={{color: '#00CEDE'}}><Link to="/signup">Register Now</Link></span></h3> 
-					
+					<h3 className="new-user text-small text-bold text-blue-dark">
+						New User?{" "}
+						<span style={{ color: "#00CEDE" }}>
+							<Link to="/signup">Register Now</Link>
+						</span>
+					</h3>
 				</div>
 			</div>
 		</main>

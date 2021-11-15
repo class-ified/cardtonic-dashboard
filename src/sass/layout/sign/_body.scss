@@ -10,7 +10,7 @@
     width: 90%;
     max-width: var(--sign-max-width);
 	min-height: calc(100vh - var(--sign-nav-height));
-    padding-bottom: 7rem;
+    padding-bottom: 11rem;
 
 	&-content {
 		// background-color: blue;
@@ -91,6 +91,9 @@
 					}
 
 					input {
+						width: 100%;
+					}
+					label {
 						width: 100%;
 					}
 
