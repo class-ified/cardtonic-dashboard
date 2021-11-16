@@ -1,10 +1,18 @@
 import Popup from "../../../components/PopupContainer"
 import {BlackSubmit} from "../../../components/Buttons"
 
+import { useSelector } from "react-redux"
+import { selectUser, selectUserEmail, selectUsersName } from "selectors"
+
 const EditProfilePopup = ({handlePopup, popupOpen}) => {
     const closePopup = () => {
         handlePopup(false)
     }
+
+    const userEmail = useSelector(selectUserEmail)
+    const userName = useSelector(selectUsersName)
+    const userPhone = useSelector(selectUser).phoneNumber
+
 
     return (
         <>
@@ -19,9 +27,9 @@ const EditProfilePopup = ({handlePopup, popupOpen}) => {
                     </button>
 
                     <form action="#">
-                        <input type="text" className="default-input disabled-input" placeholder="Julia Nathasha Sarah" disabled />
-                        <input type="number" className="default-input disabled-input" placeholder="+236968975747" disabled />
-                        <input type="email" className="default-input" placeholder="Julia.N@gmail.com" disabled />
+                        <input type="text" className="default-input disabled-input" placeholder={userName} disabled />
+                        <input type="number" className="default-input disabled-input" placeholder={userPhone} disabled />
+                        <input type="email" className="default-input" placeholder={userEmail} disabled />
 
                         <div className="form-bottom">
                             <BlackSubmit text="Save" />

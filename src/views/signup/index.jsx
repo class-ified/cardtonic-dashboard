@@ -2,16 +2,18 @@
 import { BigBlackSubmit } from "../../components/Buttons";
 import { Link } from "react-router-dom";
 
-import * as React from "react";
+import {useCallback} from "react";
 import { Controller, useForm } from "react-hook-form";
 import * as Yup from "yup";
+import {yupResolver} from '@hookform/resolvers/yup';
 import {
 	checkPhoneNumber,
 	extractMessageAndShow,
 	validatePhoneNumber,
 } from "../../utils";
 import { useMutation } from "react-query";
-import { register, RegisterPayload } from "../../api";
+import { register, RegisterPayload } from "api";
+import {useHistory} from "react-router"
 
 Yup.addMethod(Yup.string, "validatePhone", function () {
 	return this.test({
@@ -41,12 +43,12 @@ const RegisterSchema = Yup.object().shape({
 const initialValues =
 	process.env.NODE_ENV === "development"
 		? {
-				name: "classified",
-				email: "classified@test.com",
+				name: "Daniel",
+				email: "tundegolibenachukwu@freeallapp.com",
 				username: "somebody",
 				phoneNumber: "07000119922",
-				password: "Qwertyuiop12#",
-				confirmPassword: "Qwertyuiop12#",
+				password: "Adeleke123",
+				confirmPassword: "Adeleke123",
 		  }
 		: {
 				name: "",
@@ -57,7 +59,46 @@ const initialValues =
 				confirmPassword: "",
 		  };
 
+
+
+
 const SignUp = () => {
+	// const history = useHistory()
+
+	// const navigateToSignin = useCallback(() => {
+	// 	history.push("/signin")
+	// }, [history])
+
+	const {handleSubmit, control} = useForm({
+		resolver: yupResolver(RegisterSchema),
+		defaultValues: initialValues,
+	  });
+	  const registerMutation = useMutation(
+		(user) => {
+		  return register(user);
+		},
+		{
+		  mutationKey: 'registerUser',
+		  onSuccess: (data, user) => {
+			  console.log("user registered")
+			// extractMessageAndShow(data);
+			// navigation.navigate('VerifyEmail', {email: user.email});
+		  },
+		},
+	  );
+
+	  const onSubmit = useCallback(
+		(data) => {
+		  let phoneNumber = checkPhoneNumber(data.phoneNumber)?.phoneNumber;
+		  registerMutation.mutate({
+			...data,
+			phoneNumber: phoneNumber?.replace('+', ''),
+		  });
+		},
+		[registerMutation],
+	  );
+
+
 	return (
 		<main className="sign signup">
 			<div className="sign-content signup-content">
@@ -76,7 +117,7 @@ const SignUp = () => {
 
 				<div className="sign-content-right signup-content-right">
 					<div className="formbox">
-						<form action="#">
+						<form onSubmit={handleSubmit(onSubmit)}>
 							<input
 								type="text"
 								className="default-input"

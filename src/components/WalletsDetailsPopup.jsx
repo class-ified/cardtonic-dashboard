@@ -164,7 +164,7 @@ export const WalletsDetailsPopupMobile = ({bankAmount, bankStatus, bankName, ban
 	}
 	handlePopupHeading();
 
-	// info box content to render based on wallet transaction status
+	// info box content to render, based on wallet transaction status
 	let Component;
 	if (bankStatus === "pending") {
 		Component = (

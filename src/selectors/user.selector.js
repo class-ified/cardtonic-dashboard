@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-export const selectUser = (state) => state.user;
+export const selectUser = (state) => state?.user;
 
 export const selectUserId = createSelector(selectUser, (user) => user.id);
 
@@ -43,4 +43,8 @@ export const selectNGNBanks = createSelector(
 	(ngnWallet) => ngnWallet?.banks
 )
 
+export const selectPinCode = createSelector(
+	selectUser,
+	user => !!user?.pinCode,
+);
 

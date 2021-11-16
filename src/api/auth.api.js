@@ -22,6 +22,8 @@ export const resetPassword = (data) => {
   return instance.post('/auth/forgot-password', data).then(res => res.data);
 };
 
+
+
 export const resendVerificationMail = (data) => {
   return instance
     .post('/auth/resend-verification-mail', data)

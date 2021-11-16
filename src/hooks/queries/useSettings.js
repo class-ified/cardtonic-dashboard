@@ -9,6 +9,7 @@ export const querySettingsOptions = (dispatch) => ({
 	queryKey: settingsQuery,
 	queryFn: () => fetchSettings(),
 	onSuccess: (settings) => {
+		console.log(settings)
 		dispatch(setServerSettings(settings));
 	},
 });

@@ -3,6 +3,8 @@ import mobileLogoBig from "assets/images/mobile-logo-big.svg"
 
 import useWindowSize from "hooks/useWindowSize"
 import { useHistory } from "react-router"
+import { LOGOUT } from "action"
+import { store } from "store/store"
 
 const SignNavBar = () => {  
     const windowSize = useWindowSize()

@@ -1,8 +1,12 @@
 .empty-transaction {
     height: 40rem;
-    // background-color: red;
+    background-color: $color-white;
     border-radius: 2.7rem;
     position: relative;
+
+    @include breakpoint(tablet) {
+        height: 30rem;
+    }
 
     .content {
         position: absolute;

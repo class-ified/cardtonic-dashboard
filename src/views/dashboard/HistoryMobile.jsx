@@ -3,6 +3,7 @@ import { GetMoreButton } from "../../components/Buttons";
 import MobileDetailsPopup from "../../components/MobileTransactionDetailsPopup";
 
 import { useState } from "react";
+import NoTransaction from "components/NoTransaction";
 
 const HistoryMobile = ({ trades }) => {
 	// popup state
@@ -35,7 +36,7 @@ const HistoryMobile = ({ trades }) => {
 				clickedTrade={clickedTrade}
 			/>
 
-			{trades?.map(
+			{trades?.length ? trades?.map(
 				(trade, index) =>
 					index < 4 && (
 						<MobileTableBody
@@ -53,7 +54,7 @@ const HistoryMobile = ({ trades }) => {
 							handleClickedTrade={handleClickedTrade}
 						/>
 					)
-			)}
+			) : <NoTransaction />}
 
 			<GetMoreButton />
 		</div>

@@ -3,6 +3,7 @@ import { GetMoreButton } from "../../components/Buttons";
 import DesktopDetailsPopup from "../../components/DesktopTransactionDetailsPopup";
 
 import { useState } from "react";
+import NoTransaction from "components/NoTransaction";
 
 const HistoryDesktop = ({ withdrawals }) => {
 	// popup state
@@ -43,7 +44,7 @@ const HistoryDesktop = ({ withdrawals }) => {
 
 				<span className="horizontal-line"></span>
 
-				{withdrawals?.map((withdrawal, index) => (
+				{withdrawals?.length ? withdrawals?.map((withdrawal, index) => (
 					<TableBody
 						key={index}
 						withdrawalIndex={index}
@@ -57,7 +58,7 @@ const HistoryDesktop = ({ withdrawals }) => {
 						bankStatus={withdrawal.status}
 						handleClickedWithdrawal={handleClickedWithdrawal}
 					/>
-				))}
+				)) : <NoTransaction />}
 			</div>
 
 			<div className="pagination-box">

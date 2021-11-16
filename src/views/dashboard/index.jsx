@@ -3,9 +3,11 @@ import HistoryDesktop from "./HistoryDesktop";
 import HistoryMobile from "./HistoryMobile";
 import Footer from "../../layout/admin/Footer";
 import FundsSection from "../../components/FundsSection";
+import { useHome } from "hooks";
 
-// import { useEffect } from "react";
 import { useTrades } from "hooks";
+import { useSelector } from "react-redux";
+import { selectAuth, selectServerState } from "selectors";
 
 const Dashboard = () => {
 	//get window size
@@ -15,11 +17,12 @@ const Dashboard = () => {
     const tradesResponse = useTrades()
 	const trades = tradesResponse.data
 	console.log(trades)
-	
-	
+
+	const serverState = useSelector(selectServerState)
 
 	return (
 		<main className="dashboard">
+			<h3 className="text-error tet-bold text-small" style={{marginBottom: '10px', paddingLeft: '5px'}}>{serverState.walletText}</h3>
 			<div className="dashboard__top">
 				<h1 className="text-heading text-kindabig text-blue-dark text-vbold">
 					Dashboard

@@ -4,6 +4,7 @@ import DesktopDetailsPopup from "../../components/DesktopTransactionDetailsPopup
 import truncateString from "hooks/useTruncateString";
 
 import { useEffect, useState } from "react";
+import NoTransaction from "components/NoTransaction";
 
 const HistoryDesktop = ({ trades }) => {
 	// popup state
@@ -46,7 +47,7 @@ const HistoryDesktop = ({ trades }) => {
 
 			<span className="horizontal-line"></span>
 
-			{trades?.map((trade, index) => index < 4 && (
+			{trades?.length ? trades?.map((trade, index) => index < 4 && (
 				<TableBody
 					key={index}
 					index={index}
@@ -62,7 +63,7 @@ const HistoryDesktop = ({ trades }) => {
 					cardUpdatedAt={trade.updatedAt}
 					handleClickedTrade={handleClickedTrade}
 				/>
-			))}
+			)) : <NoTransaction />}
 
 			<div className="button-box">
 				<span></span>

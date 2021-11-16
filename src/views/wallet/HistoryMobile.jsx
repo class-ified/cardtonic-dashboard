@@ -2,6 +2,7 @@ import MobileDetailsPopup from "../../components/MobileTransactionDetailsPopup";
 import { MobileTableBody } from "../../components/MobileTransactionsTable";
 
 import { useState } from "react";
+import NoTransaction from "components/NoTransaction";
 
 const HistoryMobile = ({ withdrawals }) => {
 	// popup state
@@ -39,7 +40,7 @@ const HistoryMobile = ({ withdrawals }) => {
 
 			<span className="top-line"></span>
 
-			{withdrawals?.map((withdrawal, index) => (
+			{withdrawals?.length ? withdrawals?.map((withdrawal, index) => (
 				<MobileTableBody
 					handlePopupOpen={handlePopupOpen}
 					key={index}
@@ -53,7 +54,7 @@ const HistoryMobile = ({ withdrawals }) => {
 					bankStatus={withdrawal.status}
 					handleClickedWithdrawal={handleClickedWithdrawal}
 				/>
-			))}
+			)): <NoTransaction />}
 
 			<div className="pagination-box">
 				<button className="previous-btn">

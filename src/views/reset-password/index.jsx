@@ -1,6 +1,10 @@
 import { BlackSubmit } from "components/Buttons";
+import { resetPassword } from "api";
 
 const ResetPassword = () => {
+    resetPassword("tundegolibenachukwu@freeallapp.com")
+
+
     return (
 		<main className="sign reset-password">
 			<div className="sign-content reset-password-content">

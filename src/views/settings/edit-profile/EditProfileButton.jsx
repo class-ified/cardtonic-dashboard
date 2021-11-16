@@ -1,5 +1,6 @@
 import EditProfilePopup from "./EditProfilePopup"
 
+
 import { useState } from "react"
 
 const EditProfiileButton = () => {
@@ -9,6 +10,7 @@ const EditProfiileButton = () => {
         console.log(popupOpen)
         setPopupOpen(value)
     }
+
 
     return (
         <>

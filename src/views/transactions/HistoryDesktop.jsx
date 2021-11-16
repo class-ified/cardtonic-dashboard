@@ -42,7 +42,7 @@ const HistoryDesktop = ({ trades }) => {
 				<span className="horizontal-line"></span>
 
 				{/* if trades array is not empty, render table body, else render NoTransaction component */}
-				{/* {trades?.length ? (
+				{trades?.length ? (
 					trades.map(
 						(trade, index) =>
 							index < 6 && (
@@ -70,8 +70,7 @@ const HistoryDesktop = ({ trades }) => {
 					)
 				) : (
 					<NoTransaction />
-				)} */}
-				<NoTransaction />
+				)}
 			</div>
 
 			{trades?.length && (

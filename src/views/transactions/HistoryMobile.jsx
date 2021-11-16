@@ -2,6 +2,7 @@ import MobileDetailsPopup from "../../components/MobileTransactionDetailsPopup";
 import { MobileTableBody } from "../../components/MobileTransactionsTable";
 
 import { useState } from "react";
+import NoTransaction from "components/NoTransaction";
 
 const HistoryMobile = ({ trades }) => {
 	// popup state
@@ -36,7 +37,7 @@ const HistoryMobile = ({ trades }) => {
 
 			<span className="top-line"></span>
 
-			{trades?.map(
+			{trades?.length ? trades?.map(
 				(trade, index) =>
 					index < 6 && (
 						<MobileTableBody
@@ -54,7 +55,7 @@ const HistoryMobile = ({ trades }) => {
 							handleClickedTrade={handleClickedTrade}
 						/>
 					)
-			)}
+			) : <NoTransaction />}
 
 			<div className="pagination-box">
 				<button className="previous-btn">
