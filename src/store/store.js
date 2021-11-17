@@ -10,8 +10,8 @@ import rootReducer from "./index";
 
 const whitelist =
 	process.env.NODE_ENV === "development"
-		? ["misc", "user"]
-		: ["misc", "user"];
+		? ["misc", "user", "auth"]
+		: ["misc", "user", "auth"];
 
 const persistedReducer = persistReducer(
 	{
@@ -34,10 +34,8 @@ export const configureStore = () => {
 	};
 };
 
-
 export let store = configureStore();
 export let persistor = persistStore(store);
-
 
 store.subscribe(
 	throttle(() => {

@@ -4,7 +4,7 @@ import NoTransaction from "components/NoTransaction";
 
 import { useState } from "react";
 
-const HistoryDesktop = ({ trades }) => {
+const HistoryDesktop = ({ trades, page, getNextPage }) => {
 	// popup state
 	const [openPopup, setOpenPopup] = useState(false);
 
@@ -43,31 +43,27 @@ const HistoryDesktop = ({ trades }) => {
 
 				{/* if trades array is not empty, render table body, else render NoTransaction component */}
 				{trades?.length ? (
-					trades.map(
-						(trade, index) =>
-							index < 6 && (
-								<TableBody
-									key={index}
-									index={index}
-									openPopup={openPopup}
-									handlePopupView={handlePopupView}
-									amount={trade.amountPayable}
-									cardCategory={
-										trade.cardSubCategory.cardCategory.name
-									}
-									cardAvatar={
-										trade.cardSubCategory.cardCategory
-											.avatar
-									}
-									cardSubCategory={trade.cardSubCategory.name}
-									rate={trade.cardSubCategory.rate}
-									status={trade.meta.status}
-									cardAmount={trade.cardTotalAmount}
-									cardUpdatedAt={trade.updatedAt}
-									handleClickedTrade={handleClickedTrade}
-								/>
-							)
-					)
+					trades.map((trade, index) => (
+						<TableBody
+							key={index}
+							index={index}
+							openPopup={openPopup}
+							handlePopupView={handlePopupView}
+							amount={trade.amountPayable}
+							cardCategory={
+								trade.cardSubCategory.cardCategory.name
+							}
+							cardAvatar={
+								trade.cardSubCategory.cardCategory.avatar
+							}
+							cardSubCategory={trade.cardSubCategory.name}
+							rate={trade.cardSubCategory.rate}
+							status={trade.meta.status}
+							cardAmount={trade.cardTotalAmount}
+							cardUpdatedAt={trade.updatedAt}
+							handleClickedTrade={handleClickedTrade}
+						/>
+					))
 				) : (
 					<NoTransaction />
 				)}
@@ -98,7 +94,7 @@ const HistoryDesktop = ({ trades }) => {
 						<button className="page-number">3</button>
 					</div>
 
-					<button className="next-btn">
+					<button className="next-btn" onClick={getNextPage}>
 						<svg
 							width="9"
 							height="15"

@@ -37,25 +37,22 @@ const HistoryMobile = ({ trades }) => {
 
 			<span className="top-line"></span>
 
-			{trades?.length ? trades?.map(
-				(trade, index) =>
-					index < 6 && (
-						<MobileTableBody
-							key={index}
-							index={index}
-							handlePopupOpen={handlePopupOpen}
-							cardCategory={
-								trade.cardSubCategory.cardCategory.name
-							}
-							amount={trade.amountPayable}
-							cardAvatar={
-								trade.cardSubCategory.cardCategory.avatar
-							}
-							createdAt={trade.createdAt}
-							handleClickedTrade={handleClickedTrade}
-						/>
-					)
-			) : <NoTransaction />}
+			{trades?.length ? (
+				trades?.map((trade, index) => (
+					<MobileTableBody
+						key={index}
+						index={index}
+						handlePopupOpen={handlePopupOpen}
+						cardCategory={trade.cardSubCategory.cardCategory.name}
+						amount={trade.amountPayable}
+						cardAvatar={trade.cardSubCategory.cardCategory.avatar}
+						createdAt={trade.createdAt}
+						handleClickedTrade={handleClickedTrade}
+					/>
+				))
+			) : (
+				<NoTransaction />
+			)}
 
 			<div className="pagination-box">
 				<button className="previous-btn">

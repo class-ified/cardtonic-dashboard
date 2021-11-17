@@ -11,8 +11,8 @@ const Transactions = () => {
 	const windowSize = useWindowSize();
 
 	// get trades data from route called in useTrades hook
-	const tradesResponse = useTrades();
-	const trades = tradesResponse.data;
+	const { trades, getNextPage, page, getPreviousPage } = useTrades();
+	console.log(trades)
 
 	return (
 		<main className="transactions">
@@ -25,9 +25,13 @@ const Transactions = () => {
 			<div className="transactions__bottom">
 				{/* if window size is greater than 1199px, render desktop history and vice versa  */}
 				{windowSize.width > 1199 ? (
-					<HistoryDesktop trades={trades} />
+					<HistoryDesktop
+						{...{ trades, getNextPage, getPreviousPage, page }}
+					/>
 				) : (
-					<HistoryMobile trades={trades} />
+					<HistoryMobile
+						{...{ trades, getNextPage, getPreviousPage, page }}
+					/>
 				)}
 			</div>
 

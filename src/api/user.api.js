@@ -5,11 +5,14 @@ export const fetchUser = (id) => {
 };
 
 export const fetchSettings = () => {
-	return instance.get(`/settings`).then((res) => res)
-}
+	return instance.get(`/settings`).then((res) => res);
+};
 
-export const fetchTrades = (id) => {
-	return instance.get(`/trades/user/${id}`).then((res) => res.data.trades);
+export const fetchTrades = (id, params) => {
+	console.log({ params });
+	return instance
+		.get(`/trades/user/${id}`, { params })
+		.then((res) => res.data);
 };
 
 export const fetchWithdrawals = (id, currentPage) => {
@@ -19,19 +22,17 @@ export const fetchWithdrawals = (id, currentPage) => {
 };
 
 export const changeUser = (id, user) => {
+	return instance.put(`/users/user/${id}`, user).then((res) => res.data);
+};
+
+export const setPin = (id, data) => {
 	return instance
-	  .put(`/users/user/${id}`, user)
-	  .then((res) => res.data);
-  };
-  
-  export const setPin = (id, data) => {
+		.put(`/users/user/pin-code/${id}`, data)
+		.then((res) => res.data);
+};
+
+export const resetPin = (id) => {
 	return instance
-	  .put(`/users/user/pin-code/${id}`, data)
-	  .then((res) => res.data);
-  };
-  
-  export const resetPin = (id) => {
-	return instance
-	  .put(`/users/user/pin-code-reset/${id}`)
-	  .then((res) => res.data);
-  };
+		.put(`/users/user/pin-code-reset/${id}`)
+		.then((res) => res.data);
+};
