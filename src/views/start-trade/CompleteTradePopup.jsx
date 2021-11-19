@@ -24,7 +24,7 @@ const CompleteTrade = ({handlePopup, popupOpen}) => {
                         We are not liable for any error from you, please keep your card safe, and make sure no one is watching while you upload your card.
                     </h3>
 
-                    <button className="complete-trade-button">
+                    <button type="submit" className="complete-trade-button">
                         <h3 className="text-white text-bold text-small">Complete Trade</h3>
 
                         <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">

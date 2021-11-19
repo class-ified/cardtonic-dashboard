@@ -2,10 +2,10 @@
 import { BigBlackSubmit } from "../../components/Buttons";
 import { Link } from "react-router-dom";
 
-import {useCallback} from "react";
+import { useCallback } from "react";
 import { Controller, useForm } from "react-hook-form";
 import * as Yup from "yup";
-import {yupResolver} from '@hookform/resolvers/yup';
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
 	checkPhoneNumber,
 	extractMessageAndShow,
@@ -13,7 +13,7 @@ import {
 } from "../../utils";
 import { useMutation } from "react-query";
 import { register, RegisterPayload } from "api";
-import {useHistory} from "react-router"
+import { useHistory } from "react-router";
 
 Yup.addMethod(Yup.string, "validatePhone", function () {
 	return this.test({
@@ -60,8 +60,7 @@ const initialValues =
 		  };
 
 
-
-
+		  
 const SignUp = () => {
 	// const history = useHistory()
 
@@ -69,35 +68,38 @@ const SignUp = () => {
 	// 	history.push("/signin")
 	// }, [history])
 
-	const {handleSubmit, control} = useForm({
+	const { register, handleSubmit } = useForm({
 		resolver: yupResolver(RegisterSchema),
 		defaultValues: initialValues,
-	  });
-	  const registerMutation = useMutation(
+	});
+
+	const registerMutation = useMutation(
 		(user) => {
-		  return register(user);
+			return register(user);
 		},
 		{
-		  mutationKey: 'registerUser',
-		  onSuccess: (data, user) => {
-			  console.log("user registered")
-			// extractMessageAndShow(data);
-			// navigation.navigate('VerifyEmail', {email: user.email});
-		  },
-		},
-	  );
+			mutationKey: "registerUser",
+			onSuccess: (data, user) => {
+				// console.log({data})
+				// console.log({user})
+				console.log("user registered");
+				// extractMessageAndShow(data);
+				// navigation.navigate('VerifyEmail', {email: user.email});
+			},
+		}
+	);
 
-	  const onSubmit = useCallback(
+	const onSubmit = useCallback(
 		(data) => {
-		  let phoneNumber = checkPhoneNumber(data.phoneNumber)?.phoneNumber;
-		  registerMutation.mutate({
-			...data,
-			phoneNumber: phoneNumber?.replace('+', ''),
-		  });
+			console.log(data)
+			let phoneNumber = checkPhoneNumber(data.phoneNumber)?.phoneNumber;
+			registerMutation.mutate({
+				...data,
+				phoneNumber: phoneNumber?.replace("+", ""),
+			});
 		},
-		[registerMutation],
-	  );
-
+		[registerMutation]
+	);
 
 	return (
 		<main className="sign signup">
@@ -143,7 +145,7 @@ const SignUp = () => {
 								type="number"
 								className="default-input"
 								placeholder="Phone Number"
-								{...register("phone")}
+								{...register("phoneNumber")}
 							/>
 
 							<label
@@ -155,6 +157,7 @@ const SignUp = () => {
 									type="password"
 									className="default-input default-input-withspan"
 									placeholder="Create a Password"
+									{...register("password")}
 								/>
 								<span>
 									{/* prettier-ignore */}
@@ -173,7 +176,7 @@ const SignUp = () => {
 									type="password"
 									className="default-input default-input-withspan"
 									placeholder="Pls Confirm your Password"
-									{...register("password")}
+									{...register("confirmPassword")}
 								/>
 								<span>
 									{/* prettier-ignore */}
@@ -185,7 +188,7 @@ const SignUp = () => {
 
 							<div className="button-box">
 								<BigBlackSubmit text="Create Account" />
-								
+
 								<h3 className="sign-in-text text-blue-dark text-small text-regular">
 									Got an account?{" "}
 									<Link

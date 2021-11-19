@@ -6,7 +6,7 @@ import Footer from "../../layout/admin/Footer";
 
 import { useToggle } from "hooks/useToggle";
 import { useSelector } from "react-redux";
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { selectCardSubCategories } from "selectors";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -73,13 +73,27 @@ const StartTrade = () => {
 	const [amount, setAmount] = useState("0");
 	const [images, setImages] = useState([]);
 
+	// useEffect(() => {
+	// function check() {
+	// 	let cho = [1, 2, 3]
+	// 	setImages(cho => [...cho, images])
+	// 	console.log(images)
+	// }
+	// check();
+
+	// }, [])
+
+	useEffect(() => {
+		images && console.log(images);
+	}, [images])
+
 	const queryClient = useQueryClient();
 	const isValid = useMemo(() => {
 		try {
 			schema.validateSync(validValues);
 			return true;
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 		}
 		return false;
 	}, [validValues]);
@@ -93,6 +107,7 @@ const StartTrade = () => {
 
 	const realAmount = useMemo(() => {
 		const value = rate * amount;
+		// console.log(value)
 		return value;
 	}, [amount, rate]);
 	const [whole, balanceFraction] = useMoneyformatter(realAmount);
@@ -133,17 +148,27 @@ const StartTrade = () => {
 		}));
 	}, [cardSubCategories]);
 
-	const onChange = useCallback(
+	const fileOnChange = useCallback(
 		async (e) => {
+			// console.log('uploaded')
 			try {
-				setImages(e.target.files[0]);
-				console.log(images);
+				let files = e.target.files;
+				let filesArray = Array.from(files);
+				console.log({ filesArray });
+				await setImages(filesArray);
+
+				
 			} catch (error) {
 				showErrorSnackBar({ text: "Couldn't pick images" });
 			}
 		},
 		[images]
 	);
+
+	const handleFile = (e) => {
+		fileOnChange(e);
+		console.log(images);
+	};
 
 	const tradeMutation = useMutation(
 		(data) => {
@@ -160,10 +185,40 @@ const StartTrade = () => {
 		}
 	);
 
-	const onSubmit = useCallback((values) => {
-		setTermsOfTransaction(values.subCategory?.termsOfTransaction);
-		//   toggleModal();
-	}, []);
+	// const fileToDataUri = (file) =>
+	// 	new Promise((resolve, reject) => {
+	// 		const reader = new FileReader();
+	// 		reader.onload = (event) => {
+	// 			resolve(event.target.result);
+	// 		};
+	// 		reader.readAsDataURL(file);
+	// 	});
+
+	async function uploadToServer(sourceUrl) {
+		// first get our hands on the local file
+		const localFile = await fetch(sourceUrl);
+
+		// then create a blob out of it (only works with RN 0.54 and above)
+		const fileBlob = await localFile.blob();
+
+		// then send this blob to filestack
+		const serverRes = await fetch(
+			"https://www.yourAwesomeServer.com/api/send/file",
+			{
+				// Your POST endpoint
+				method: "POST",
+				headers: {
+					"Content-Type": fileBlob && fileBlob.type,
+				},
+				body: fileBlob, // This is your file object
+			}
+		);
+
+		const serverJsonResponse = await serverRes.json();
+
+		// yay, let's print the result
+		console.log(`Server said: ${JSON.stringify(serverJsonResponse)}`);
+	}
 
 	const trade = useCallback(async () => {
 		const values = getValues();
@@ -184,7 +239,9 @@ const StartTrade = () => {
 			if (urls.length > 0) {
 				for (const [i, el] of urls.entries()) {
 					// console.log(files[i]);
-					container.push(() => {});
+					container.push(() => {
+						uploadToServer(el.uri);
+					});
 				}
 			}
 			await Promise.all(container.map((fn) => fn()));
@@ -212,6 +269,15 @@ const StartTrade = () => {
 		userId,
 	]);
 
+	const onSubmit = useCallback(
+		(values) => {
+			trade();
+			setTermsOfTransaction(values.subCategory?.termsOfTransaction);
+			//   toggleModal();
+		},
+		[trade]
+	);
+
 	const handlePopup = (value) => {
 		setPopupOpen(value);
 	};
@@ -222,6 +288,10 @@ const StartTrade = () => {
 
 	// console.log(selectCardSubCategories());
 
+	if (status === "loading") {
+		return <h2>Loading..</h2>;
+	}
+
 	return (
 		<main className="start-trade">
 			<div className="start-trade__heading">
@@ -230,18 +300,22 @@ const StartTrade = () => {
 				</h1>
 			</div>
 			<div className="start-trade__body">
-				<form action="#">
+				<form action="#" onSubmit={handleSubmit(onSubmit)}>
 					<div className="default-select-box">
 						<select
 							className="text-vbold text-small default-input"
 							name="category"
 							id="category"
+							onChange={(e) => setIndex(e.target.value)}
+							onBlur={(e) => setIndex(e.target.value)}
 						>
 							<option value="">Select Category</option>
-							<option value="idk">okay</option>
-							<option value="idk">okay</option>
-							<option value="idk">okay</option>
-							<option value="idk">okay</option>
+							{/* {console.log(cardCategorySelect)} */}
+							{cardCategorySelect.map((category) => (
+								<option value={category.value}>
+									{category.label}
+								</option>
+							))}
 						</select>
 
 						<svg
@@ -269,14 +343,22 @@ const StartTrade = () => {
 					<div className="default-select-box">
 						<select
 							className="text-vbold text-small default-input"
-							name="category"
-							id="category"
+							name="sub-category"
+							id="sub-category"
+							onChange={(e) => {
+								setRate(cardSubCategories[e.target.value].rate);
+							}}
+							{...register("subCategory")}
 						>
-							<option value="">Select Category</option>
-							<option value="idk">okay</option>
-							<option value="idk">okay</option>
-							<option value="idk">okay</option>
-							<option value="idk">okay</option>
+							<option value="">Select Sub-Category</option>
+							{cardSubCategorySelect.map((cardSubCategory) => (
+								<option
+									key={cardSubCategory.value.id}
+									value={cardSubCategory.value.index}
+								>
+									{cardSubCategory.label}
+								</option>
+							))}
 						</select>
 
 						<svg
@@ -302,20 +384,31 @@ const StartTrade = () => {
 					</div>
 
 					<div className="amount-rate">
+						{/* {console.log(amount)} */}
 						<input
 							type="number"
 							className="default-input text-small text-regular"
 							placeholder="Enter Gift Card Amount"
+							onChange={(e) => setAmount(e.target.value)}
+							{...register("amount")}
 						/>
 						<div className="rate-box">
-							<h2 className="text-medium text-vbold">₦0.00</h2>
-							<h3 className="text-small text-vbold">395</h3>
+							<h2
+								className="text-medium text-vbold"
+								style={{ marginRight: "20px" }}
+							>
+								₦{whole}.{balanceFraction}
+							</h2>
+							<h3 className="text-small text-vbold">
+								{rate ? rate : "000"}
+							</h3>
 						</div>
 					</div>
 
 					<textarea
 						className="default-textarea"
 						placeholder="Optional Comment, e.g You can type your code here"
+						{...register("comment")}
 					></textarea>
 
 					<label htmlFor="upload" className="upload-label">
@@ -324,6 +417,7 @@ const StartTrade = () => {
 							type="file"
 							multiple
 							accept="image/*"
+							onChange={(e) => fileOnChange(e)}
 						/>
 						<div className="upload-box">
 							<img src={uploadGif} />
@@ -338,7 +432,10 @@ const StartTrade = () => {
 						popupOpen={popupOpen}
 					/>
 
+					{/* <div onClick={openPopup}>start trade</div> */}
+
 					<BlackSubmit text="Start Trade" onClick={openPopup} />
+					{/* <BlackSubmit text="Start Trade" /> */}
 				</form>
 			</div>
 

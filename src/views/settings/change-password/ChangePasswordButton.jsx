@@ -6,7 +6,7 @@ const ChangePasswordButton = () => {
     const [popupOpen, setPopupOpen] = useState(false)
 
     const handlePopup = (value) => {
-        console.log(popupOpen)
+        // console.log(popupOpen)
         setPopupOpen(value)
     }
 

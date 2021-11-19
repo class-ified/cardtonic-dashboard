@@ -11,7 +11,6 @@ const SignNavBar = () => {
 
     // console.log(browserHistory)
     const BrowserHistory = useHistory()
-    console.log(BrowserHistory)
 
 
     return (

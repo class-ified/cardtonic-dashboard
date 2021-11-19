@@ -1,19 +1,26 @@
 import SetPinPopup from "./SetPinPopup"
+import { selectPinCode } from "selectors"
 
-import { useState } from "react"
+import { useState, useSelector } from "react"
 
 const SetPinButton = () => {
     const [popupOpen, setPopupOpen] = useState(false)
 
     const handlePopup = (value) => {
-        console.log(popupOpen)
         setPopupOpen(value)
     }
+
+    // check if user has pin set
+    // const hasPin = selectPinCode()
+	// const checkPin = useSelector(selectPinCode);
+    // console.log(checkPin)
+    // console.log(useSelector(selectPinCode))
 
     return (
         <>
             <SetPinPopup handlePopup={handlePopup} popupOpen={popupOpen} />
             <div style={{cursor: "pointer"}} className="settings__body-option" onClick={() => handlePopup(true)}>
+                {/* <h3 className="text-blue text-vbold text-small">{hasPin ? "Change Pin" : "Set Pin"}</h3> */}
                 <h3 className="text-blue text-vbold text-small">Set Pin</h3>
 
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

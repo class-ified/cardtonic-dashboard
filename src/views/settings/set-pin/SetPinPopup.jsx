@@ -35,9 +35,9 @@ const SetPinPopup = ({ handlePopup, popupOpen }) => {
 		handlePopup(false);
 	}, [handlePopup]);
 
-
 	// check if user has pin set
 	const hasPin = useSelector(selectPinCode);
+	// console.log(hasPin);
 
 	const { register, handleSubmit } = useForm({
 		resolver: yupResolver(setPinSchema),
@@ -59,6 +59,7 @@ const SetPinPopup = ({ handlePopup, popupOpen }) => {
 		},
 		[setPinMutation, closePopup]
 	);
+
 
 	return (
 		<>
@@ -93,7 +94,7 @@ const SetPinPopup = ({ handlePopup, popupOpen }) => {
 									type="password"
 									className="default-input default-input-withspan"
 									placeholder="Old pin"
-                                    {...register("oldPinCode")}
+									{...register("oldPinCode")}
 								/>
 								<span>
 									{/* prettier-ignore */}
@@ -137,7 +138,7 @@ const SetPinPopup = ({ handlePopup, popupOpen }) => {
 							/>
 							<span>
 								{/* prettier-ignore */}
-                                    <svg width="15" height="2" viewBox="0 0 15 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<svg width="15" height="2" viewBox="0 0 15 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <line x1="1" y1="1" x2="14" y2="1" stroke="#002444" stroke-width="2" stroke-linecap="round"/>
                                     </svg>
 							</span>
