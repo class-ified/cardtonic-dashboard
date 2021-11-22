@@ -35,7 +35,7 @@ const WithdrawFunds = ({ handlePopupView, openPopup }) => {
 	// get server state
 	const serverState = useSelector(selectServerState);
 	console.log({ serverState });
-	console.log(serverState.minimumAmountWithdrawables.NGN);
+	console.log(serverState?.minimumAmountWithdrawables.NGN);
 
 	const navigateToWithdrawalHistory = useCallback(() => {
 		history.push("/transactions");
@@ -128,10 +128,10 @@ const WithdrawFunds = ({ handlePopupView, openPopup }) => {
 							name="amount"
 							placeholder="Enter Amount to Withdraw"
 							min={serverState.minimumAmountWithdrawables.NGN}
-							disabled={!banks.length > 0}
+							disabled={!banks?.length > 0}
 						/>
 
-						{banks.length > 0 && (
+						{banks?.length > 0 && (
 							<>
 								<span className="horizontal-line"></span>
 
@@ -140,7 +140,7 @@ const WithdrawFunds = ({ handlePopupView, openPopup }) => {
 										Select Bank
 									</h3>
 
-									{banks.length > 0 &&
+									{banks?.length > 0 &&
 										banks?.map((bank) => (
 											<>
 												<input
