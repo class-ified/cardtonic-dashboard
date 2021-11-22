@@ -4,6 +4,7 @@ import { selectAuthenticated } from "selectors";
 
 const AuthGuard = ({ children }) => {
 	const auth = useSelector(selectAuthenticated);
+	console.log({auth})
 	if (!auth) {
 		return <Redirect to="/signin" />;
 	}
