@@ -15,7 +15,7 @@ const Dashboard = () => {
 
     // get trades data from route called in useTrades hook
     const tradesResponse = useTrades()
-	const trades = tradesResponse?.trades
+	const trades = tradesResponse && tradesResponse?.trades
 	console.log(trades)
 
 	const serverState = useSelector(selectServerState)
