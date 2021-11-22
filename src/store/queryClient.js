@@ -17,9 +17,9 @@ export const queryClient = new QueryClient({
 				extractMessageAndShow(data);
 			},
 		},
-		queries: {
-			refetchOnReconnect: false,
-			refetchOnWindowFocus: !__DEV__,
-		},
+		// queries: {
+		// 	refetchOnReconnect: false,
+		// 	refetchOnWindowFocus: !__DEV__,
+		// },
 	},
 });
