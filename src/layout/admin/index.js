@@ -1,3 +1,6 @@
+import React from "react";
+import { useSelector } from "react-redux";
+import { selectAuthenticated, selectUser } from "selectors";
 import {
 	DashboardIcon,
 	startTradeIcon,
@@ -6,11 +9,17 @@ import {
 	walletIcon,
 	transactionsIcon,
 } from "../../components/Svg";
+import { useIntercom } from "hooks";
 
 import NavBar from "./NavBar";
 import Navigation from "./Navigation";
 
 const AdminLayout = (props) => {
+	const { openIntercom, show } = useIntercom();
+	React.useEffect(() => {
+		openIntercom();
+	}, [openIntercom]);
+
 	const navItems = [
 		{
 			name: "Dashboard",
@@ -20,27 +29,27 @@ const AdminLayout = (props) => {
 		{
 			name: "Transactions",
 			route: "/transactions",
-			icon: transactionsIcon
+			icon: transactionsIcon,
 		},
 		{
 			name: "Start Trade",
 			route: "/start-trade",
-			icon: startTradeIcon
+			icon: startTradeIcon,
 		},
 		{
 			name: "Wallet",
 			route: "/wallet",
-			icon: walletIcon
+			icon: walletIcon,
 		},
 		{
 			name: "Settings",
 			route: "/settings",
-			icon: settingsIcon
+			icon: settingsIcon,
 		},
 		{
 			name: "Support",
-			route: "/support",
-			icon: supportIcon
+			action: () => show(),
+			icon: supportIcon,
 		},
 	];
 

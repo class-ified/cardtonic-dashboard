@@ -15,9 +15,9 @@ import {
 export const WalletsDetailsPopupDesktop = ({
 	bankAmount,
 	bankStatus,
-	bankName,  
-	bankAccountNumber, 
-	bankAccountName,  
+	bankName,
+	bankAccountNumber,
+	bankAccountName,
 	bankCreatedAt,
 	bankRejectionReason,
 }) => {
@@ -116,7 +116,15 @@ export const WalletsDetailsPopupDesktop = ({
 	);
 };
 
-export const WalletsDetailsPopupMobile = ({bankAmount, bankStatus, bankName, bankAccountNumber, bankAccountName, bankCreatedAt, bankRejectionReason}) => {
+export const WalletsDetailsPopupMobile = ({
+	bankAmount,
+	bankStatus,
+	bankName,
+	bankAccountNumber,
+	bankAccountName,
+	bankCreatedAt,
+	bankRejectionReason,
+}) => {
 	// split datetime from props into date and time
 	const dateTime = bankCreatedAt?.split("T");
 	// pick date from date time and format by full month with year
@@ -135,20 +143,20 @@ export const WalletsDetailsPopupMobile = ({bankAmount, bankStatus, bankName, ban
 		const status = bankStatus ? bankStatus : "";
 		switch (status) {
 			case "pending":
-				heading = { 
-					icon: pendingIcon, 
-					text: "Pending", 
-					className: "text-pending", 
-				}; 
-				break; 
+				heading = {
+					icon: pendingIcon,
+					text: "Pending",
+					className: "text-pending",
+				};
+				break;
 
-			case "approved": 
-				heading = { 
-					icon: successIcon, 
-					text: "Approved", 
-					className: "text-success", 
-				}; 
-				break; 
+			case "approved":
+				heading = {
+					icon: successIcon,
+					text: "Approved",
+					className: "text-success",
+				};
+				break;
 
 			case "rejected":
 				heading = {
@@ -169,17 +177,24 @@ export const WalletsDetailsPopupMobile = ({bankAmount, bankStatus, bankName, ban
 	if (bankStatus === "pending") {
 		Component = (
 			<p className="text-small feedback-message text-grey-2 text-bold">
-				The withdrawal is pending. <br/>
+				The withdrawal is pending. <br />
 				You should receive it in few minutes.
 			</p>
 		);
 	} else if (bankStatus === "rejected") {
-		Component = (<div className="rejection-box"></div>);
+		Component = (
+			<div className="rejection-box">
+				<h3 className="text-xs text-black text-regular">
+					Rejection Reason:&nbsp;
+					{bankRejectionReason}
+				</h3>
+			</div>
+		);
 	} else if (bankStatus === "approved") {
 		Component = (
 			<p className="text-small feedback-message text-green-2 text-bold">
-				The withdrawal has been completed. <br/>
-				You should receive an alert shortly. <br/>
+				The withdrawal has been completed. <br />
+				You should receive an alert shortly. <br />
 				Thanks!
 			</p>
 		);
@@ -241,11 +256,11 @@ export const WalletsDetailsPopupMobile = ({bankAmount, bankStatus, bankName, ban
 				</div>
 			</div>
 
-			<div className="transaction-id">
+			<div className="transaction-id wallets-transaction-id">
 				<h3 className="text-xs text-black text-regular">
 					{bankAccountName}
-					<span className="text-vbold">{bankAccountNumber}</span>
 				</h3>
+				<h3 className="text-xs text-black text-vbold">{bankAccountNumber}</h3>
 			</div>
 		</>
 	);

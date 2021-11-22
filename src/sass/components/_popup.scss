@@ -18,11 +18,14 @@
         height: 100%;
         width: 100%;
         overflow-y: scroll;
-        margin-bottom: 15%;
         
         @include breakpoint(tablet) {
+            // margin-bottom: 15%;
             height: max(100vh, 85rem);
-            margin-bottom: unset;
+            // margin-bottom: unset;
+        }
+        @media only screen and (max-height: 680px) {
+            margin-bottom: 15%;
         }
         
         .popup-content {

@@ -48,8 +48,13 @@
 			top: 11rem;
 			padding: 1.8rem 2.2rem;
 
+			@include breakpoint(tablet) {
+				padding: 1.8rem 2.2rem 5rem 2.2rem;
+			}
+
 			@include breakpoint(mobile-medium) {
 				width: 90%;
+				
 			}
 
 			.top-indicator {
@@ -157,6 +162,17 @@
 				button {
 					margin-left: 1rem;
 				}
+			}
+
+			.wallets-transaction-id {
+				padding: 0 2.5rem;
+				justify-content: space-between;
+			}
+
+			.rejection-box {
+				@include commentsBox;
+				height: 11.2rem;
+				margin-bottom: 7.3rem;
 			}
 		}
 	}

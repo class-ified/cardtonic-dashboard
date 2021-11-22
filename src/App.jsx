@@ -9,6 +9,10 @@ import { persistor, store } from "./store/store";
 import { QueryClientProvider } from "react-query";
 import { queryClient } from "./store/queryClient";
 import { PersistGate } from "redux-persist/integration/react";
+import { IntercomProvider } from "react-use-intercom";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const renderRoutes = (routes = []) => (
 	<Suspense fallback={<Loader />}>
@@ -40,15 +44,29 @@ export const renderRoutes = (routes = []) => (
 		</Switch>
 	</Suspense>
 );
+const INTERCOM_APP_ID = "vvzf372a";
 
 function App() {
 	return (
 		<QueryClientProvider client={queryClient}>
-			<PersistGate persistor={persistor}>
-				<Provider store={store}>
-					<Router>{renderRoutes(routes)}</Router>
-				</Provider>
-			</PersistGate>
+			<IntercomProvider appId={INTERCOM_APP_ID}>
+				<PersistGate persistor={persistor}>
+					<Provider store={store}>
+						<Router>{renderRoutes(routes)}</Router>
+					</Provider>
+				</PersistGate>
+			</IntercomProvider>
+			<ToastContainer
+				position="top-right"
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+			/>
 		</QueryClientProvider>
 	);
 }

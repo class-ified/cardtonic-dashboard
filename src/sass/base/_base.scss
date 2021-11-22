@@ -29,6 +29,9 @@ html {
 	// This defines what 1rem is
 	font-size: 62.5%;
 	// overflow: hidden;
+	@include breakpoint(tablet) {
+		overflow: hidden;
+	}
 }
 
 body {
@@ -37,7 +40,10 @@ body {
 	background-color: #F9F9F9;
 	height: 100vh;
 	position: relative;
-	// overflow: hidden;
+
+	@include breakpoint(tablet) {
+		overflow: hidden;
+	}
 }
 
 

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useRef, useEffect } from "react";
 
-const NavigationMobile = () => {
+const NavigationMobile = ({handleLogout}) => {
 
     const navigationButtonRef = useRef()
 	const navigationBox = useRef()
@@ -50,7 +50,7 @@ const NavigationMobile = () => {
 						<h3 className="text-20 text-white text-regular">Support</h3>
 					</Link>
 
-					<Link to="/settings" onClick={handleMobileNavigation}>
+					<Link to="/settings" onClick={handleLogout}>
 						<h3 className="text-20 text-white text-regular">
                         <svg width="184" height="56" viewBox="0 0 184 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="184" height="56" rx="28" fill="#111111"/>

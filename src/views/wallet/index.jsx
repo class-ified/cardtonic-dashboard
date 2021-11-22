@@ -7,8 +7,10 @@ import { PageHeading } from "../../components/Typography";
 import useWindowSize from "../../hooks/useWindowSize";
 import FundStat from "../../components/FundStat";
 import { useWithdrawals } from "hooks";
+import { useState } from "react";
 
 const Wallet = () => {
+	
 	const windowSize = useWindowSize();
 
 	// get withdrawals data from route called in useWithdrawals hook

@@ -1,0 +1,99 @@
+.account-details-popup {
+	.popup-content {
+		max-height: 66rem;
+		width: 87.5rem;
+		top: 10rem;
+		padding: 9.1rem 5.3rem 6.2rem 5.3rem;
+
+		@include breakpoint(tablet) {
+			width: 91%;
+			max-width: 34.4rem;
+			padding: 7.5rem 2.5rem 3.3rem 2.5rem;
+		}
+
+		form {
+			width: 100%;
+
+			--width: 80%;
+			@include breakpoint(tablet) {
+				--width: 100%;
+                margin-bottom: 1rem;
+			}
+
+            
+
+            .default-select-box,input {
+                width: var(--width);
+                margin-bottom: 1rem;
+            }
+
+			.horizontal-line {
+				display: inline-block;
+				height: 1px;
+				background-color: #f3f3f3;
+				width: var(--width);
+				margin: 2.5rem 0;
+
+				@include breakpoint(tablet) {
+					margin: 2rem 0;
+				}
+			}
+
+            .submit {
+                margin-top: 1rem;
+            }
+
+			.accounts-box {
+				height: 18rem;
+				overflow-y: auto;
+
+                &>*:not(:last-child) {
+                    margin-bottom: 1rem;
+                }
+
+				.account {
+					cursor: pointer;
+					display: block;
+					// margin-bottom: 1rem;
+					width: var(--width);
+					height: 15.9rem;
+					border-radius: 2rem;
+					border: 1px solid #caf8fc;
+					padding: 3rem;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					position: relative;
+
+					@include breakpoint(tablet) {
+						height: 17.2rem;
+						padding: 3rem 2rem;
+						padding-top: 4rem;
+					}
+					@media only screen and (max-width: 350px) {
+						padding-top: 3rem;
+
+						h3 {
+							font-size: 15px;
+						}
+					}
+
+					.actions-box {
+						position: absolute;
+						top: 0.5rem;
+						right: -7.8rem;
+
+						@include breakpoint(tablet) {
+							right: 1.3rem;
+							top: 1.3rem;
+						}
+
+                        &>*:not(:last-child) {
+                            margin-right: .75rem;
+                        }
+					}
+				}
+			}
+		}
+	}
+}

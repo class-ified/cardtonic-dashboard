@@ -20,6 +20,7 @@
 @import "components/fundstat";
 @import "components/settingsbuttons";
 @import "components/notransaction";
+@import "components/account-details";
 
 @import "layout/admin/base";
 @import "layout/admin/navigation";
@@ -37,4 +38,6 @@
 @import "views/starttrade";
 @import "views/signin";
 @import "views/signup";
+@import "views/notifications";
 @import "views/reset-password";
+@import "views/email-verification";

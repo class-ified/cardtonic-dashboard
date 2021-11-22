@@ -1,8 +1,56 @@
 import { BlackSubmit } from "components/Buttons";
-import { resetPassword } from "api";
+import { resetPassword, EmailPayload } from "api";
+import {validatePhoneNumber} from 'utils';
+import {useMutation} from 'react-query';
+import {yupResolver} from '@hookform/resolvers/yup';
+import { useForm} from 'react-hook-form';
+import * as Yup from 'yup';
+import {__DEV__} from "Constants/config"
+import {useCallback} from "react"
+
+Yup.addMethod(Yup.string, 'validatePhone', function () {
+	return this.test({
+	  name: 'phone',
+	  message: 'Phone is not valid',
+	  test: validatePhoneNumber,
+	});
+  });
+  
+  const ForgotSchema = Yup.object().shape({
+	email: Yup.string().trim().email('Invalid Email').required('Required'),
+  });
+  
+  const initialValues = __DEV__
+	? {
+		email: 'test@test.com',
+	  }
+	: {
+		email: '',
+	  };
+
 
 const ResetPassword = () => {
-    resetPassword("tundegolibenachukwu@freeallapp.com")
+    const {register, handleSubmit} = useForm({
+		resolver: yupResolver(ForgotSchema),
+		defaultValues: initialValues,
+	  });
+	
+	  const forgotMutation = useMutation(
+		(data) => {
+		  console.log(data);
+		  return resetPassword(data);
+		},
+		{
+		  mutationKey: 'resetPassowrd',
+		},
+	  );
+	
+	  const onSubmit = useCallback(
+		values => {
+		  forgotMutation.mutate(values);
+		},
+		[forgotMutation],
+	  );
 
 
     return (
@@ -25,12 +73,12 @@ const ResetPassword = () => {
 
 				<div className="sign-content-right reset-password-content-right">
 					<div className="formbox">
-						<form action="#">
+						<form action="#" onSubmit={handleSubmit(onSubmit)}>
 							<input
 								type="email"
 								className="default-input"
 								placeholder="Drop your email"
-								// {...register("email")}
+								{...register("email")}
 							/>
 
                             <BlackSubmit text="Send the Link" />

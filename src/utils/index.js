@@ -1,6 +1,8 @@
+import { toast } from "react-toastify";
 import shortid from "shortid";
 export * from "./currency.utils";
 export * from "./data.utils";
+
 // export * from "./network.utils";
 // export * from './keychain';
 
@@ -50,17 +52,15 @@ export function capitalizeFirstLetter(string = "") {
 
 export const showSuccessSnackBar = (options) => {
 	const text = options?.text ?? "Something went wrong";
-	try {
-		// Keyboard.dismiss();
-	} catch (error) {}
-	// return Snackbar.show({
-	//   duration: Snackbar.LENGTH_LONG,
-	//   fontFamily: 'Lato-Bold',
-	//   backgroundColor: palette.blue,
-	//   textColor: 'black',
-	//   ...options,
-	//   text,
-	// });
+	toast.error(capitalizeFirstLetter(text), {
+		position: "top-right",
+		autoClose: 5000,
+		hideProgressBar: false,
+		closeOnClick: true,
+		pauseOnHover: true,
+		draggable: true,
+		progress: undefined,
+	});
 };
 
 export const extractMessageAndShow = (data) => {
@@ -69,13 +69,15 @@ export const extractMessageAndShow = (data) => {
 };
 export const showErrorSnackBar = async (options) => {
 	const text = options?.text ?? "Something went wrong";
-	// return Snackbar.show({
-	//   duration: Snackbar.LENGTH_LONG,
-	//   fontFamily: 'Lato-Bold',
-	//   backgroundColor: palette.red,
-	//   ...options,
-	//   text,
-	// });
+	toast.error(capitalizeFirstLetter(text), {
+		position: "top-right",
+		autoClose: 5000,
+		hideProgressBar: false,
+		closeOnClick: true,
+		pauseOnHover: true,
+		draggable: true,
+		progress: undefined,
+	});
 };
 
 /**

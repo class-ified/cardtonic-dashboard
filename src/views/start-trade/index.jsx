@@ -22,6 +22,7 @@ import { useForm } from "react-hook-form";
 import { MAX_IMAGES } from "Constants/config";
 import { __DEV__ } from "Constants/config";
 import { showErrorSnackBar } from "utils";
+import Loader from "components/Loader";
 
 const schema = Yup.object().shape({
 	// category: Yup.object()
@@ -85,7 +86,7 @@ const StartTrade = () => {
 
 	useEffect(() => {
 		images && console.log(images);
-	}, [images])
+	}, [images]);
 
 	const queryClient = useQueryClient();
 	const isValid = useMemo(() => {
@@ -106,6 +107,7 @@ const StartTrade = () => {
 	} = useGiftcards();
 
 	const realAmount = useMemo(() => {
+		console.log(rate);
 		const value = rate * amount;
 		// console.log(value)
 		return value;
@@ -148,27 +150,22 @@ const StartTrade = () => {
 		}));
 	}, [cardSubCategories]);
 
-	const fileOnChange = useCallback(
-		async (e) => {
-			// console.log('uploaded')
-			try {
-				let files = e.target.files;
-				let filesArray = Array.from(files);
-				console.log({ filesArray });
-				await setImages(filesArray);
+	const fileOnChange = useCallback(async (e) => {
+		// console.log('uploaded')
+		try {
+			let files = e.target.files;
+			let filesArray = Array.from(files);
+			console.log({ filesArray });
+			setImages(filesArray);
+		} catch (error) {
+			showErrorSnackBar({ text: "Couldn't pick images" });
+		}
+	}, []);
 
-				
-			} catch (error) {
-				showErrorSnackBar({ text: "Couldn't pick images" });
-			}
-		},
-		[images]
-	);
-
-	const handleFile = (e) => {
-		fileOnChange(e);
-		console.log(images);
-	};
+	// const handleFile = (e) => {
+	// 	fileOnChange(e);
+	// 	console.log(images);
+	// };
 
 	const tradeMutation = useMutation(
 		(data) => {
@@ -194,54 +191,39 @@ const StartTrade = () => {
 	// 		reader.readAsDataURL(file);
 	// 	});
 
-	async function uploadToServer(sourceUrl) {
-		// first get our hands on the local file
-		const localFile = await fetch(sourceUrl);
-
-		// then create a blob out of it (only works with RN 0.54 and above)
-		const fileBlob = await localFile.blob();
-
-		// then send this blob to filestack
-		const serverRes = await fetch(
-			"https://www.yourAwesomeServer.com/api/send/file",
-			{
-				// Your POST endpoint
-				method: "POST",
-				headers: {
-					"Content-Type": fileBlob && fileBlob.type,
-				},
-				body: fileBlob, // This is your file object
-			}
-		);
-
-		const serverJsonResponse = await serverRes.json();
-
-		// yay, let's print the result
-		console.log(`Server said: ${JSON.stringify(serverJsonResponse)}`);
-	}
-
 	const trade = useCallback(async () => {
+		console.log("trade function");
 		const values = getValues();
 		setLoading(true);
 		offS();
 		let urls = [];
 		try {
-			const files = images?.map((asset) => ({
-				name: asset.fileName,
-				type: asset.type,
-				uri: asset.uri,
-			}));
+			const files = images?.map(
+				(asset) =>
+					console.log({ asset }) || {
+						name: asset.name,
+						type: asset.type,
+						uri: asset.uri,
+						image: asset,
+					}
+			);
 			urls = await uploadImage(userId, {
 				files,
 			});
-
 			const container = [];
 			if (urls.length > 0) {
+				console.log(urls);
 				for (const [i, el] of urls.entries()) {
-					// console.log(files[i]);
-					container.push(() => {
-						uploadToServer(el.uri);
-					});
+					container.push(() =>
+						fetch(el.url, {
+							method: "PUT",
+							headers: {
+								"x-amz-acl": "public-read",
+								"Content-Type": files[i].type,
+							},
+							body: files[i].image,
+						})
+					);
 				}
 			}
 			await Promise.all(container.map((fn) => fn()));
@@ -252,25 +234,18 @@ const StartTrade = () => {
 			setLoading(false);
 		}
 
-		await tradeMutation.mutateAsync({
-			comment: values?.comment,
-			cardTotalAmount: amount,
-			cardCategory: selectedCategory.id,
-			cardSubCategory: values?.subCategory?.id,
-			tradeFiles: urls.map((u) => u.imageUrl),
-		});
-	}, [
-		amount,
-		getValues,
-		images,
-		offS,
-		selectedCategory.id,
-		tradeMutation,
-		userId,
-	]);
+		// await tradeMutation.mutateAsync({
+		// 	comment: values?.comment,
+		// 	cardTotalAmount: amount,
+		// 	cardCategory: selectedCategory.id,
+		// 	cardSubCategory: values?.subCategory?.id,
+		// 	tradeFiles: urls.map((u) => u.imageUrl),
+		// });
+	}, [getValues, images, offS, userId]);
 
 	const onSubmit = useCallback(
 		(values) => {
+			console.log("should run trade()");
 			trade();
 			setTermsOfTransaction(values.subCategory?.termsOfTransaction);
 			//   toggleModal();
@@ -289,7 +264,7 @@ const StartTrade = () => {
 	// console.log(selectCardSubCategories());
 
 	if (status === "loading") {
-		return <h2>Loading..</h2>;
+		return <Loader />;
 	}
 
 	return (
@@ -299,8 +274,9 @@ const StartTrade = () => {
 					Start Trade
 				</h1>
 			</div>
+
 			<div className="start-trade__body">
-				<form action="#" onSubmit={handleSubmit(onSubmit)}>
+				<form action="#" onSubmit={(e) => e.preventDefault()}>
 					<div className="default-select-box">
 						<select
 							className="text-vbold text-small default-input"
@@ -346,6 +322,7 @@ const StartTrade = () => {
 							name="sub-category"
 							id="sub-category"
 							onChange={(e) => {
+								console.log(cardSubCategories[e.target.value]);
 								setRate(cardSubCategories[e.target.value].rate);
 							}}
 							{...register("subCategory")}
@@ -400,6 +377,7 @@ const StartTrade = () => {
 								₦{whole}.{balanceFraction}
 							</h2>
 							<h3 className="text-small text-vbold">
+								{/* {console.log(rate)} */}
 								{rate ? rate : "000"}
 							</h3>
 						</div>
@@ -430,11 +408,12 @@ const StartTrade = () => {
 					<CompleteTrade
 						handlePopup={handlePopup}
 						popupOpen={popupOpen}
+						submitOnClick={trade}
 					/>
 
 					{/* <div onClick={openPopup}>start trade</div> */}
 
-					<BlackSubmit text="Start Trade" onClick={openPopup} />
+					<BlackSubmit text="Start Trade" onClick={trade} />
 					{/* <BlackSubmit text="Start Trade" /> */}
 				</form>
 			</div>

@@ -11,7 +11,7 @@ export const fetchSettings = () => {
 export const fetchTrades = (id, params) => {
 	console.log({ params });
 	return instance
-		.get(`/trades/user/${id}`, { params })
+		.get(`/trades/user/${id}?limit=6`, { params })
 		.then((res) => res.data);
 };
 

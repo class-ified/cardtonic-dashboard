@@ -1,0 +1,48 @@
+.email-verification {
+
+    &-content {
+        padding-top: 5rem;
+        align-items: center;
+
+        @include breakpoint(tablet) {
+            align-items: unset;
+        }
+
+        &-left {
+            width: 30rem;
+            margin-right: 15rem;
+
+            @include breakpoint(tablet) {
+                width: max-content;
+                margin-right: unset;
+                margin-bottom: 3.3rem;
+                // padding-left: 2rem;
+            }
+        }
+
+        &-right {
+
+            .formbox {
+                padding: 4.5rem 6.5rem 4.5rem 8.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                @include breakpoint(tablet) {
+                    flex-direction: column;
+                    align-items: unset;
+                    padding: 4.7rem 3.1rem;
+                }
+
+                .question-text {
+
+                    @include breakpoint(tablet) {
+                        margin-bottom: 2.7rem; 
+
+                    }
+                    
+                }
+            }
+        }
+    }
+}

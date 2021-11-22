@@ -25,4 +25,36 @@
             // }
         }
     }
+
+    .history-bottom {
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
+
+        @include breakpoint(tablet) {
+            flex-direction: column-reverse;
+            margin-top: 1.9rem;
+        }
+
+        .pagination-box {
+            @include breakpoint(tablet) {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        .account-details-button {
+            width: 60rem;
+            height: 6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: $color-white;
+            border-radius: 2rem;
+            padding: 0 3rem;
+
+            @include breakpoint(tablet) {
+                width: 100%;
+            }
+        }
+    }
 }

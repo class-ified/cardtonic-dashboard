@@ -5,6 +5,7 @@ import useWindowSize from "hooks/useWindowSize"
 import { useHistory } from "react-router"
 import { LOGOUT } from "action"
 import { store } from "store/store"
+import { Link } from "react-router-dom"
 
 const SignNavBar = () => {  
     const windowSize = useWindowSize()
@@ -19,9 +20,9 @@ const SignNavBar = () => {
             <div className="sign-navbar-contentbox">
                 <div className="navbar-content">
                     <div className="logo-box">
-                        <a href="https://cardtonic.com">
+                        <Link to="/">
                             <img src={windowSize.width > 1199 ? mobileLogoBig : mobileLogoSmall} alt="logo" />
-                        </a>
+                        </Link>
                     </div>
 
 

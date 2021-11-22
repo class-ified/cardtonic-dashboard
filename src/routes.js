@@ -1,5 +1,5 @@
 import AdminLayout from "./layout/admin";
-import SignLayout from "./layout/sign"
+import SignLayout from "./layout/sign";
 import NoMatch from "./views/404";
 import AuthGuard from "./components/auth/AuthGuard";
 
@@ -23,9 +23,14 @@ const routes = [
 	{
 		exact: true,
 		path: "/reset-password",
-		component: lazy(() => import("./views/reset-password")),
 		layout: SignLayout,
-		ignore: true,
+		component: lazy(() => import("./views/reset-password")),
+	},
+	{
+		exact: true,
+		path: "/email-verification",
+		layout: SignLayout,
+		component: lazy(() => import("./views/email-verification")),
 	},
 
 	{
@@ -39,11 +44,12 @@ const routes = [
 				path: "/",
 				component: lazy(() => import("./views/dashboard")),
 			},
+			
+			
 			{
 				exact: true,
 				path: "/dashboard",
 				component: lazy(() => import("./views/dashboard")),
-				
 			},
 			{
 				exact: true,
@@ -98,11 +104,11 @@ const routes = [
 	// 		},
 	// 	]
 	// },
-	
+
 	{
 		component: NoMatch,
 		ignore: true,
 	},
 ];
 
-export default routes
+export default routes;

@@ -17,6 +17,7 @@ const FundsSection = () => {
 
 	// get ngn balance from redux store
 	const ngnBalance = useSelector(selectNGNBalance)
+	
 
 
 	return (

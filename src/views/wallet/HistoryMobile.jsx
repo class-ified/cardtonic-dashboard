@@ -3,10 +3,13 @@ import { MobileTableBody } from "../../components/MobileTransactionsTable";
 
 import { useState } from "react";
 import NoTransaction from "components/NoTransaction";
+import Pagination from "components/Pagination";
+import AccountDetailsPopup from "components/AccountDetails";
 
 const HistoryMobile = ({ withdrawals }) => {
 	// popup state
 	const [openPopup, setOpenPopup] = useState(false);
+	const [openAccountDetails, setOpenAccountDetails] = useState(false);
 
 	// active (clicked trade) index (to be passed into the popup)
 	const [clickedWithdrawalIndex, setClickedWithdrawalIndex] = useState(null);
@@ -40,44 +43,47 @@ const HistoryMobile = ({ withdrawals }) => {
 
 			<span className="top-line"></span>
 
-			{withdrawals?.length ? withdrawals?.map((withdrawal, index) => (
-				<MobileTableBody
-					handlePopupOpen={handlePopupOpen}
-					key={index}
-					withdrawalIndex={index}
-					openPopup={openPopup}
-					bankName={withdrawal.bank.bankName}
-					bankAccountName={withdrawal.bank.accountName}
-					bankAccountNumber={withdrawal.bank.accountNumber}
-					bankCreatedAt={withdrawal.bank.createdAt}
-					bankAmount={withdrawal.amount}
-					bankStatus={withdrawal.status}
-					handleClickedWithdrawal={handleClickedWithdrawal}
+			{withdrawals?.length ? (
+				withdrawals?.map((withdrawal, index) => (
+					<MobileTableBody
+						handlePopupOpen={handlePopupOpen}
+						key={index}
+						withdrawalIndex={index}
+						openPopup={openPopup}
+						bankName={withdrawal.bank.bankName}
+						bankAccountName={withdrawal.bank.accountName}
+						bankAccountNumber={withdrawal.bank.accountNumber}
+						bankCreatedAt={withdrawal.bank.createdAt}
+						bankAmount={withdrawal.amount}
+						bankStatus={withdrawal.status}
+						handleClickedWithdrawal={handleClickedWithdrawal}
+					/>
+				))
+			) : (
+				<NoTransaction />
+			)}
+
+			<div className="history-bottom">
+				<AccountDetailsPopup
+					openAccountDetails={openAccountDetails}
+					setOpenAccountDetails={setOpenAccountDetails}
 				/>
-			)): <NoTransaction />}
+				<button
+					className="account-details-button"
+					onClick={() => setOpenAccountDetails(true)}
+				>
+					<h3 className="text-blue text-vbold text-small">
+						Account Details
+					</h3>
 
-			<div className="pagination-box">
-				<button className="previous-btn">
 					{/* prettier-ignore */}
-					<svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.666342 7.56577C0.665613 7.43965 0.689787 7.31462 0.737478 7.19786C0.785169 7.0811 0.855438 6.9749 0.944258 6.88535L6.69425 1.13535C6.8747 0.954896 7.11946 0.853516 7.37466 0.853516C7.62987 0.853516 7.87462 0.954896 8.05508 1.13535C8.23553 1.31581 8.33691 1.56056 8.33691 1.81577C8.33691 2.07098 8.23553 2.31573 8.05508 2.49619L2.97592 7.56577L8.04549 12.6354C8.20249 12.8187 8.28453 13.0545 8.27522 13.2957C8.2659 13.5369 8.16592 13.7657 7.99524 13.9364C7.82457 14.107 7.59578 14.207 7.35459 14.2163C7.1134 14.2256 6.87758 14.1436 6.69425 13.9866L0.944258 8.2366C0.767212 8.0581 0.667401 7.81718 0.666342 7.56577Z" fill="#9BABC5"/>
-                    </svg>
+					<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M6.95043 18.6471C4.17301 17.9956 2.00437 15.827 1.35288 13.0496C0.882374 11.0437 0.882374 8.95625 1.35288 6.95043C2.00437 4.173 4.17301 2.00437 6.95043 1.35287C8.95626 0.882373 11.0437 0.882373 13.0496 1.35287C15.827 2.00437 17.9956 4.173 18.6471 6.95043C19.1176 8.95625 19.1176 11.0437 18.6471 13.0496C17.9956 15.827 15.827 17.9956 13.0496 18.6471C11.0437 19.1176 8.95626 19.1176 6.95043 18.6471Z" stroke="#00CEDE" stroke-width="1.5"/>
+						<path d="M9 7.5L11.5 10L9 12.5" stroke="#00CEDE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
 				</button>
 
-				<div className="number-box">
-					<button className="page-number page-number-active">
-						1
-					</button>
-					<button className="page-number">2</button>
-					<button className="page-number">3</button>
-				</div>
-
-				<button className="next-btn">
-					{/* prettier-ignore */}
-					<svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8.33366 7.56704C8.33439 7.69316 8.31021 7.81819 8.26252 7.93495C8.21483 8.05171 8.14456 8.15791 8.05574 8.24746L2.30575 13.9975C2.1253 14.1779 1.88054 14.2793 1.62534 14.2793C1.37013 14.2793 1.12538 14.1779 0.944923 13.9975C0.764466 13.817 0.663086 13.5722 0.663086 13.317C0.663086 13.0618 0.764466 12.8171 0.944923 12.6366L6.02408 7.56704L0.954506 2.49746C0.797506 2.31413 0.715467 2.07831 0.724783 1.83712C0.734099 1.59593 0.834084 1.36714 1.00476 1.19646C1.17543 1.02579 1.40422 0.925803 1.64541 0.916487C1.8866 0.907171 2.12242 0.989208 2.30575 1.14621L8.05574 6.89621C8.23279 7.07471 8.3326 7.31563 8.33366 7.56704Z" fill="#9BABC5"/>
-                    </svg>
-				</button>
+				<Pagination />
 			</div>
 		</div>
 	);

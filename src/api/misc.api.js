@@ -26,6 +26,8 @@ export const fetchNotifications = ({ id, ...params }) =>
 	instance
 		.get(`/notifications/user/${id}`, { params })
 		.then((res) => res.data);
+
+		
 export const updatePushNotificationToken = ({ id, fcmToken }) =>
 	instance
 		.post(`/notifications/fcm-token/${id}`, { fcmToken })

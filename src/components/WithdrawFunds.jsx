@@ -1,16 +1,109 @@
 import Popup from "./PopupContainer";
 import { BlackSubmit } from "./Buttons";
-import { selectNGNBanks } from "selectors";
+import { selectMinimumWithdrawalableAmountNGN, selectNGNBanks, selectServerState } from "selectors";
 import { useSelector } from "react-redux";
+import { useUsersBanks } from "hooks";
+import { useCallback, useMemo, useState } from "react";
+import { useHistory } from "react-router";
+import {Controller, useForm} from 'react-hook-form';
+import * as Yup from 'yup';
+import {yupResolver} from '@hookform/resolvers/yup';
+import _ from 'lodash';
+import { useMutation } from "react-query";
+import { withdrawFunds } from "api";
+import { queryClient } from "store/queryClient";
 
 const WithdrawFunds = ({ handlePopupView, openPopup }) => {
 	// close popup via handlePopupView function prop from
 	const closePopup = () => {
 		handlePopupView(false);
 	};
+	const {
+		data: banks = [],
+		status: usersBanks,
+		usersBanksRefetch: refetch,
+		usersBanksIsFetching: isFetching,
+	} = useUsersBanks();
 
-    const userBanks = useSelector(selectNGNBanks)
-    // console.log(userBanks)
+	const [selectedId, setSelectedId] = useState(null);
+
+	const history = useHistory();
+
+	console.log({ banks });
+
+	const userBanks = useSelector(selectNGNBanks);
+	// get server state
+	const serverState = useSelector(selectServerState);
+	console.log({ serverState });
+	console.log(serverState.minimumAmountWithdrawables.NGN);
+
+	const navigateToWithdrawalHistory = useCallback(() => {
+		history.push("/transactions");
+	}, [history]);
+
+	const chooseAccount = useCallback(
+		(acct) => () => {
+			if (acct === selectedId) {
+				return setSelectedId(null);
+			}
+			setSelectedId(acct);
+		},
+		[selectedId]
+	);
+
+	const minimumWithdrawalableAmount = useSelector(
+		selectMinimumWithdrawalableAmountNGN,
+	  );
+
+	const WithdrawalSchema = useMemo(
+		() =>
+		  Yup.object().shape({
+			amount: Yup.string()
+			  .matches(/[0-9]/g, 'Only digits are allowed')
+			  .test(
+				'is-greater-than-minimum',
+				`Amount must be greater than minimum ${minimumWithdrawalableAmount}`,
+				value => {
+				  return Number(value) >= minimumWithdrawalableAmount;
+				},
+			  ),
+		  }),
+		[minimumWithdrawalableAmount],
+	  );
+
+	const withdrawalMutation = useMutation(
+		data => {
+		  return withdrawFunds(selectedId, data);
+		},
+		{
+		  mutationKey: 'withdrawFunds',
+		  onSuccess: async () => {
+			try {
+			  await queryClient.invalidateQueries('infiniteTrades');
+			} catch (error) {}
+			// on();
+		  },
+		},
+	  );
+
+	const onSubmit = useCallback(
+		async (values) => {
+			try {
+				// const pinCode = await authenticateWithPIN();
+				await withdrawalMutation.mutateAsync({
+					// pinCode,
+					amount: values.amount,
+				});
+			} catch (error) {
+				console.log({ error });
+			}
+		},
+		[withdrawalMutation]
+	);
+
+	const { register, handleSubmit } = useForm({
+		resolver: yupResolver(WithdrawalSchema),
+	});
 
 	return (
 		<>
@@ -25,8 +118,7 @@ const WithdrawFunds = ({ handlePopupView, openPopup }) => {
 					</button>
 
 					<h3 className="error-heading text-error text-small text-bold">
-						This is a dummy text for the Admin - Access Bank not
-						working currently, please try other Banks
+						{serverState.walletText}
 					</h3>
 
 					<form action="#">
@@ -35,89 +127,60 @@ const WithdrawFunds = ({ handlePopupView, openPopup }) => {
 							type="number"
 							name="amount"
 							placeholder="Enter Amount to Withdraw"
+							min={serverState.minimumAmountWithdrawables.NGN}
+							disabled={!banks.length > 0}
 						/>
-						<span className="horizontal-line"></span>
 
-						<div className="account-list-box">
-							<h3 className="heading text-small text-success text-vbold">
-								Select Bank
-							</h3>
+						{banks.length > 0 && (
+							<>
+								<span className="horizontal-line"></span>
 
-							<input type="radio" id="account-1" name="account" />
-							<label htmlFor="account-1">
-								<div className="account-details">
-									<h3 className="text-regular text-small text-blue">
-										Bank -{" "}
-										<span className="text-vbold">
-											Access Bank
-										</span>
+								<div className="account-list-box">
+									<h3 className="heading text-small text-success text-vbold">
+										Select Bank
 									</h3>
-									<h3 className="text-regular text-small text-blue">
-										Account Number -{" "}
-										<span className="text-vbold">
-											0177386427
-										</span>
-									</h3>
-									<h3 className="text-regular text-small text-blue">
-										Account Name -{" "}
-										<span className="text-vbold">
-											Julia Morgan Agbaje
-										</span>
-									</h3>
-									<div className="checkbox-icon"></div>
+
+									{banks.length > 0 &&
+										banks?.map((bank) => (
+											<>
+												<input
+													type="radio"
+													id={bank.id}
+													name="account"
+													key={bank.id}
+												/>
+												<label htmlFor="account-1">
+													<div className="account-details">
+														<h3 className="text-regular text-small text-blue">
+															Bank -{" "}
+															<span className="text-vbold">
+																{bank.bankName}
+															</span>
+														</h3>
+														<h3 className="text-regular text-small text-blue">
+															Account Number -{" "}
+															<span className="text-vbold">
+																{
+																	bank.accountNumber
+																}
+															</span>
+														</h3>
+														<h3 className="text-regular text-small text-blue">
+															Account Name -{" "}
+															<span className="text-vbold">
+																{
+																	bank.accountName
+																}
+															</span>
+														</h3>
+														<div className="checkbox-icon"></div>
+													</div>
+												</label>
+											</>
+										))}
 								</div>
-							</label>
-
-							<input type="radio" id="account-2" name="account" />
-							<label htmlFor="account-2">
-								<div className="account-details">
-									<h3 className="text-regular text-small text-blue">
-										Bank -{" "}
-										<span className="text-vbold">
-											Access Bank
-										</span>
-									</h3>
-									<h3 className="text-regular text-small text-blue">
-										Account Number -{" "}
-										<span className="text-vbold">
-											0177386427
-										</span>
-									</h3>
-									<h3 className="text-regular text-small text-blue">
-										Account Name -{" "}
-										<span className="text-vbold">
-											Julia Morgan Agbaje
-										</span>
-									</h3>
-									<div className="checkbox-icon"></div>
-								</div>
-							</label>
-
-							<input type="radio" id="account-2" name="account" />
-							<label htmlFor="account-2">
-								<div className="account-details">
-									<h3 className="text-regular text-small text-blue">
-										Bank -{" "}
-										<span className="text-vbold">
-											Access Bank
-										</span>
-									</h3>
-									<h3 className="text-regular text-small text-blue">
-										Account Number -{" "}
-										<span className="text-vbold">
-											0177386427
-										</span>
-									</h3>
-									<h3 className="text-regular text-small text-blue">
-										Account Name -{" "}
-										<span className="text-vbold">
-											Julia Morgan Agbaje
-										</span>
-									</h3>
-									<div className="checkbox-icon"></div>
-								</div>
-							</label>
-						</div>
+							</>
+						)}
 
 						<BlackSubmit text="Withdraw" />
 					</form>

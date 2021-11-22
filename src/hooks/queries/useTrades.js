@@ -1,4 +1,4 @@
-import { UPDATE_TRADES } from "action"; 
+import { UPDATE_TRADES } from "action";
 import { fetchTrades } from "api/user.api";
 import { selectUserId } from "selectors";
 import { useQuery } from "react-query";
@@ -16,7 +16,7 @@ export const useTrades = () => {
 
 	const [page, setPage] = React.useState(1);
 	// console.log({ page });
-const {
+	const {
 		isPreviousData,
 		data = {},
 		...query

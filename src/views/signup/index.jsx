@@ -3,16 +3,12 @@ import { BigBlackSubmit } from "../../components/Buttons";
 import { Link } from "react-router-dom";
 
 import { useCallback } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-	checkPhoneNumber,
-	extractMessageAndShow,
-	validatePhoneNumber,
-} from "../../utils";
+import { checkPhoneNumber, validatePhoneNumber } from "../../utils";
 import { useMutation } from "react-query";
-import { register, RegisterPayload } from "api";
+import { register as registerUser } from "api";
 import { useHistory } from "react-router";
 
 Yup.addMethod(Yup.string, "validatePhone", function () {
@@ -59,14 +55,8 @@ const initialValues =
 				confirmPassword: "",
 		  };
 
-
-		  
 const SignUp = () => {
-	// const history = useHistory()
-
-	// const navigateToSignin = useCallback(() => {
-	// 	history.push("/signin")
-	// }, [history])
+	const history = useHistory();
 
 	const { register, handleSubmit } = useForm({
 		resolver: yupResolver(RegisterSchema),
@@ -75,25 +65,20 @@ const SignUp = () => {
 
 	const registerMutation = useMutation(
 		(user) => {
-			return register(user);
+			return registerUser(user);
 		},
 		{
 			mutationKey: "registerUser",
-			onSuccess: (data, user) => {
-				// console.log({data})
-				// console.log({user})
-				console.log("user registered");
-				// extractMessageAndShow(data);
-				// navigation.navigate('VerifyEmail', {email: user.email});
+			onSuccess: () => {
+				history.push("/email-verification");
 			},
 		}
 	);
 
 	const onSubmit = useCallback(
-		(data) => {
-			console.log(data)
+		async (data) => {
 			let phoneNumber = checkPhoneNumber(data.phoneNumber)?.phoneNumber;
-			registerMutation.mutate({
+			await registerMutation.mutateAsync({
 				...data,
 				phoneNumber: phoneNumber?.replace("+", ""),
 			});
@@ -187,7 +172,11 @@ const SignUp = () => {
 							</label>
 
 							<div className="button-box">
-								<BigBlackSubmit text="Create Account" />
+								<BigBlackSubmit
+									text="Create Account"
+									onPress={handleSubmit(onSubmit)}
+									loading={registerMutation.isLoading}
+								/>
 
 								<h3 className="sign-in-text text-blue-dark text-small text-regular">
 									Got an account?{" "}
