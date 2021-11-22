@@ -24,7 +24,7 @@ export const selectUsersBank = createSelector(
 
 export const selectMinimumWithdrawalableAmountNGN = createSelector(
 	selectServerState,
-	(serverState) => serverState?.minimumAmountWithdrawables.NGN ?? 2000
+	(serverState) => serverState?.minimumAmountWithdrawables?.NGN ?? 2000
 );
 
 export const bankDetails = createSelector(selectMisc, (misc) => ({

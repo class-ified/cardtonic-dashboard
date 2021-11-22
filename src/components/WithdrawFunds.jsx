@@ -118,7 +118,7 @@ const WithdrawFunds = ({ handlePopupView, openPopup }) => {
 					</button>
 
 					<h3 className="error-heading text-error text-small text-bold">
-						{serverState.walletText}
+						{serverState?.walletText}
 					</h3>
 
 					<form action="#">
@@ -127,7 +127,7 @@ const WithdrawFunds = ({ handlePopupView, openPopup }) => {
 							type="number"
 							name="amount"
 							placeholder="Enter Amount to Withdraw"
-							min={serverState.minimumAmountWithdrawables.NGN}
+							min={serverState?.minimumAmountWithdrawables?.NGN}
 							disabled={!banks?.length > 0}
 						/>
 
