@@ -55,12 +55,12 @@ const HistoryDesktop = ({ withdrawals }) => {
 							withdrawalIndex={index}
 							openPopup={openPopup}
 							handlePopupView={handlePopupView}
-							bankName={withdrawal.bank.bankName}
-							bankAccountName={withdrawal.bank.accountName}
-							bankAccountNumber={withdrawal.bank.accountNumber}
-							bankUpdatedAt={withdrawal.bank.updatedAt}
-							bankAmount={withdrawal.amount}
-							bankStatus={withdrawal.status}
+							bankName={withdrawal?.bank?.bankName}
+							bankAccountName={withdrawal?.bank?.accountName}
+							bankAccountNumber={withdrawal?.bank?.accountNumber}
+							bankUpdatedAt={withdrawal?.bank?.updatedAt}
+							bankAmount={withdrawal?.amount}
+							bankStatus={withdrawal?.status}
 							handleClickedWithdrawal={handleClickedWithdrawal}
 						/>
 					))

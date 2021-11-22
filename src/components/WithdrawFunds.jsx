@@ -35,7 +35,7 @@ const WithdrawFunds = ({ handlePopupView, openPopup }) => {
 	// get server state
 	const serverState = useSelector(selectServerState);
 	console.log({ serverState });
-	console.log(serverState?.minimumAmountWithdrawables.NGN);
+	console.log(serverState?.minimumAmountWithdrawables?.NGN);
 
 	const navigateToWithdrawalHistory = useCallback(() => {
 		history.push("/transactions");

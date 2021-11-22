@@ -52,12 +52,12 @@ const HistoryMobile = ({ withdrawals }) => {
 						key={index}
 						withdrawalIndex={index}
 						openPopup={openPopup}
-						bankName={withdrawal.bank.bankName}
-						bankAccountName={withdrawal.bank.accountName}
-						bankAccountNumber={withdrawal.bank.accountNumber}
-						bankCreatedAt={withdrawal.bank.createdAt}
-						bankAmount={withdrawal.amount}
-						bankStatus={withdrawal.status}
+						bankName={withdrawal?.bank?.bankName}
+						bankAccountName={withdrawal?.bank?.accountName}
+						bankAccountNumber={withdrawal?.bank?.accountNumber}
+						bankCreatedAt={withdrawal?.bank?.createdAt}
+						bankAmount={withdrawal?.amount}
+						bankStatus={withdrawal?.status}
 						handleClickedWithdrawal={handleClickedWithdrawal}
 					/>
 				))
