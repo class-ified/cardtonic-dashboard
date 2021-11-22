@@ -29,7 +29,7 @@ const WithdrawFunds = ({ handlePopupView, openPopup }) => {
 
 	const history = useHistory();
 
-	console.log({ banks });
+	console.log({ usersBanks });
 
 	const userBanks = useSelector(selectNGNBanks);
 	// get server state

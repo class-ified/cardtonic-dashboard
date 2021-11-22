@@ -28,6 +28,8 @@ const HistoryMobile = ({ trades }) => {
 		}
 	};
 
+	const tradesArray = trades && trades
+
 	return (
 		<div className="mobile-history">
 			<MobileDetailsPopup
@@ -36,7 +38,7 @@ const HistoryMobile = ({ trades }) => {
 				clickedTrade={clickedTrade}
 			/>
 
-			{trades?.length ? trades?.map(
+			{tradesArray?.length > 0 ? tradesArray?.map(
 				(trade, index) =>
 					index < 4 && (
 						<MobileTableBody

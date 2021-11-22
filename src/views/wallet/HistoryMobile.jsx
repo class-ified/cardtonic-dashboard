@@ -32,6 +32,8 @@ const HistoryMobile = ({ withdrawals }) => {
 
 	// console.log(withdrawals[clickedWithdrawalIndex])
 	console.log(clickedWithdrawalIndex);
+	
+	const withdrawalsArray = withdrawals && withdrawals
 
 	return (
 		<div className="mobile-history">
@@ -43,8 +45,8 @@ const HistoryMobile = ({ withdrawals }) => {
 
 			<span className="top-line"></span>
 
-			{withdrawals?.length ? (
-				withdrawals?.map((withdrawal, index) => (
+			{withdrawalsArray?.length > 0 ? (
+				withdrawalsArray?.map((withdrawal, index) => (
 					<MobileTableBody
 						handlePopupOpen={handlePopupOpen}
 						key={index}

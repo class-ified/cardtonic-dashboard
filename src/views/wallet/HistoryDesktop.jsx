@@ -32,6 +32,7 @@ const HistoryDesktop = ({ withdrawals }) => {
 	};
 
 	// console.log(clickedWithdrawal());
+	const withdrawalsArray = withdrawals && withdrawals
 
 	return (
 		<>
@@ -47,8 +48,8 @@ const HistoryDesktop = ({ withdrawals }) => {
 
 				<span className="horizontal-line"></span>
 
-				{withdrawals?.length ? (
-					withdrawals?.map((withdrawal, index) => (
+				{withdrawalsArray?.length > 0 ? (
+					withdrawalsArray?.map((withdrawal, index) => (
 						<TableBody
 							key={index}
 							withdrawalIndex={index}

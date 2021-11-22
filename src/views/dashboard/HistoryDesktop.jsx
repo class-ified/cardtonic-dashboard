@@ -33,6 +33,8 @@ const HistoryDesktop = ({ trades }) => {
 	
 	// console.log(trades);
 
+	const tradesArray = trades && trades
+
 
 	return (
 		<div className="desktop-history">
@@ -47,7 +49,7 @@ const HistoryDesktop = ({ trades }) => {
 
 			<span className="horizontal-line"></span>
 
-			{trades?.length ? trades?.map((trade, index) => index < 4 && (
+			{tradesArray?.length > 0 ? tradesArray?.map((trade, index) => index < 4 && (
 				<TableBody
 					key={index}
 					index={index}
