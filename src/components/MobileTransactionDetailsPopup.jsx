@@ -31,7 +31,7 @@ const MobileDetailsPopup = ({
 
 	// if clickedWithdrawal is passed instead,
 	let withdrawal = clickedWithdrawal && clickedWithdrawal();
-	console.log(withdrawal);
+	// console.log(withdrawal);
 
 	// compoonents to render based on whether (clicked) trade or withdrawal gets passed
 	let Component;

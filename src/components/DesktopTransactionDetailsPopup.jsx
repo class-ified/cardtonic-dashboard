@@ -31,7 +31,7 @@ const DesktopDetailsPopup = ({
 
 	// if clickedwithdrawal is passed as prop, run it and save result to trade variable
 	let withdrawal = clickedWithdrawal && clickedWithdrawal();
-	console.log(withdrawal);
+	// console.log(withdrawal);
 
 	// change popup heading, heading classname and icon based on trade status
 	let heading = {};
